@@ -2,7 +2,7 @@
 
 [ext_resource path="res://sprites/track.png" type="Texture" id=1]
 
-[node name="map" type="Node2D" index="0"]
+[node name="map" type="Node2D"]
 
 z_index = -1000
 z_as_relative = false
