@@ -24,31 +24,40 @@ texture = ExtResource( 2 )
 vframes = 2
 hframes = 2
 frame = 3
-_sections_unfolded = [ "Animation", "Transform" ]
+_sections_unfolded = [ "Animation", "Offset", "Region", "Transform" ]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Label" type="Label" parent="." index="1"]
+[node name="TextureProgress" type="TextureProgress" parent="body" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = -50.0
 margin_right = 40.0
-margin_bottom = -36.0
+margin_bottom = 40.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
-mouse_filter = 2
+mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
-size_flags_vertical = 4
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
+size_flags_vertical = 1
+min_value = 0.0
+max_value = 100.0
+step = 1.0
+page = 0.0
+value = 0.0
+exp_edit = false
+rounded = false
+texture_under = null
+texture_over = null
+texture_progress = null
+radial_fill_degrees = 360.0
+radial_center_offset = Vector2( 0, 0 )
+nine_patch_stretch = false
 
-[node name="Camera2D" type="Camera2D" parent="." index="2"]
+[node name="Camera2D" type="Camera2D" parent="." index="1"]
 
 anchor_mode = 1
 rotating = false
@@ -77,7 +86,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="shoot" type="AudioStreamPlayer" parent="." index="3"]
+[node name="shoot" type="AudioStreamPlayer" parent="." index="2"]
 
 stream = SubResource( 1 )
 volume_db = 0.0
