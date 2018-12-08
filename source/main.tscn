@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://main.gd" type="Script" id=1]
 [ext_resource path="res://scenes/map.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/channeler.tscn" type="PackedScene" id=4]
 
 [node name="main" type="Node2D"]
 
@@ -16,6 +17,34 @@ sort_enabled = true
 
 [node name="player" parent="YSort" index="0" instance=ExtResource( 3 )]
 
-position = Vector2( 1155.41, 841.583 )
+position = Vector2( 1611.37, 1245.77 )
+
+[node name="target" type="Node2D" parent="YSort" index="1"]
+
+position = Vector2( 1732, 1268 )
+
+[node name="channeler1" parent="YSort" index="2" instance=ExtResource( 4 )]
+
+position = Vector2( 2374.11, 1422.69 )
+frame = 2
+
+[node name="channeler2" parent="YSort" index="3" instance=ExtResource( 4 )]
+
+position = Vector2( 2303.22, 849.546 )
+frame = 2
+
+[node name="channeler3" parent="YSort" index="4" instance=ExtResource( 4 )]
+
+position = Vector2( 1358.78, 851.248 )
+frame = 3
+
+[node name="channeler4" parent="YSort" index="5" instance=ExtResource( 4 )]
+
+position = Vector2( 1803.15, 1483.85 )
+
+[node name="channeler5" parent="YSort" index="6" instance=ExtResource( 4 )]
+
+position = Vector2( 1309.06, 1368.61 )
+frame = 1
 
 

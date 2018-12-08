@@ -1,52 +1,70 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/channeler.gd" type="Script" id=1]
-[ext_resource path="res://sprites/wizard.png" type="Texture" id=2]
-[ext_resource path="res://sprites/ray.png" type="Texture" id=3]
+[ext_resource path="res://sprites/tower bott.png" type="Texture" id=2]
+[ext_resource path="res://sprites/tower midL.png" type="Texture" id=3]
+[ext_resource path="res://sprites/tower midR.png" type="Texture" id=4]
+[ext_resource path="res://sprites/tower upL.png" type="Texture" id=5]
+[ext_resource path="res://sprites/tower upR.png" type="Texture" id=6]
+[ext_resource path="res://sprites/beam.png" type="Texture" id=7]
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="SpriteFrames" id=1]
 
-resource_name = "channel"
-length = 0.5
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
+"loop": false,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="Animation" id=2]
+
+resource_name = "beam"
+length = 0.6
 loop = true
-step = 0.1
+step = 0.2
 tracks/0/type = "value"
-tracks/0/path = NodePath("AnimatedSprite:frame")
+tracks/0/path = NodePath("ray:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.3 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1 ]
+"values": [ 0, 1, 2 ]
 }
 
 [node name="channeler1" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
+frame = 0
 
-[node name="AnimatedSprite" type="Sprite" parent="." index="0"]
+[node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
 
-texture = ExtResource( 2 )
-hframes = 2
+position = Vector2( 92, -136 )
+scale = Vector2( 4, 4 )
+frames = SubResource( 1 )
+animation = "default"
 _sections_unfolded = [ "Animation", "Material", "Offset", "Region", "Transform", "Visibility", "Z Index" ]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
+[node name="ray" type="Sprite" parent="." index="1"]
+
+texture = ExtResource( 7 )
+centered = false
+vframes = 3
+frame = 1
+_sections_unfolded = [ "Animation", "Material", "Offset", "Transform", "Visibility", "Z Index" ]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
 
 root_node = NodePath("..")
-autoplay = "channel"
+autoplay = "beam"
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.0
-anims/channel = SubResource( 1 )
+anims/beam = SubResource( 2 )
 blend_times = [  ]
-
-[node name="ray" type="Sprite" parent="." index="2"]
-
-texture = ExtResource( 3 )
-centered = false
-_sections_unfolded = [ "Material", "Offset", "Transform", "Visibility", "Z Index" ]
 
 

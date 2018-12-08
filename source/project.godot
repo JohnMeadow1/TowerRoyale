@@ -14,9 +14,10 @@ config/name="TowerRoyale"
 run/main_scene="res://main.tscn"
 config/icon="res://icon.png"
 
-[autoload]
+[display]
 
-globals="*res://globals.gd"
+window/size/width=1400
+window/size/height=800
 
 [rendering]
 

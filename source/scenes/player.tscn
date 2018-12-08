@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/player.gd" type="Script" id=1]
 [ext_resource path="res://sprites/tank1.png" type="Texture" id=2]
@@ -80,13 +80,34 @@ tracks/0/keys = {
 "values": [ 3, 2, 1, 0 ]
 }
 
-[node name="player" type="Node2D" index="0"]
+[sub_resource type="CapsuleShape2D" id=6]
 
+custom_solver_bias = 0.0
+radius = 32.0
+height = 78.0
+
+[node name="player" type="RigidBody2D"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+mode = 2
+mass = 1.0
+friction = 1.0
+bounce = 0.0
+gravity_scale = 0.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = true
+linear_velocity = Vector2( 0, 0 )
+linear_damp = -1.0
+angular_velocity = 0.0
+angular_damp = -1.0
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="body" type="Sprite" parent="." index="0"]
 
@@ -216,5 +237,12 @@ playback_default_blend_time = 0.0
 playback_speed = 1.0
 anims/fire = SubResource( 5 )
 blend_times = [  ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="6"]
+
+position = Vector2( 7, 8 )
+rotation = 1.5708
+shape = SubResource( 6 )
+_sections_unfolded = [ "Transform" ]
 
 
