@@ -1,10 +1,11 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/map.gd" type="Script" id=1]
 [ext_resource path="res://sprites/map.png" type="Texture" id=2]
 [ext_resource path="res://scenes/channeler.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/monster.tscn" type="PackedScene" id=4]
 
-[node name="map" type="Node2D" index="0"]
+[node name="map" type="Node2D"]
 
 z_index = -1000
 z_as_relative = false
@@ -14,7 +15,6 @@ _sections_unfolded = [ "Transform", "Z Index" ]
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
 modulate = Color( 1, 0.911072, 0.816406, 1 )
-scale = Vector2( 4, 4 )
 z_index = -1000
 z_as_relative = false
 texture = ExtResource( 2 )
@@ -29,7 +29,7 @@ position = Vector2( 1224.6, 942.855 )
 
 [node name="channeler2" parent="channelers" index="1" instance=ExtResource( 3 )]
 
-position = Vector2( 1121.38, 666.693 )
+position = Vector2( 1121.38, 663.903 )
 
 [node name="channeler3" parent="channelers" index="2" instance=ExtResource( 3 )]
 
@@ -42,5 +42,9 @@ position = Vector2( 995.856, 1171.6 )
 [node name="channeler5" parent="channelers" index="4" instance=ExtResource( 3 )]
 
 position = Vector2( 714.115, 954.013 )
+
+[node name="monster" parent="." index="2" instance=ExtResource( 4 )]
+
+position = Vector2( 976.519, 961.632 )
 
 

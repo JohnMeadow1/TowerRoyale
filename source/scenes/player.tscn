@@ -9,7 +9,7 @@
 audio_stream = ExtResource( 3 )
 random_pitch = 1.5
 
-[node name="player" type="Node2D" index="0"]
+[node name="player" type="Node2D"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
