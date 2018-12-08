@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/map.png-659e88586eefd66127a1dc6c44095341.stex"
+path="res://.import/tower upL.png-87957a318261cd821c87419869545838.stex"
 
 [deps]
 
-source_file="res://sprites/map.png"
-dest_files=[ "res://.import/map.png-659e88586eefd66127a1dc6c44095341.stex" ]
+source_file="res://sprites/tower upL.png"
+dest_files=[ "res://.import/tower upL.png-87957a318261cd821c87419869545838.stex" ]
 
 [params]
 

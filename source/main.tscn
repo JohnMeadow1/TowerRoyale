@@ -1,10 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://main.gd" type="Script" id=1]
 [ext_resource path="res://scenes/map.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://sprites/tower.png" type="Texture" id=4]
-[ext_resource path="res://sprites/tower_shadow.png" type="Texture" id=5]
 
 [node name="main" type="Node2D"]
 
@@ -18,27 +16,6 @@ sort_enabled = true
 
 [node name="player" parent="YSort" index="0" instance=ExtResource( 3 )]
 
-position = Vector2( 610.931, 307.124 )
-
-[node name="tower" type="Sprite" parent="YSort" index="1"]
-
-position = Vector2( 261.021, 151.757 )
-scale = Vector2( 4, 4 )
-texture = ExtResource( 4 )
-_sections_unfolded = [ "Transform" ]
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="shade" type="Sprite" parent="YSort/tower" index="0"]
-
-modulate = Color( 1, 1, 1, 0.392157 )
-position = Vector2( 5, 3 )
-z_index = -1
-texture = ExtResource( 5 )
-_sections_unfolded = [ "Material", "Visibility", "Z Index" ]
-__meta__ = {
-"_edit_lock_": true
-}
+position = Vector2( 1155.41, 841.583 )
 
 

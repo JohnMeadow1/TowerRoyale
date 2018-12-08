@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/barrel.png-86ea82274b58d2c19fcd70e8695ab738.stex"
+path="res://.import/void_mask.png-f2190086b7b5640d6235d2c353c420db.stex"
 
 [deps]
 
-source_file="res://sprites/barrel.png"
-dest_files=[ "res://.import/barrel.png-86ea82274b58d2c19fcd70e8695ab738.stex" ]
+source_file="res://sprites/void_mask.png"
+dest_files=[ "res://.import/void_mask.png-f2190086b7b5640d6235d2c353c420db.stex" ]
 
 [params]
 

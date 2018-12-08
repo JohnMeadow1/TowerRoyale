@@ -1,13 +1,11 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/player.gd" type="Script" id=1]
 [ext_resource path="res://sprites/tank1.png" type="Texture" id=2]
-[ext_resource path="res://sprites/barrel.png" type="Texture" id=3]
-[ext_resource path="res://sprites/fire.png" type="Texture" id=4]
-[ext_resource path="res://sprites/turret.png" type="Texture" id=5]
-[ext_resource path="res://audio/shot.wav" type="AudioStream" id=6]
-[ext_resource path="res://sprites/life_border.png" type="Texture" id=7]
-[ext_resource path="res://sprites/life_bar.png" type="Texture" id=8]
+[ext_resource path="res://sprites/fire.png" type="Texture" id=3]
+[ext_resource path="res://audio/shot.wav" type="AudioStream" id=4]
+[ext_resource path="res://sprites/life_border.png" type="Texture" id=5]
+[ext_resource path="res://sprites/life_bar.png" type="Texture" id=6]
 
 [sub_resource type="Gradient" id=1]
 
@@ -61,7 +59,7 @@ _sections_unfolded = [ "Angle", "Color", "Damping", "Initial Velocity", "Scale",
 
 [sub_resource type="AudioStreamRandomPitch" id=4]
 
-audio_stream = ExtResource( 6 )
+audio_stream = ExtResource( 4 )
 random_pitch = 1.5
 
 [sub_resource type="Animation" id=5]
@@ -102,19 +100,16 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="barrel" type="Sprite" parent="." index="1"]
+[node name="barrel" type="Node2D" parent="." index="1"]
 
 position = Vector2( 0, -27 )
 scale = Vector2( 4, 4 )
-texture = ExtResource( 3 )
-centered = false
-offset = Vector2( 0, -2 )
 _sections_unfolded = [ "Animation", "Offset", "Region", "Transform" ]
 
 [node name="fire" type="Sprite" parent="barrel" index="0"]
 
 position = Vector2( 14, 0 )
-texture = ExtResource( 4 )
+texture = ExtResource( 3 )
 centered = false
 offset = Vector2( 0, -4 )
 flip_h = true
@@ -143,20 +138,7 @@ h_frames = 1
 v_frames = 1
 _sections_unfolded = [ "Drawing", "Material", "Process Material", "Textures", "Time", "Transform" ]
 
-[node name="turret" type="Sprite" parent="." index="2"]
-
-visible = false
-scale = Vector2( 4, 4 )
-texture = ExtResource( 5 )
-vframes = 2
-hframes = 2
-frame = 3
-_sections_unfolded = [ "Animation", "Offset", "Region", "Transform" ]
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Camera2D" type="Camera2D" parent="." index="3"]
+[node name="Camera2D" type="Camera2D" parent="." index="2"]
 
 anchor_mode = 1
 rotating = false
@@ -185,7 +167,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="shoot" type="AudioStreamPlayer" parent="." index="4"]
+[node name="shoot" type="AudioStreamPlayer" parent="." index="3"]
 
 stream = SubResource( 4 )
 volume_db = 0.0
@@ -194,7 +176,7 @@ autoplay = false
 mix_target = 0
 bus = "Master"
 
-[node name="TextureProgress" type="TextureProgress" parent="." index="5"]
+[node name="TextureProgress" type="TextureProgress" parent="." index="4"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -218,14 +200,14 @@ value = 50.0
 exp_edit = false
 rounded = false
 texture_under = null
-texture_over = ExtResource( 7 )
-texture_progress = ExtResource( 8 )
+texture_over = ExtResource( 5 )
+texture_progress = ExtResource( 6 )
 radial_fill_degrees = 360.0
 radial_center_offset = Vector2( 0, 0 )
 nine_patch_stretch = false
 _sections_unfolded = [ "Rect", "Textures" ]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5"]
 
 root_node = NodePath("..")
 autoplay = ""
