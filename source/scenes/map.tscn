@@ -38,7 +38,7 @@ position = Vector2( 706.121, 563.168 )
 
 [node name="channeler4" parent="channelers" index="3" instance=ExtResource( 3 )]
 
-position = Vector2( 1012.18, 1262.74 )
+position = Vector2( 1012.18, 1261.38 )
 
 [node name="channeler5" parent="channelers" index="4" instance=ExtResource( 3 )]
 

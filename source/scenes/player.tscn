@@ -9,15 +9,15 @@
 [ext_resource path="res://sprites/life_border.png" type="Texture" id=7]
 [ext_resource path="res://sprites/life_bar.png" type="Texture" id=8]
 
-[sub_resource type="Gradient" id=4]
+[sub_resource type="Gradient" id=1]
 
 offsets = PoolRealArray( 0, 0.715976, 1 )
 colors = PoolColorArray( 1, 1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0 )
 
-[sub_resource type="GradientTexture" id=5]
+[sub_resource type="GradientTexture" id=2]
 
 flags = 4
-gradient = SubResource( 4 )
+gradient = SubResource( 1 )
 width = 100
 
 [sub_resource type="ParticlesMaterial" id=3]
@@ -49,7 +49,7 @@ angle = 0.0
 angle_random = 0.0
 scale = 4.0
 scale_random = 0.0
-color_ramp = SubResource( 5 )
+color_ramp = SubResource( 2 )
 hue_variation = 0.0
 hue_variation_random = 0.0
 anim_speed = 0.0
@@ -59,14 +59,13 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Angle", "Color", "Damping", "Initial Velocity", "Scale", "Spread" ]
 
-[sub_resource type="AudioStreamRandomPitch" id=1]
+[sub_resource type="AudioStreamRandomPitch" id=4]
 
 audio_stream = ExtResource( 6 )
 random_pitch = 1.5
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=5]
 
-resource_name = "fire"
 length = 0.2
 loop = false
 step = 0.05
@@ -83,7 +82,7 @@ tracks/0/keys = {
 "values": [ 3, 2, 1, 0 ]
 }
 
-[node name="player" type="Node2D" index="0"]
+[node name="player" type="Node2D"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
@@ -188,7 +187,7 @@ __meta__ = {
 
 [node name="shoot" type="AudioStreamPlayer" parent="." index="4"]
 
-stream = SubResource( 1 )
+stream = SubResource( 4 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
@@ -233,7 +232,7 @@ autoplay = ""
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.0
-anims/fire = SubResource( 2 )
+anims/fire = SubResource( 5 )
 blend_times = [  ]
 
 

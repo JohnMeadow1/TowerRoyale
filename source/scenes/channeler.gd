@@ -3,11 +3,23 @@ extends Node2D
 # class member variables go here, for example:
 # var a = 2
 # var b = "textvar"
+var hp = 100
+var alive = true
 
 func _ready():
 	# Called when the node is added to the scene for the first time.
-	# Initialization here
+	# Initialization here	
 	self.setup_ray()
+	
+func take_damage(dmg):
+	if not self.alive:
+		return
+	
+	self.hp -= dmg
+	
+	if self.hp <= 0:
+		self.alive = false
+		$ray.visible = false
 	
 func setup_ray():
 	# Hook bottom
@@ -24,7 +36,8 @@ func setup_ray():
 	# Set rotation
 	$ray.rotate(Vector2(1, 0).angle_to(vector_to))
 
-#func _process(delta):
-#	# Called every frame. Delta is time since last frame.
-#	# Update game logic here.
-#	pass
+func _process(delta):
+	# Called every frame. Delta is time since last frame.
+	# Update game logic here.
+	$hp_bar.value = self.hp
+	pass
