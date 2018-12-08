@@ -1,0 +1,1 @@
+var monster = null

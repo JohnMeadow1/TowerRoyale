@@ -5,7 +5,7 @@
 [ext_resource path="res://scenes/channeler.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/monster.tscn" type="PackedScene" id=4]
 
-[node name="map" type="Node2D" index="0"]
+[node name="map" type="Node2D"]
 
 z_index = -1000
 z_as_relative = false
@@ -26,26 +26,26 @@ _sections_unfolded = [ "Offset", "Transform" ]
 
 [node name="channeler1" parent="channelers" index="0" instance=ExtResource( 3 )]
 
-position = Vector2( 1224.6, 942.855 )
+position = Vector2( 1386.48, 1032.64 )
 
 [node name="channeler2" parent="channelers" index="1" instance=ExtResource( 3 )]
 
-position = Vector2( 1121.38, 663.903 )
+position = Vector2( 1319.99, 564.596 )
 
 [node name="channeler3" parent="channelers" index="2" instance=ExtResource( 3 )]
 
-position = Vector2( 831.275, 661.115 )
+position = Vector2( 706.121, 563.168 )
 
 [node name="channeler4" parent="channelers" index="3" instance=ExtResource( 3 )]
 
-position = Vector2( 995.856, 1171.6 )
+position = Vector2( 1012.18, 1262.74 )
 
 [node name="channeler5" parent="channelers" index="4" instance=ExtResource( 3 )]
 
-position = Vector2( 714.115, 954.013 )
+position = Vector2( 580.798, 981.22 )
 
 [node name="monster" parent="." index="2" instance=ExtResource( 4 )]
 
-position = Vector2( 976.519, 961.632 )
+position = Vector2( 990.123, 953.47 )
 
 

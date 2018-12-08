@@ -14,6 +14,10 @@ config/name="TowerRoyale"
 run/main_scene="res://main.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+globals="*res://globals.gd"
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"
