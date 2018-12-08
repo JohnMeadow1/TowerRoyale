@@ -18,7 +18,7 @@ sort_enabled = true
 
 [node name="player" parent="YSort" index="0" instance=ExtResource( 3 )]
 
-position = Vector2( 503.595, 296.02 )
+position = Vector2( 610.931, 307.124 )
 
 [node name="tower" type="Sprite" parent="YSort" index="1"]
 
