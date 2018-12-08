@@ -23,18 +23,11 @@ func _physics_process(delta):
 	facing       = Vector2 ( cos( orientation), sin( orientation ) ) 
 	
 	orientation = fmod(orientation + PI2, PI2)
-	$body.frame = int(round( abs(orientation)/(PI*0.5) ))%4
-#	print(int(round( abs(orientation)/(PI*0.25) ))%8)
-#	if orientation <= PI2*0.25:
-#		$body.frame = 1
-#	elif orientation  >= PI2*0.75:
-#		$body.frame = 3
-#	elif facing.y >0:
-#		$body.frame = 2
-#	else:
-#		$body.frame = 0
-#	print(sign(facing.x *facing.x * facing.y) + sign(facing.x)+ sign(facing.y))
+	$body.frame = int(round( abs(orientation)/(PI*0.125) ))%16
+#	$turret.frame = int(round( abs(orientation)/(PI*0.125) ))%16
+
 	position += facing * acceleration * delta
+	$barrel.rotation = orientation
 	update()
 	
 func process_input(dt):
@@ -52,12 +45,14 @@ func process_input(dt):
 #		$body.frame = 0
 		
 	if Input.is_action_pressed("ui_down"):
-		thrust = -MAX_REVERSE_SPEED
+		thrust = MAX_REVERSE_SPEED
 #		$body.frame = 3
 		
 	if Input.is_action_pressed("ui_select"):
 		if !$shoot.playing:
 			$shoot.play()
+			$barrel/fire/Particles2D.emitting = true
+			$AnimationPlayer.play("fire")
 		
 
 func _draw():
