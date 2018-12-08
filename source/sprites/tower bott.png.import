@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tank.png-ae2451a16bebab242d4706a9e5598c40.stex"
+path="res://.import/tower bott.png-08b078d3267fa17b6b992f0f9d1bb7a2.stex"
 
 [deps]
 
-source_file="res://sprites/tank.png"
-dest_files=[ "res://.import/tank.png-ae2451a16bebab242d4706a9e5598c40.stex" ]
+source_file="res://sprites/tower bott.png"
+dest_files=[ "res://.import/tower bott.png-08b078d3267fa17b6b992f0f9d1bb7a2.stex" ]
 
 [params]
 

@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/map.png-659e88586eefd66127a1dc6c44095341.stex"
+path="res://.import/tower midL.png-e29369d8b589a91169ac8a32cabb44b1.stex"
 
 [deps]
 
-source_file="res://sprites/map.png"
-dest_files=[ "res://.import/map.png-659e88586eefd66127a1dc6c44095341.stex" ]
+source_file="res://sprites/tower midL.png"
+dest_files=[ "res://.import/tower midL.png-e29369d8b589a91169ac8a32cabb44b1.stex" ]
 
 [params]
 

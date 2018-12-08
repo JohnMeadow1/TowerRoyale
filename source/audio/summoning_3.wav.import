@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/summoning_3.wav-0798f7761f07742f31d9b6b7d638b868.sample"
+
+[deps]
+
+source_file="res://audio/summoning_3.wav"
+dest_files=[ "res://.import/summoning_3.wav-0798f7761f07742f31d9b6b7d638b868.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

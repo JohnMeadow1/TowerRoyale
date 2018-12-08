@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/turret.png-40695d9cca6c50c87204953ec994d732.stex"
+path="res://.import/mask.png-5403fce0f0c69d7184a2784f953221c8.stex"
 
 [deps]
 
-source_file="res://sprites/turret.png"
-dest_files=[ "res://.import/turret.png-40695d9cca6c50c87204953ec994d732.stex" ]
+source_file="res://sprites/mask.png"
+dest_files=[ "res://.import/mask.png-5403fce0f0c69d7184a2784f953221c8.stex" ]
 
 [params]
 
@@ -16,7 +16,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
