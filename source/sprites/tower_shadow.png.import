@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/track.png-b077af9612f56b9e5e4404d413a82d97.stex"
+path="res://.import/tower_shadow.png-dbaf19ed2b8147e8407dddacf6da926c.stex"
 
 [deps]
 
-source_file="res://sprites/track.png"
-dest_files=[ "res://.import/track.png-b077af9612f56b9e5e4404d413a82d97.stex" ]
+source_file="res://sprites/tower_shadow.png"
+dest_files=[ "res://.import/tower_shadow.png-dbaf19ed2b8147e8407dddacf6da926c.stex" ]
 
 [params]
 

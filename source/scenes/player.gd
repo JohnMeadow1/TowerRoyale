@@ -52,9 +52,7 @@ func _physics_process(delta):
 	
 	position += velocity
 
-	$turning_pivot.rotation = orientation
-	$turning_pivot/body/pivot_left.rotation  = angular_velocity * 10
-	$turning_pivot/body/pivot_right.rotation = angular_velocity * 10
+#	rotation = orientation
 	update()
 	
 func process_input():
@@ -65,12 +63,14 @@ func process_input():
 			turning = 0
 		turning -= STEERIN_TURNING
 		angular_friction = 1
+		$body.frame = 2
 
 	if Input.is_action_pressed("ui_right"):
 		if turning < 0:
 			turning = 0
 		turning += STEERIN_TURNING
 		angular_friction = 1
+		$body.frame = 1
 		
 	# break
 	if Input.is_action_pressed("ui_down"):
@@ -79,22 +79,23 @@ func process_input():
 			skid_size_front = 4
 		else:
 			velocity *= 0.0
+		$body.frame = 3
 	# handbrake
 	if Input.is_action_pressed("ui_select"):
 		if velocity.length() >= BREAKING / 2:
 			velocity -= velocity.normalized() * BREAKING / 2
 			orientation -= facing.angle_to( velocity ) * 0.02 * min( 2, speed )
 			skid_size_back = 5
+		$shoot.play()
 	# accelerate
 	if Input.is_action_pressed("ui_up"):
 		thrust += 0.06
 		velocity += facing * ACCELERATION  * thrust * min( 1, abs( facing.dot( velocity.normalized() ) ) + 0.5 )
 		skid_size_back = floor( max( 5 - speed / 2 , skid_size_back ) )
+		$body.frame = 0
 
 func _draw():
 	draw_vector(Vector2(), velocity * 20, Color(1,1,1), 3)
-	draw_vector($turning_pivot/body/pivot_right.global_position-position, wheel_facing * 40, Color(0,1,1), 2)
-	draw_vector($turning_pivot/body/pivot_left.global_position-position, wheel_facing * 40, Color(0,1,1), 2)
 	draw_vector(Vector2(), facing  * 100, Color(1,0,1), 3)
 	draw_vector(Vector2(), drag_vector  * 1000, Color(0,1,0), 3)
 	

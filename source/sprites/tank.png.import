@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/track.png-b077af9612f56b9e5e4404d413a82d97.stex"
+path="res://.import/tank.png-ae2451a16bebab242d4706a9e5598c40.stex"
 
 [deps]
 
-source_file="res://sprites/track.png"
-dest_files=[ "res://.import/track.png-b077af9612f56b9e5e4404d413a82d97.stex" ]
+source_file="res://sprites/tank.png"
+dest_files=[ "res://.import/tank.png-ae2451a16bebab242d4706a9e5598c40.stex" ]
 
 [params]
 
