@@ -27,6 +27,7 @@ _sections_unfolded = [ "Animation", "Material", "Offset", "Pause", "Region", "Tr
 
 [node name="rage_bar" type="TextureProgress" parent="." index="1"]
 
+visible = false
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -60,6 +61,7 @@ _sections_unfolded = [ "Anchor", "Focus", "Grow Direction", "Hint", "Margin", "M
 
 [node name="life_bar" type="TextureProgress" parent="." index="2"]
 
+visible = false
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0

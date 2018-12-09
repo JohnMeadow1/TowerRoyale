@@ -1,15 +1,16 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/boss.gd" type="Script" id=1]
 [ext_resource path="res://sprites/boss_live.png" type="Texture" id=2]
 [ext_resource path="res://audio/boss/boss_2.wav" type="AudioStream" id=3]
-[ext_resource path="res://audio/boss/boss_3.wav" type="AudioStream" id=4]
-[ext_resource path="res://audio/boss/boss_1.wav" type="AudioStream" id=5]
+[ext_resource path="res://audio/boss/the_boss_tentacles.wav" type="AudioStream" id=4]
+[ext_resource path="res://audio/boss/boss_3.wav" type="AudioStream" id=5]
+[ext_resource path="res://audio/boss/boss_1.wav" type="AudioStream" id=6]
 
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 50.0
+radius = 200.0
 
 [sub_resource type="Animation" id=2]
 
@@ -33,7 +34,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=3]
 
 resource_name = "initial"
-length = 2.0
+length = 3.0
 loop = false
 step = 0.1
 tracks/0/type = "value"
@@ -48,24 +49,47 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 0 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("tentacles:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 2.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
 
 [sub_resource type="AudioStreamRandomPitch" id=4]
-
-audio_stream = ExtResource( 4 )
-random_pitch = 1.3
-
-[sub_resource type="AudioStreamRandomPitch" id=5]
 
 audio_stream = ExtResource( 5 )
 random_pitch = 1.3
 
-[node name="boss" type="RigidBody2D" index="0"]
+[sub_resource type="AudioStreamRandomPitch" id=5]
 
-position = Vector2( 147, 176 )
+audio_stream = ExtResource( 6 )
+random_pitch = 1.3
+
+[node name="boss" type="RigidBody2D"]
+
 input_pickable = false
-collision_layer = 1
+collision_layer = 2
 collision_mask = 1
-mode = 0
+mode = 2
 mass = 10000.0
 friction = 1.0
 bounce = 0.0
@@ -81,20 +105,21 @@ linear_damp = -1.0
 angular_velocity = 0.0
 angular_damp = -1.0
 script = ExtResource( 1 )
+_sections_unfolded = [ "Collision", "Transform" ]
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
-position = Vector2( 511, 308 )
+position = Vector2( 0, -124 )
 scale = Vector2( 4, 4 )
 texture = ExtResource( 2 )
 hframes = 4
-frame = 3
 _sections_unfolded = [ "Animation", "Transform" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
-position = Vector2( 0, -49 )
+position = Vector2( 0, -173 )
 shape = SubResource( 1 )
+disabled = true
 _sections_unfolded = [ "Transform" ]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
@@ -120,7 +145,18 @@ attenuation = 1.0
 bus = "Master"
 area_mask = 1
 
-[node name="boss1" type="AudioStreamPlayer2D" parent="." index="4"]
+[node name="tentacles" type="AudioStreamPlayer2D" parent="." index="4"]
+
+stream = ExtResource( 4 )
+volume_db = 10.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[node name="boss1" type="AudioStreamPlayer2D" parent="." index="5"]
 
 stream = SubResource( 4 )
 volume_db = 0.0
@@ -131,7 +167,7 @@ attenuation = 1.0
 bus = "Master"
 area_mask = 1
 
-[node name="boss0" type="AudioStreamPlayer2D" parent="." index="5"]
+[node name="boss0" type="AudioStreamPlayer2D" parent="." index="6"]
 
 stream = SubResource( 5 )
 volume_db = 0.0

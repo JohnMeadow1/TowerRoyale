@@ -4,7 +4,7 @@ extends Sprite
 # var a = 2
 # var b = "textvar"
 
-var VANISH_TIME = 5.0
+var VANISH_TIME = 2.0
 
 var vanish_timer = 0.0
 var vanishing = false
@@ -26,9 +26,13 @@ func _process(delta):
 		vanish_timer -= delta
 		vanish_timer = max(0.0, vanish_timer)
 		
-		var proc = ( max(self.vanish_timer + abs(sin(self.vanish_timer)), 0) / self.VANISH_TIME )
+#		var proc = ( max(self.vanish_timer + abs(sin(self.vanish_timer)), 0) / self.VANISH_TIME )
+		var proc = ( vanish_timer / self.VANISH_TIME )
+#		print(proc)
 		self.set_scale(Vector2(proc * 4.0, proc * 4.0))
 		
 		if vanish_timer <= 0.0:
+			queue_free()
+			$"../monster".queue_free()
 			self.vanishing = false
 	

@@ -1,8 +1,6 @@
 extends Node2D
 
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
+var boss_object = preload("res://scenes/boss.tscn")
 
 enum {
 	MONSTER_GOOD,
@@ -77,9 +75,11 @@ func activate_monster():
 	
 	# Detroy void
 	get_node("../void").void_vanish()
-	
+	var boss = boss_object.instance()
+	boss.position = global_position+Vector2(50,-100)
 	# Stop spawning monster
 	globals.spawn_enemies = false
+	get_node("../../YSort").add_child(boss)
 	
 func _process(delta):
 	if self.state == MONSTER_GOOD:	
