@@ -1,17 +1,21 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://main.gd" type="Script" id=1]
 [ext_resource path="res://scenes/map.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/channeler.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/enemy_1.tscn" type="PackedScene" id=5]
-[ext_resource path="res://audio/audio.gd" type="Script" id=6]
-[ext_resource path="res://audio/summoning_3.wav" type="AudioStream" id=7]
-[ext_resource path="res://audio/summoning_1.wav" type="AudioStream" id=8]
-[ext_resource path="res://audio/summoning_2.wav" type="AudioStream" id=9]
-[ext_resource path="res://scenes/GUI.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/decor_anim.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/decor_flat.tscn" type="PackedScene" id=7]
+[ext_resource path="res://sprites/decor/stone1.png" type="Texture" id=8]
+[ext_resource path="res://sprites/decor/stone2.png" type="Texture" id=9]
+[ext_resource path="res://audio/audio.gd" type="Script" id=10]
+[ext_resource path="res://audio/summoning_3.wav" type="AudioStream" id=11]
+[ext_resource path="res://audio/summoning_1.wav" type="AudioStream" id=12]
+[ext_resource path="res://audio/summoning_2.wav" type="AudioStream" id=13]
+[ext_resource path="res://scenes/GUI.tscn" type="PackedScene" id=14]
 
-[node name="main" type="Node2D"]
+[node name="main" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 __meta__ = {
@@ -26,7 +30,13 @@ sort_enabled = true
 
 [node name="player" parent="YSort" index="0" instance=ExtResource( 3 )]
 
+editor/display_folded = true
 position = Vector2( -556.219, 548.592 )
+
+[node name="body" parent="YSort/player" index="1"]
+
+modulate = Color( 1, 0.661438, 0.496094, 1 )
+_sections_unfolded = [ "Animation", "Offset", "Region", "Transform", "Visibility" ]
 
 [node name="target" type="Node2D" parent="YSort" index="1"]
 
@@ -115,15 +125,75 @@ polygon = PoolVector2Array( -77.1722, 13.5135, -0.215595, -22.3112, 81.385, 12.1
 
 position = Vector2( -350.169, 475.344 )
 
+[node name="decor_anim" parent="YSort" index="8" instance=ExtResource( 6 )]
+
+position = Vector2( -1046.24, -172.279 )
+
+[node name="decor_flat" parent="YSort" index="9" instance=ExtResource( 7 )]
+
+editor/display_folded = true
+position = Vector2( 1582.54, 443.453 )
+
+[node name="building" parent="YSort/decor_flat" index="1"]
+
+frame = 3
+
+[node name="CollisionShape2D" parent="YSort/decor_flat" index="2"]
+
+polygon = PoolVector2Array( -46.5, 55.75, 69.126, 25.9998, 47.4659, -38.0777, -68.0541, -4.68518 )
+
+[node name="decor_flat2" parent="YSort" index="10" instance=ExtResource( 7 )]
+
+editor/display_folded = true
+position = Vector2( 1545.1, 151.865 )
+
+[node name="shade" parent="YSort/decor_flat2" index="0"]
+
+modulate = Color( 0, 0, 0, 0.430941 )
+position = Vector2( 22.5624, -17 )
+scale = Vector2( 4, 3 )
+texture = ExtResource( 8 )
+
+[node name="building" parent="YSort/decor_flat2" index="1"]
+
+texture = ExtResource( 8 )
+
+[node name="CollisionShape2D" parent="YSort/decor_flat2" index="2"]
+
+polygon = PoolVector2Array( -72.5079, 16.41, -38.2129, 27.24, 80.0145, 10.0925, 71.8921, -23.3, -71.6053, -22.3975 )
+
+[node name="decor_flat3" parent="YSort" index="11" instance=ExtResource( 7 )]
+
+editor/display_folded = true
+position = Vector2( 1305.81, -31.4875 )
+
+[node name="shade" parent="YSort/decor_flat3" index="0"]
+
+modulate = Color( 0, 0, 0, 0.403333 )
+position = Vector2( 18.6113, -6.97272 )
+scale = Vector2( 4, 3 )
+texture = ExtResource( 9 )
+frame = 2
+
+[node name="building" parent="YSort/decor_flat3" index="1"]
+
+texture = ExtResource( 9 )
+frame = 2
+
+[node name="CollisionShape2D" parent="YSort/decor_flat3" index="2"]
+
+position = Vector2( 10.7773, -24.9096 )
+polygon = PoolVector2Array( -65.71, 56.9929, -43.5568, 68.3689, 52.2412, 36.6358, 58.2285, -9.4669, -60.3213, 22.8649 )
+
 [node name="audio" type="Node" parent="." index="2"]
 
 editor/display_folded = true
-script = ExtResource( 6 )
+script = ExtResource( 10 )
 
 [node name="summon_0" type="AudioStreamPlayer2D" parent="audio" index="0"]
 
 position = Vector2( -1, -1 )
-stream = ExtResource( 7 )
+stream = ExtResource( 11 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = true
@@ -134,7 +204,7 @@ area_mask = 1
 
 [node name="summon_1" type="AudioStreamPlayer2D" parent="audio" index="1"]
 
-stream = ExtResource( 8 )
+stream = ExtResource( 12 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
@@ -145,7 +215,7 @@ area_mask = 1
 
 [node name="summon_2" type="AudioStreamPlayer2D" parent="audio" index="2"]
 
-stream = ExtResource( 9 )
+stream = ExtResource( 13 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
@@ -162,11 +232,15 @@ rotation = 0.0
 scale = Vector2( 1, 1 )
 transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 
-[node name="GUI" parent="CanvasLayer" index="0" instance=ExtResource( 10 )]
+[node name="GUI" parent="CanvasLayer" index="0" instance=ExtResource( 14 )]
 
 
+[editable path="YSort/player"]
 [editable path="YSort/channeler1"]
 [editable path="YSort/channeler3"]
 [editable path="YSort/channeler2"]
 [editable path="YSort/channeler5"]
 [editable path="YSort/channeler4"]
+[editable path="YSort/decor_flat"]
+[editable path="YSort/decor_flat2"]
+[editable path="YSort/decor_flat3"]
