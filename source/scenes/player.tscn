@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scenes/player.gd" type="Script" id=1]
 [ext_resource path="res://sprites/tank1.png" type="Texture" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://audio/shot.wav" type="AudioStream" id=4]
 [ext_resource path="res://sprites/life_border.png" type="Texture" id=5]
 [ext_resource path="res://sprites/life_bar.png" type="Texture" id=6]
+[ext_resource path="res://audio/tanktracks_1.wav" type="AudioStream" id=7]
+[ext_resource path="res://audio/tanktracks_2.wav" type="AudioStream" id=8]
 
 [sub_resource type="Gradient" id=1]
 
@@ -246,5 +248,23 @@ position = Vector2( 7, 8 )
 rotation = 1.5708
 shape = SubResource( 6 )
 _sections_unfolded = [ "Transform" ]
+
+[node name="tracks_0" type="AudioStreamPlayer" parent="." index="7"]
+
+stream = ExtResource( 7 )
+volume_db = -15.0
+pitch_scale = 0.3
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="tracks_1" type="AudioStreamPlayer" parent="." index="8"]
+
+stream = ExtResource( 8 )
+volume_db = -15.0
+pitch_scale = 0.3
+autoplay = false
+mix_target = 0
+bus = "Master"
 
 

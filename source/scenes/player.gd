@@ -15,6 +15,10 @@ var skid_size_front  = 0.0
 var skid_size_back   = 0.0
 var PI2              = PI*2
 
+var is_playing = null
+
+func _ready():
+	is_playing = $tracks_1
 
 func _physics_process(delta):
 	process_input(delta)
@@ -28,7 +32,12 @@ func _physics_process(delta):
 
 	position += facing * acceleration * delta
 	$barrel.rotation = orientation
-	update()
+	if abs(thrust):
+		if !is_playing.playing or is_playing.get_playback_position() >= is_playing.stream.get_length() - delta:
+#			is_playing = get_node("tracks_" + str(randi()%2) )
+			is_playing.play()
+	else:
+		is_playing.stop()
 	
 func process_input(dt):
 	thrust = 0
@@ -42,6 +51,9 @@ func process_input(dt):
 		
 	if Input.is_action_pressed("ui_up"):
 		thrust = MAX_SPEED
+			
+	if Input.is_action_just_released("ui_up"):
+		is_playing.stop()
 #		$body.frame = 0
 		
 	if Input.is_action_pressed("ui_down"):
@@ -55,8 +67,8 @@ func process_input(dt):
 			$AnimationPlayer.play("fire")
 		
 
-func _draw():
-	draw_vector(Vector2(), facing  * 100, Color(1,0,1), 3)
+#func _draw():
+#	draw_vector(Vector2(), facing  * 100, Color(1,0,1), 3)
 	
 func draw_vector( origin, vector, color, arrow_size ):
 	if vector.length_squared() > 1:
