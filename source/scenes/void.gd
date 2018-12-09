@@ -26,7 +26,7 @@ func _process(delta):
 		vanish_timer -= delta
 		vanish_timer = max(0.0, vanish_timer)
 		
-		var proc = ( self.vanish_timer / self.VANISH_TIME )
+		var proc = ( max(self.vanish_timer + abs(sin(self.vanish_timer)), 0) / self.VANISH_TIME )
 		self.set_scale(Vector2(proc * 4.0, proc * 4.0))
 		
 		if vanish_timer <= 0.0:

@@ -24,6 +24,7 @@ func get_hit(dmg):
 	if self.hp <= 0:
 		self.alive = false
 		self.agony_timer = 3.0
+		globals.channelers_num -= 1
 		$shutdown.play()
 		
 func is_alive():

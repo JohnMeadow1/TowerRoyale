@@ -78,6 +78,9 @@ func activate_monster():
 	# Detroy void
 	get_node("../void").void_vanish()
 	
+	# Stop spawning monster
+	globals.spawn_enemies = false
+	
 func _process(delta):
 	if self.state == MONSTER_GOOD:	
 		self.handle_monster_rage(delta)

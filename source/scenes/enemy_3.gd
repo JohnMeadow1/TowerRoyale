@@ -31,21 +31,36 @@ func find_target():
 	# Try to attack player, if can't - attack channeler
 	ai_timer = rand_range(REFRESH_AI, REFRESH_AI*2)
 	
-	if find_player():
-		pass
+	if globals.channelers_num == 0:
+		find_player(true)
 	else:
-		find_channeler()
+		if find_player(false):
+			pass
+		else:
+			find_channeler()
 
-func find_player():
+func find_player(ignore_range):
 	# Check if player is near, if it is - attack him
+	var tmp_target = null
+	var tmp_distance = null
+	
 	for player in get_tree().get_nodes_in_group("players"):
 		var curr_distance = Vector2(player.global_position - self.global_position).length()
 		
-		if ( curr_distance < self.PLAYER_ATTACK_DISTANCE ):
-			self.current_target = player
-			return true
-	
-	return false
+		if ignore_range:
+			if !tmp_target or tmp_distance < curr_distance:
+				tmp_target = player
+				tmp_distance = curr_distance
+		else:
+			if curr_distance < self.PLAYER_ATTACK_DISTANCE:
+				tmp_target = player
+				tmp_distance = curr_distance
+			
+	if tmp_target:
+		self.current_target = tmp_target
+		return true
+	else:
+		return false
 
 func find_channeler():
 	# Find target to destroy
