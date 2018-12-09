@@ -20,6 +20,7 @@ _sections_unfolded = [ "Transform", "Z Index" ]
 
 [node name="map" type="Sprite" parent="." index="0"]
 
+position = Vector2( -454.284, -480.095 )
 scale = Vector2( 4, 4 )
 z_index = -1000
 z_as_relative = false

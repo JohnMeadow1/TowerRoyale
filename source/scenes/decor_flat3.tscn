@@ -1,8 +1,9 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://sprites/decor/stone3.png" type="Texture" id=1]
+[ext_resource path="res://sprites/decor/building6_shadow.png" type="Texture" id=1]
+[ext_resource path="res://sprites/decor/building6.png" type="Texture" id=2]
 
-[node name="decor_flat" type="StaticBody2D"]
+[node name="decor_flat" type="StaticBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 1
@@ -17,8 +18,8 @@ _sections_unfolded = [ "Transform" ]
 
 modulate = Color( 0.199219, 0.199219, 0.199219, 0.403333 )
 self_modulate = Color( 0.292969, 0.292969, 0.292969, 1 )
-position = Vector2( 15.1614, -6.23924 )
-scale = Vector2( 4, 2.95025 )
+position = Vector2( -2.78896, -66.9998 )
+scale = Vector2( 4.06444, 5.22033 )
 texture = ExtResource( 1 )
 vframes = 4
 hframes = 4
@@ -28,7 +29,7 @@ _sections_unfolded = [ "Animation", "Transform", "Visibility" ]
 
 position = Vector2( 0, -17 )
 scale = Vector2( 4, 4 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 vframes = 4
 hframes = 4
 _sections_unfolded = [ "Animation", "Transform" ]
@@ -37,6 +38,6 @@ _sections_unfolded = [ "Animation", "Transform" ]
 
 position = Vector2( 0, -5.74998 )
 build_mode = 0
-polygon = PoolVector2Array( -74.3563, 10.7526, -2.48837, 40.4724, 56.9512, 16.1562, -33.2889, -16.8057 )
+polygon = PoolVector2Array( -34.9449, -4.60941, -34.2815, 55.0984, 30.0702, 52.4447, 27.4165, -6.59968 )
 
 

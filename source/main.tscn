@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://main.gd" type="Script" id=1]
 [ext_resource path="res://scenes/map.tscn" type="PackedScene" id=2]
@@ -7,13 +7,21 @@
 [ext_resource path="res://scenes/enemy_1.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/decor_anim.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/decor_flat.tscn" type="PackedScene" id=7]
-[ext_resource path="res://sprites/decor/stone1.png" type="Texture" id=8]
-[ext_resource path="res://sprites/decor/stone2.png" type="Texture" id=9]
-[ext_resource path="res://audio/audio.gd" type="Script" id=10]
-[ext_resource path="res://audio/summoning_3.wav" type="AudioStream" id=11]
-[ext_resource path="res://audio/summoning_1.wav" type="AudioStream" id=12]
-[ext_resource path="res://audio/summoning_2.wav" type="AudioStream" id=13]
-[ext_resource path="res://scenes/GUI.tscn" type="PackedScene" id=14]
+[ext_resource path="res://sprites/decor/Fence.png" type="Texture" id=8]
+[ext_resource path="res://sprites/decor/stone1.png" type="Texture" id=9]
+[ext_resource path="res://sprites/decor/stone2.png" type="Texture" id=10]
+[ext_resource path="res://sprites/decor/building5_shadow.png" type="Texture" id=11]
+[ext_resource path="res://sprites/decor/building5.png" type="Texture" id=12]
+[ext_resource path="res://sprites/decor/building2.png" type="Texture" id=13]
+[ext_resource path="res://sprites/decor/building3.png" type="Texture" id=14]
+[ext_resource path="res://sprites/decor/building6_shadow.png" type="Texture" id=15]
+[ext_resource path="res://sprites/decor/building6.png" type="Texture" id=16]
+[ext_resource path="res://sprites/decor/building4.png" type="Texture" id=17]
+[ext_resource path="res://audio/audio.gd" type="Script" id=18]
+[ext_resource path="res://audio/summoning_3.wav" type="AudioStream" id=19]
+[ext_resource path="res://audio/summoning_1.wav" type="AudioStream" id=20]
+[ext_resource path="res://audio/summoning_2.wav" type="AudioStream" id=21]
+[ext_resource path="res://scenes/GUI.tscn" type="PackedScene" id=22]
 
 [node name="main" type="Node2D" index="0"]
 
@@ -23,6 +31,8 @@ __meta__ = {
 }
 
 [node name="map" parent="." index="0" instance=ExtResource( 2 )]
+
+position = Vector2( 6.58423, -3.7948 )
 
 [node name="YSort" type="YSort" parent="." index="1"]
 
@@ -127,12 +137,44 @@ position = Vector2( -350.169, 475.344 )
 
 [node name="decor_anim" parent="YSort" index="8" instance=ExtResource( 6 )]
 
-position = Vector2( -1046.24, -172.279 )
+position = Vector2( 274.218, 1705.78 )
 
-[node name="decor_flat" parent="YSort" index="9" instance=ExtResource( 7 )]
+[node name="decor_anim4" parent="YSort" index="9" instance=ExtResource( 6 )]
+
+position = Vector2( 1650.57, 418.33 )
+
+[node name="decor_anim7" parent="YSort" index="10" instance=ExtResource( 6 )]
+
+position = Vector2( -28.9847, -1235.88 )
+
+[node name="decor_anim5" parent="YSort" index="11" instance=ExtResource( 6 )]
+
+position = Vector2( 1757.47, 333.151 )
+
+[node name="decor_anim8" parent="YSort" index="12" instance=ExtResource( 6 )]
+
+position = Vector2( 77.9069, -1321.06 )
+
+[node name="decor_anim6" parent="YSort" index="13" instance=ExtResource( 6 )]
+
+position = Vector2( 1857.68, 252.982 )
+
+[node name="decor_anim9" parent="YSort" index="14" instance=ExtResource( 6 )]
+
+position = Vector2( 178.118, -1401.23 )
+
+[node name="decor_anim2" parent="YSort" index="15" instance=ExtResource( 6 )]
+
+position = Vector2( 415.086, 1703.51 )
+
+[node name="decor_anim3" parent="YSort" index="16" instance=ExtResource( 6 )]
+
+position = Vector2( 562.725, 1697.35 )
+
+[node name="decor_flat" parent="YSort" index="17" instance=ExtResource( 7 )]
 
 editor/display_folded = true
-position = Vector2( 1582.54, 443.453 )
+position = Vector2( 163.661, 1507.27 )
 
 [node name="building" parent="YSort/decor_flat" index="1"]
 
@@ -140,44 +182,294 @@ frame = 3
 
 [node name="CollisionShape2D" parent="YSort/decor_flat" index="2"]
 
-polygon = PoolVector2Array( -46.5, 55.75, 69.126, 25.9998, 47.4659, -38.0777, -68.0541, -4.68518 )
+polygon = PoolVector2Array( -26.54, 20.297, 23.46, 58.297, 31.46, -19.703, -41.54, -38.703 )
 
-[node name="decor_flat2" parent="YSort" index="10" instance=ExtResource( 7 )]
+[node name="decor_flat6" parent="YSort" index="18" instance=ExtResource( 7 )]
 
 editor/display_folded = true
-position = Vector2( 1545.1, 151.865 )
+position = Vector2( -424.524, 1615.63 )
+
+[node name="shade" parent="YSort/decor_flat6" index="0"]
+
+position = Vector2( 8.63811, -15.2392 )
+rotation = 0.182523
+scale = Vector2( 3.67383, 2.95025 )
+texture = ExtResource( 8 )
+frame = 3
+
+[node name="building" parent="YSort/decor_flat6" index="1"]
+
+texture = ExtResource( 8 )
+frame = 3
+
+[node name="CollisionShape2D" parent="YSort/decor_flat6" index="2"]
+
+polygon = PoolVector2Array( -62.0529, -8.29733, 55.2361, 22.6539, 58.494, -26.2165, -62.0529, -54.7242 )
+
+[node name="decor_flat97" parent="YSort" index="19" instance=ExtResource( 7 )]
+
+editor/display_folded = true
+position = Vector2( 1274.32, 1203.79 )
+
+[node name="decor_flat7" parent="YSort" index="20" instance=ExtResource( 7 )]
+
+editor/display_folded = true
+position = Vector2( -547.187, 1602.48 )
+
+[node name="shade" parent="YSort/decor_flat7" index="0"]
+
+position = Vector2( 8.63811, -15.2392 )
+rotation = 0.182523
+scale = Vector2( 3.67383, 2.95025 )
+texture = ExtResource( 8 )
+frame = 2
+
+[node name="building" parent="YSort/decor_flat7" index="1"]
+
+texture = ExtResource( 8 )
+frame = 2
+
+[node name="CollisionShape2D" parent="YSort/decor_flat7" index="2"]
+
+polygon = PoolVector2Array( -59.4543, 4.09808, 59.6306, 9.97882, 60.3657, -42.9478, -63.1298, -45.1531 )
+
+[node name="decor_flat98" parent="YSort" index="21" instance=ExtResource( 7 )]
+
+editor/display_folded = true
+position = Vector2( 1151.66, 1190.64 )
+
+[node name="decor_flat8" parent="YSort" index="22" instance=ExtResource( 7 )]
+
+editor/display_folded = true
+position = Vector2( -662.605, 1615.4 )
+
+[node name="shade" parent="YSort/decor_flat8" index="0"]
+
+position = Vector2( 8.63811, -15.2392 )
+rotation = 0.182523
+scale = Vector2( 3.67383, 2.95025 )
+texture = ExtResource( 8 )
+frame = 1
+
+[node name="building" parent="YSort/decor_flat8" index="1"]
+
+texture = ExtResource( 8 )
+frame = 1
+
+[node name="CollisionShape2D" parent="YSort/decor_flat8" index="2"]
+
+polygon = PoolVector2Array( -58.3847, 24.4155, 60.6951, -2.71661, 54.6657, -53.9661, -59.8921, -25.3267 )
+
+[node name="decor_flat99" parent="YSort" index="23" instance=ExtResource( 7 )]
+
+editor/display_folded = true
+position = Vector2( 1036.24, 1203.56 )
+
+[node name="decor_flat9" parent="YSort" index="24" instance=ExtResource( 7 )]
+
+position = Vector2( -769.611, 1652.44 )
+
+[node name="shade" parent="YSort/decor_flat9" index="0"]
+
+position = Vector2( 8.63811, -15.2392 )
+rotation = 0.182523
+scale = Vector2( 3.67383, 2.95025 )
+texture = ExtResource( 8 )
+
+[node name="building" parent="YSort/decor_flat9" index="1"]
+
+texture = ExtResource( 8 )
+
+[node name="CollisionShape2D" parent="YSort/decor_flat9" index="2"]
+
+polygon = PoolVector2Array( -45.0379, 37.0146, 49.7889, -14.4418, 44.6433, -71.7789, -46.5081, -12.2365 )
+
+[node name="decor_flat4" parent="YSort" index="25" instance=ExtResource( 7 )]
+
+editor/display_folded = true
+position = Vector2( -113.431, 1676.78 )
+
+[node name="shade" parent="YSort/decor_flat4" index="0"]
+
+frame = 6
+
+[node name="building" parent="YSort/decor_flat4" index="1"]
+
+frame = 6
+
+[node name="CollisionShape2D" parent="YSort/decor_flat4" index="2"]
+
+polygon = PoolVector2Array( -40.022, 42.4344, 28.676, 32.4621, 49.7286, -43.9922, -14.5372, -21.8316 )
+
+[node name="decor_flat20" parent="YSort" index="26" instance=ExtResource( 7 )]
+
+editor/display_folded = true
+position = Vector2( -1791.1, 114.313 )
+
+[node name="decor_flat39" parent="YSort" index="27" instance=ExtResource( 7 )]
+
+editor/display_folded = true
+position = Vector2( -387.67, -666.154 )
+
+[node name="decor_flat40" parent="YSort" index="28" instance=ExtResource( 7 )]
+
+editor/display_folded = true
+position = Vector2( -1053.61, -1203.03 )
+
+[node name="decor_flat44" parent="YSort" index="29" instance=ExtResource( 7 )]
+
+editor/display_folded = true
+position = Vector2( -1631.79, -769.4 )
+
+[node name="decor_flat46" parent="YSort" index="30" instance=ExtResource( 7 )]
+
+editor/display_folded = true
+position = Vector2( 892.585, -671.316 )
+
+[node name="decor_flat102" parent="YSort" index="31" instance=ExtResource( 7 )]
+
+editor/display_folded = true
+position = Vector2( 340.218, -1714.1 )
+
+[node name="decor_flat50" parent="YSort" index="32" instance=ExtResource( 7 )]
+
+editor/display_folded = true
+position = Vector2( 1973.67, 20.8057 )
+
+[node name="decor_flat51" parent="YSort" index="33" instance=ExtResource( 7 )]
+
+editor/display_folded = true
+position = Vector2( 1424.55, -116.475 )
+
+[node name="decor_flat53" parent="YSort" index="34" instance=ExtResource( 7 )]
+
+editor/display_folded = true
+position = Vector2( 1315.87, 667.168 )
+
+[node name="decor_flat21" parent="YSort" index="35" instance=ExtResource( 7 )]
+
+editor/display_folded = true
+position = Vector2( 561.268, 999.56 )
+
+[node name="decor_flat2" parent="YSort" index="36" instance=ExtResource( 7 )]
+
+editor/display_folded = true
+position = Vector2( 638.093, 928.878 )
 
 [node name="shade" parent="YSort/decor_flat2" index="0"]
 
 modulate = Color( 0, 0, 0, 0.430941 )
 position = Vector2( 22.5624, -17 )
 scale = Vector2( 4, 3 )
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
+frame = 3
 
 [node name="building" parent="YSort/decor_flat2" index="1"]
 
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
+frame = 2
 
 [node name="CollisionShape2D" parent="YSort/decor_flat2" index="2"]
 
-polygon = PoolVector2Array( -72.5079, 16.41, -38.2129, 27.24, 80.0145, 10.0925, 71.8921, -23.3, -71.6053, -22.3975 )
+polygon = PoolVector2Array( -71.7034, -2.54706, -14.3342, 14.1085, 48.5868, 40.0172, 33.7819, -15.5014, -38.3922, -41.41 )
 
-[node name="decor_flat3" parent="YSort" index="11" instance=ExtResource( 7 )]
+[node name="decor_flat74" parent="YSort" index="37" instance=ExtResource( 7 )]
 
 editor/display_folded = true
-position = Vector2( 1305.81, -31.4875 )
+position = Vector2( 638.093, 928.878 )
+
+[node name="decor_flat62" parent="YSort" index="38" instance=ExtResource( 7 )]
+
+editor/display_folded = true
+position = Vector2( -917.02, 695.896 )
+
+[node name="decor_flat63" parent="YSort" index="39" instance=ExtResource( 7 )]
+
+editor/display_folded = true
+position = Vector2( -1143.21, 138.869 )
+
+[node name="decor_flat64" parent="YSort" index="40" instance=ExtResource( 7 )]
+
+editor/display_folded = true
+position = Vector2( -1278.11, -123.605 )
+
+[node name="decor_flat65" parent="YSort" index="41" instance=ExtResource( 7 )]
+
+editor/display_folded = true
+position = Vector2( -1275.32, -123.605 )
+
+[node name="decor_flat66" parent="YSort" index="42" instance=ExtResource( 7 )]
+
+position = Vector2( -1283.69, 199.978 )
+
+[node name="shade" parent="YSort/decor_flat66" index="0"]
+
+modulate = Color( 0, 0, 0, 0.430941 )
+position = Vector2( 22.5624, -17 )
+scale = Vector2( 4, 3 )
+texture = ExtResource( 9 )
+frame = 1
+
+[node name="building" parent="YSort/decor_flat66" index="1"]
+
+texture = ExtResource( 9 )
+
+[node name="CollisionShape2D" parent="YSort/decor_flat66" index="2"]
+
+polygon = PoolVector2Array( -75.1503, 13.7091, -20.0978, 26.3441, 90.9097, 11.0016, 50.2972, -26.9034, -75.1503, -22.3909 )
+
+[node name="decor_flat69" parent="YSort" index="43" instance=ExtResource( 7 )]
+
+position = Vector2( 294.934, 871.652 )
+
+[node name="decor_flat73" parent="YSort" index="44" instance=ExtResource( 7 )]
+
+position = Vector2( -1063.59, -388.211 )
+
+[node name="decor_flat75" parent="YSort" index="45" instance=ExtResource( 7 )]
+
+position = Vector2( 1713.16, -90.0365 )
+
+[node name="decor_flat82" parent="YSort" index="46" instance=ExtResource( 7 )]
+
+position = Vector2( 1086.24, -636.536 )
+
+[node name="decor_flat67" parent="YSort" index="47" instance=ExtResource( 7 )]
+
+position = Vector2( -1184.37, 963.706 )
+
+[node name="decor_flat68" parent="YSort" index="48" instance=ExtResource( 7 )]
+
+position = Vector2( -208.874, 841.768 )
+
+[node name="decor_flat70" parent="YSort" index="49" instance=ExtResource( 7 )]
+
+position = Vector2( 1510.06, -313.662 )
+
+[node name="decor_flat71" parent="YSort" index="50" instance=ExtResource( 7 )]
+
+position = Vector2( 20.2819, -950.672 )
+
+[node name="decor_flat72" parent="YSort" index="51" instance=ExtResource( 7 )]
+
+position = Vector2( -547.358, -837.144 )
+
+[node name="decor_flat3" parent="YSort" index="52" instance=ExtResource( 7 )]
+
+editor/display_folded = true
+position = Vector2( 335.884, 1046.26 )
 
 [node name="shade" parent="YSort/decor_flat3" index="0"]
 
 modulate = Color( 0, 0, 0, 0.403333 )
 position = Vector2( 18.6113, -6.97272 )
 scale = Vector2( 4, 3 )
-texture = ExtResource( 9 )
+texture = ExtResource( 10 )
 frame = 2
 
 [node name="building" parent="YSort/decor_flat3" index="1"]
 
-texture = ExtResource( 9 )
+texture = ExtResource( 10 )
 frame = 2
 
 [node name="CollisionShape2D" parent="YSort/decor_flat3" index="2"]
@@ -185,15 +477,465 @@ frame = 2
 position = Vector2( 10.7773, -24.9096 )
 polygon = PoolVector2Array( -65.71, 56.9929, -43.5568, 68.3689, 52.2412, 36.6358, 58.2285, -9.4669, -60.3213, 22.8649 )
 
+[node name="decor_flat34" parent="YSort" index="53" instance=ExtResource( 7 )]
+
+editor/display_folded = true
+position = Vector2( 918.097, 1789.44 )
+
+[node name="decor_flat35" parent="YSort" index="54" instance=ExtResource( 7 )]
+
+editor/display_folded = true
+position = Vector2( 1188.65, 1364.76 )
+
+[node name="decor_flat59" parent="YSort" index="55" instance=ExtResource( 7 )]
+
+editor/display_folded = true
+position = Vector2( 629.576, 1341.47 )
+
+[node name="decor_flat36" parent="YSort" index="56" instance=ExtResource( 7 )]
+
+editor/display_folded = true
+position = Vector2( 1147.28, 694.742 )
+
+[node name="decor_flat47" parent="YSort" index="57" instance=ExtResource( 7 )]
+
+editor/display_folded = true
+position = Vector2( 1569.67, -678.237 )
+
+[node name="decor_flat48" parent="YSort" index="58" instance=ExtResource( 7 )]
+
+editor/display_folded = true
+position = Vector2( -511.822, -1168.85 )
+
+[node name="decor_flat103" parent="YSort" index="59" instance=ExtResource( 7 )]
+
+editor/display_folded = true
+position = Vector2( 200.576, -1731.54 )
+
+[node name="decor_flat55" parent="YSort" index="60" instance=ExtResource( 7 )]
+
+editor/display_folded = true
+position = Vector2( -1252.1, -1019.76 )
+
+[node name="decor_flat57" parent="YSort" index="61" instance=ExtResource( 7 )]
+
+editor/display_folded = true
+position = Vector2( -1727.31, -525.912 )
+
+[node name="decor_flat58" parent="YSort" index="62" instance=ExtResource( 7 )]
+
+editor/display_folded = true
+position = Vector2( -1843.79, -111.262 )
+
+[node name="decor_flat76" parent="YSort" index="63" instance=ExtResource( 7 )]
+
+editor/display_folded = true
+position = Vector2( 1200.35, 366.146 )
+
+[node name="decor_flat77" parent="YSort" index="64" instance=ExtResource( 7 )]
+
+editor/display_folded = true
+position = Vector2( 1004.18, -72.6512 )
+
+[node name="decor_flat78" parent="YSort" index="65" instance=ExtResource( 7 )]
+
+editor/display_folded = true
+position = Vector2( 432.242, -860.352 )
+
+[node name="decor_flat79" parent="YSort" index="66" instance=ExtResource( 7 )]
+
+editor/display_folded = true
+position = Vector2( -1073.05, -603.863 )
+
+[node name="decor_flat80" parent="YSort" index="67" instance=ExtResource( 7 )]
+
+editor/display_folded = true
+position = Vector2( -1556.6, -389.421 )
+
+[node name="decor_flat5" parent="YSort" index="68" instance=ExtResource( 7 )]
+
+editor/display_folded = true
+position = Vector2( 578.308, 807.522 )
+
+[node name="decor_flat10" parent="YSort" index="69" instance=ExtResource( 7 )]
+
+position = Vector2( -328.336, 1537.78 )
+
+[node name="shade" parent="YSort/decor_flat10" index="0"]
+
+modulate = Color( 0, 0, 0, 0.403333 )
+position = Vector2( 14.6113, -11.9727 )
+scale = Vector2( 4, 3 )
+texture = ExtResource( 11 )
+frame = 2
+
+[node name="building" parent="YSort/decor_flat10" index="1"]
+
+texture = ExtResource( 12 )
+frame = 2
+
+[node name="CollisionShape2D" parent="YSort/decor_flat10" index="2"]
+
+position = Vector2( 10.7773, -24.9096 )
+polygon = PoolVector2Array( -34.3516, 42.3352, -31.0935, 76.5445, 15.3334, 75.7299, 10.4463, -0.833618, -31.0935, 3.23892 )
+
+[node name="decor_flat100" parent="YSort" index="70" instance=ExtResource( 7 )]
+
+position = Vector2( -1095.49, -129.435 )
+
+[node name="decor_flat101" parent="YSort" index="71" instance=ExtResource( 7 )]
+
+position = Vector2( -1182.47, -18.3976 )
+
+[node name="shade" parent="YSort/decor_flat101" index="0"]
+
+modulate = Color( 0, 0, 0, 0.403333 )
+position = Vector2( 14.6113, -11.9727 )
+scale = Vector2( 4, 3 )
+texture = ExtResource( 11 )
+frame = 2
+
+[node name="building" parent="YSort/decor_flat101" index="1"]
+
+texture = ExtResource( 12 )
+frame = 2
+
+[node name="CollisionShape2D" parent="YSort/decor_flat101" index="2"]
+
+position = Vector2( 10.7773, -24.9096 )
+polygon = PoolVector2Array( -34.3516, 42.3352, -31.0935, 76.5445, 15.3334, 75.7299, 10.4463, -0.833618, -31.0935, 3.23892 )
+
+[node name="decor_flat13" parent="YSort" index="72" instance=ExtResource( 7 )]
+
+position = Vector2( 22.0466, 1607.22 )
+
+[node name="decor_flat32" parent="YSort" index="73" instance=ExtResource( 7 )]
+
+position = Vector2( -1655.62, 44.7548 )
+
+[node name="decor_flat37" parent="YSort" index="74" instance=ExtResource( 7 )]
+
+position = Vector2( -252.192, -735.712 )
+
+[node name="decor_flat42" parent="YSort" index="75" instance=ExtResource( 7 )]
+
+position = Vector2( -918.13, -1272.59 )
+
+[node name="decor_flat43" parent="YSort" index="76" instance=ExtResource( 7 )]
+
+position = Vector2( -1496.31, -838.959 )
+
+[node name="decor_flat45" parent="YSort" index="77" instance=ExtResource( 7 )]
+
+position = Vector2( 1028.06, -740.875 )
+
+[node name="decor_flat49" parent="YSort" index="78" instance=ExtResource( 7 )]
+
+position = Vector2( 2109.15, -48.7526 )
+
+[node name="decor_flat52" parent="YSort" index="79" instance=ExtResource( 7 )]
+
+position = Vector2( 1560.02, -186.033 )
+
+[node name="decor_flat54" parent="YSort" index="80" instance=ExtResource( 7 )]
+
+position = Vector2( 1451.34, 597.609 )
+
+[node name="decor_flat14" parent="YSort" index="81" instance=ExtResource( 7 )]
+
+position = Vector2( -221.91, 1195.73 )
+
+[node name="shade" parent="YSort/decor_flat14" index="0"]
+
+modulate = Color( 0, 0, 0, 0.403333 )
+position = Vector2( 24.9357, -11.9727 )
+scale = Vector2( 4.51622, 3 )
+texture = ExtResource( 13 )
+frame = 2
+
+[node name="building" parent="YSort/decor_flat14" index="1"]
+
+texture = ExtResource( 13 )
+frame = 2
+
+[node name="CollisionShape2D" parent="YSort/decor_flat14" index="2"]
+
+position = Vector2( 10.7773, -24.9096 )
+polygon = PoolVector2Array( -90.7638, 56.4443, -26.8262, 83.6519, 62.9584, 33.318, 64.3188, -10.214, -86.6827, -0.691406 )
+
+[node name="decor_flat93" parent="YSort" index="82" instance=ExtResource( 7 )]
+
+position = Vector2( 1393.21, 752.199 )
+
+[node name="decor_flat84" parent="YSort" index="83" instance=ExtResource( 7 )]
+
+position = Vector2( 677.025, -819.537 )
+
+[node name="decor_flat15" parent="YSort" index="84" instance=ExtResource( 7 )]
+
+position = Vector2( -62.9078, 1226.41 )
+
+[node name="decor_flat17" parent="YSort" index="85" instance=ExtResource( 7 )]
+
+editor/display_folded = true
+position = Vector2( -574.285, 1311.83 )
+
+[node name="shade" parent="YSort/decor_flat17" index="0"]
+
+modulate = Color( 0, 0, 0, 0.403333 )
+position = Vector2( 24.9357, -11.9727 )
+scale = Vector2( 4.51622, 3 )
+texture = ExtResource( 14 )
+frame = 2
+
+[node name="building" parent="YSort/decor_flat17" index="1"]
+
+texture = ExtResource( 14 )
+frame = 2
+
+[node name="CollisionShape2D" parent="YSort/decor_flat17" index="2"]
+
+position = Vector2( 10.7773, -24.9096 )
+polygon = PoolVector2Array( -80.0809, 13.6226, 36.9113, 50.3527, 61.398, 28.5867, 58.6773, -32.6301, -80.0809, -51.6754 )
+
+[node name="decor_flat60" parent="YSort" index="86" instance=ExtResource( 7 )]
+
+editor/display_folded = true
+position = Vector2( 598.804, -1046.21 )
+
+[node name="decor_flat85" parent="YSort" index="87" instance=ExtResource( 7 )]
+
+editor/display_folded = true
+position = Vector2( 324.65, -706.226 )
+
+[node name="decor_flat28" parent="YSort" index="88" instance=ExtResource( 7 )]
+
+editor/display_folded = true
+position = Vector2( -1300.65, 1132.8 )
+
+[node name="decor_flat29" parent="YSort" index="89" instance=ExtResource( 7 )]
+
+position = Vector2( -1451.34, 1266.37 )
+
+[node name="shade" parent="YSort/decor_flat29" index="0"]
+
+modulate = Color( 0, 0, 0, 0.403333 )
+position = Vector2( 24.9357, -11.9727 )
+scale = Vector2( 4.51622, 3 )
+texture = ExtResource( 14 )
+frame = 2
+
+[node name="building" parent="YSort/decor_flat29" index="1"]
+
+texture = ExtResource( 14 )
+frame = 2
+
+[node name="CollisionShape2D" parent="YSort/decor_flat29" index="2"]
+
+position = Vector2( 10.7773, -24.9096 )
+polygon = PoolVector2Array( -80.0809, 13.6226, 36.9113, 50.3527, 61.398, 28.5867, 58.6773, -32.6301, -80.0809, -51.6754 )
+
+[node name="decor_flat24" parent="YSort" index="90" instance=ExtResource( 7 )]
+
+position = Vector2( -755.347, 1301.74 )
+
+[node name="shade" parent="YSort/decor_flat24" index="0"]
+
+modulate = Color( 0, 0, 0, 0.403333 )
+position = Vector2( 24.9357, -11.9727 )
+scale = Vector2( 4.51622, 3 )
+texture = ExtResource( 14 )
+frame = 7
+
+[node name="building" parent="YSort/decor_flat24" index="1"]
+
+texture = ExtResource( 14 )
+frame = 7
+
+[node name="CollisionShape2D" parent="YSort/decor_flat24" index="2"]
+
+position = Vector2( 10.7773, -24.9096 )
+polygon = PoolVector2Array( -61.3423, 43.3915, -22.0547, 66.7185, 60.2037, -0.807129, 57.7483, -58.5107, -57.6591, 4.10388 )
+
+[node name="decor_flat61" parent="YSort" index="91" instance=ExtResource( 7 )]
+
+position = Vector2( 417.742, -1056.3 )
+
+[node name="decor_flat83" parent="YSort" index="92" instance=ExtResource( 7 )]
+
+position = Vector2( -654.925, 1139.95 )
+
+[node name="decor_flat86" parent="YSort" index="93" instance=ExtResource( 7 )]
+
+position = Vector2( 518.164, -1218.09 )
+
+[node name="decor_flat87" parent="YSort" index="94" instance=ExtResource( 7 )]
+
+position = Vector2( -3.22937, -603.78 )
+
+[node name="decor_flat89" parent="YSort" index="95" instance=ExtResource( 7 )]
+
+position = Vector2( -724.663, 1081.37 )
+
+[node name="decor_flat90" parent="YSort" index="96" instance=ExtResource( 7 )]
+
+position = Vector2( 448.426, -1276.67 )
+
+[node name="decor_flat91" parent="YSort" index="97" instance=ExtResource( 7 )]
+
+position = Vector2( -72.967, -662.36 )
+
+[node name="decor_flat94" parent="YSort" index="98" instance=ExtResource( 7 )]
+
+position = Vector2( -797.19, 1025.58 )
+
+[node name="decor_flat95" parent="YSort" index="99" instance=ExtResource( 7 )]
+
+position = Vector2( 375.899, -1332.46 )
+
+[node name="decor_flat96" parent="YSort" index="100" instance=ExtResource( 7 )]
+
+position = Vector2( -145.494, -718.15 )
+
+[node name="decor_flat25" parent="YSort" index="101" instance=ExtResource( 7 )]
+
+position = Vector2( -816.176, 1265.39 )
+
+[node name="decor_flat26" parent="YSort" index="102" instance=ExtResource( 7 )]
+
+position = Vector2( -868.434, 1229.03 )
+
+[node name="decor_flat16" parent="YSort" index="103" instance=ExtResource( 7 )]
+
+position = Vector2( 90.5152, 1257.1 )
+
+[node name="decor_flat11" parent="YSort" index="104" instance=ExtResource( 7 )]
+
+position = Vector2( -243.904, 1534.02 )
+
+[node name="shade" parent="YSort/decor_flat11" index="0"]
+
+modulate = Color( 0, 0, 0, 0.403333 )
+position = Vector2( -4.3887, -69.063 )
+scale = Vector2( 4, 5.95451 )
+texture = ExtResource( 15 )
+frame = 2
+
+[node name="building" parent="YSort/decor_flat11" index="1"]
+
+texture = ExtResource( 16 )
+frame = 2
+
+[node name="CollisionShape2D" parent="YSort/decor_flat11" index="2"]
+
+position = Vector2( 10.7773, -24.9096 )
+polygon = PoolVector2Array( -47.2584, 64.6636, 1.47656, 75.4936, 16.8191, 61.9561, 15.9165, 13.2211, -45.4535, 12.3186 )
+
+[node name="decor_flat81" parent="YSort" index="105" instance=ExtResource( 7 )]
+
+position = Vector2( 1028.28, 1139.11 )
+
+[node name="decor_flat88" parent="YSort" index="106" instance=ExtResource( 7 )]
+
+position = Vector2( 1139.32, 1129.86 )
+
+[node name="decor_flat92" parent="YSort" index="107" instance=ExtResource( 7 )]
+
+position = Vector2( 1257.76, 1126.16 )
+
+[node name="decor_flat56" parent="YSort" index="108" instance=ExtResource( 7 )]
+
+position = Vector2( 1570.84, 135.253 )
+
+[node name="decor_flat30" parent="YSort" index="109" instance=ExtResource( 7 )]
+
+position = Vector2( -854.2, 1340.43 )
+
+[node name="shade" parent="YSort/decor_flat30" index="0"]
+
+modulate = Color( 0, 0, 0, 0.403333 )
+position = Vector2( -4.3887, -69.063 )
+scale = Vector2( 4, 5.95451 )
+texture = ExtResource( 15 )
+frame = 1
+
+[node name="building" parent="YSort/decor_flat30" index="1"]
+
+texture = ExtResource( 16 )
+frame = 1
+
+[node name="CollisionShape2D" parent="YSort/decor_flat30" index="2"]
+
+position = Vector2( 10.7773, -24.9096 )
+polygon = PoolVector2Array( -47.2584, 64.6636, 1.47656, 75.4936, 16.8191, 61.9561, 15.9165, 13.2211, -45.4535, 12.3186 )
+
+[node name="decor_flat31" parent="YSort" index="110" instance=ExtResource( 7 )]
+
+position = Vector2( -950.576, 1346.58 )
+
+[node name="decor_flat27" parent="YSort" index="111" instance=ExtResource( 7 )]
+
+position = Vector2( -112.797, 1414.34 )
+
+[node name="decor_flat22" parent="YSort" index="112" instance=ExtResource( 7 )]
+
+position = Vector2( -1100.78, 1618.27 )
+
+[node name="shade" parent="YSort/decor_flat22" index="0"]
+
+modulate = Color( 0, 0, 0, 0.403333 )
+position = Vector2( -4.3887, -69.063 )
+scale = Vector2( 4, 5.95451 )
+texture = ExtResource( 15 )
+frame = 2
+
+[node name="building" parent="YSort/decor_flat22" index="1"]
+
+texture = ExtResource( 17 )
+frame = 8
+
+[node name="CollisionShape2D" parent="YSort/decor_flat22" index="2"]
+
+position = Vector2( 10.7773, -24.9096 )
+polygon = PoolVector2Array( -65.8774, 56.6213, -14.3861, 93.743, 41.2965, 57.2201, 40.6977, 6.92615, -64.68, 7.5249 )
+
+[node name="decor_flat23" parent="YSort" index="113" instance=ExtResource( 7 )]
+
+position = Vector2( -1193.92, 1510.02 )
+
+[node name="decor_flat18" parent="YSort" index="114" instance=ExtResource( 7 )]
+
+position = Vector2( -877.533, 1627.32 )
+
+[node name="decor_flat19" parent="YSort" index="115" instance=ExtResource( 7 )]
+
+position = Vector2( -970.259, 1674.02 )
+
+[node name="decor_flat12" parent="YSort" index="116" instance=ExtResource( 7 )]
+
+position = Vector2( 5.62805, 1693.39 )
+
+[node name="decor_flat33" parent="YSort" index="117" instance=ExtResource( 7 )]
+
+position = Vector2( -1672.04, 130.923 )
+
+[node name="decor_flat38" parent="YSort" index="118" instance=ExtResource( 7 )]
+
+position = Vector2( -268.61, -649.544 )
+
+[node name="decor_flat41" parent="YSort" index="119" instance=ExtResource( 7 )]
+
+position = Vector2( -934.549, -1186.43 )
+
 [node name="audio" type="Node" parent="." index="2"]
 
 editor/display_folded = true
-script = ExtResource( 10 )
+script = ExtResource( 18 )
 
 [node name="summon_0" type="AudioStreamPlayer2D" parent="audio" index="0"]
 
 position = Vector2( -1, -1 )
-stream = ExtResource( 11 )
+stream = ExtResource( 19 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = true
@@ -204,7 +946,7 @@ area_mask = 1
 
 [node name="summon_1" type="AudioStreamPlayer2D" parent="audio" index="1"]
 
-stream = ExtResource( 12 )
+stream = ExtResource( 20 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
@@ -215,7 +957,7 @@ area_mask = 1
 
 [node name="summon_2" type="AudioStreamPlayer2D" parent="audio" index="2"]
 
-stream = ExtResource( 13 )
+stream = ExtResource( 21 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
@@ -232,7 +974,12 @@ rotation = 0.0
 scale = Vector2( 1, 1 )
 transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 
-[node name="GUI" parent="CanvasLayer" index="0" instance=ExtResource( 14 )]
+[node name="GUI" parent="CanvasLayer" index="0" instance=ExtResource( 22 )]
+
+[node name="decor_flat" parent="." index="4" instance=ExtResource( 7 )]
+
+position = Vector2( 78.4735, 1412.33 )
+_sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
 
 
 [editable path="YSort/player"]
@@ -241,6 +988,23 @@ transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 [editable path="YSort/channeler2"]
 [editable path="YSort/channeler5"]
 [editable path="YSort/channeler4"]
+[editable path="YSort/decor_anim"]
 [editable path="YSort/decor_flat"]
+[editable path="YSort/decor_flat6"]
+[editable path="YSort/decor_flat7"]
+[editable path="YSort/decor_flat8"]
+[editable path="YSort/decor_flat9"]
+[editable path="YSort/decor_flat4"]
 [editable path="YSort/decor_flat2"]
+[editable path="YSort/decor_flat66"]
 [editable path="YSort/decor_flat3"]
+[editable path="YSort/decor_flat10"]
+[editable path="YSort/decor_flat101"]
+[editable path="YSort/decor_flat14"]
+[editable path="YSort/decor_flat17"]
+[editable path="YSort/decor_flat29"]
+[editable path="YSort/decor_flat24"]
+[editable path="YSort/decor_flat11"]
+[editable path="YSort/decor_flat30"]
+[editable path="YSort/decor_flat22"]
+[editable path="decor_flat"]
