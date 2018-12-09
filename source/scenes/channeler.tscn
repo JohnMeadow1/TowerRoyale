@@ -39,7 +39,6 @@ tracks/0/keys = {
 [node name="channeler1" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
-frame = 0
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
 
@@ -51,11 +50,13 @@ _sections_unfolded = [ "Animation", "Material", "Offset", "Region", "Transform",
 
 [node name="ray" type="Sprite" parent="." index="1"]
 
+scale = Vector2( 4, 4 )
 texture = ExtResource( 7 )
 centered = false
 vframes = 3
-frame = 1
-_sections_unfolded = [ "Animation", "Material", "Offset", "Transform", "Visibility", "Z Index" ]
+region_rect = Rect2( 0, 0, 100, 33 )
+region_filter_clip = true
+_sections_unfolded = [ "Animation", "Material", "Offset", "Region", "Transform", "Visibility", "Z Index" ]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
 
