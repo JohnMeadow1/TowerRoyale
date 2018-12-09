@@ -10,7 +10,7 @@
 [ext_resource path="res://audio/summoning_2.wav" type="AudioStream" id=8]
 [ext_resource path="res://scenes/GUI.tscn" type="PackedScene" id=9]
 
-[node name="main" type="Node2D"]
+[node name="main" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 __meta__ = {
@@ -33,6 +33,7 @@ position = Vector2( 1.57922, 0.542786 )
 
 [node name="channeler1" parent="YSort" index="2" instance=ExtResource( 4 )]
 
+editor/display_folded = true
 position = Vector2( 532.338, -285.582 )
 
 [node name="source" parent="YSort/channeler1" index="1"]
@@ -46,6 +47,7 @@ polygon = PoolVector2Array( -46.0172, 4.9827, -30.9231, 22.0629, -51.181, 90.383
 
 [node name="channeler3" parent="YSort" index="3" instance=ExtResource( 4 )]
 
+editor/display_folded = true
 position = Vector2( -543.39, -273.901 )
 
 [node name="AnimatedSprite" parent="YSort/channeler3" index="0"]
@@ -75,25 +77,7 @@ frame = 2
 build_mode = 0
 polygon = PoolVector2Array( -124.656, 35.5023, -16.3849, 44.7449, 40.3914, 65.871, 68.5594, 46.5054, 52.7148, 12.1756, -6.70215, 2.49283, -67.4395, 2.49283 )
 
-[node name="channeler4" parent="YSort" index="5" instance=ExtResource( 4 )]
-
-editor/display_folded = true
-position = Vector2( -52.6486, 578.918 )
-
-[node name="AnimatedSprite" parent="YSort/channeler4" index="0"]
-
-frame = 0
-
-[node name="source" parent="YSort/channeler4" index="1"]
-
-z_index = -1
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="YSort/channeler4" index="3"]
-
-build_mode = 0
-polygon = PoolVector2Array( -77.1722, 13.5135, -0.215595, -22.3112, 81.385, 12.1866, 37.5993, 39.3868, 7.74543, 99.758, -24.0987, 38.7234 )
-
-[node name="channeler5" parent="YSort" index="6" instance=ExtResource( 4 )]
+[node name="channeler5" parent="YSort" index="5" instance=ExtResource( 4 )]
 
 editor/display_folded = true
 position = Vector2( -679.312, 329.349 )
@@ -106,6 +90,24 @@ frame = 1
 
 build_mode = 0
 polygon = PoolVector2Array( -62.7397, 50.9256, -32.2225, 60.8769, 128.325, 31.0231, 7.58264, 5.14972, -48.808, 9.79364 )
+
+[node name="channeler4" parent="YSort" index="6" instance=ExtResource( 4 )]
+
+position = Vector2( -52.6486, 578.918 )
+
+[node name="AnimatedSprite" parent="YSort/channeler4" index="0"]
+
+frame = 0
+
+[node name="source" parent="YSort/channeler4" index="1"]
+
+show_behind_parent = true
+z_as_relative = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="YSort/channeler4" index="3"]
+
+build_mode = 0
+polygon = PoolVector2Array( -77.1722, 13.5135, -0.215595, -22.3112, 81.385, 12.1866, 37.5993, 39.3868, 7.74543, 99.758, -24.0987, 38.7234 )
 
 [node name="audio" type="Node" parent="." index="2"]
 
@@ -159,5 +161,5 @@ transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 [editable path="YSort/channeler1"]
 [editable path="YSort/channeler3"]
 [editable path="YSort/channeler2"]
-[editable path="YSort/channeler4"]
 [editable path="YSort/channeler5"]
+[editable path="YSort/channeler4"]

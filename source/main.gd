@@ -11,6 +11,7 @@ func _ready():
 	globals.debug = $CanvasLayer/GUI/debug/RichText
 
 func _process(delta):
+
 	self.spawner_timer -= delta
 	
 	if self.spawner_timer <= 0.0:

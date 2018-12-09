@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/beam2.png-a5f3b83701d5d8b14ae8d39679ce27a6.stex"
+path="res://.import/life_bar2.png-ce3bce2c4c89cecc98975c80ffd91795.stex"
 
 [deps]
 
-source_file="res://sprites/beam2.png"
-dest_files=[ "res://.import/beam2.png-a5f3b83701d5d8b14ae8d39679ce27a6.stex" ]
+source_file="res://sprites/life_bar2.png"
+dest_files=[ "res://.import/life_bar2.png-ce3bce2c4c89cecc98975c80ffd91795.stex" ]
 
 [params]
 
@@ -16,7 +16,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -25,5 +25,5 @@ process/premult_alpha=false
 process/HDR_as_SRGB=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0

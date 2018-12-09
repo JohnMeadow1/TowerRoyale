@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/channeler.gd" type="Script" id=1]
 [ext_resource path="res://sprites/tower bott.png" type="Texture" id=2]
@@ -8,8 +8,9 @@
 [ext_resource path="res://sprites/tower upR.png" type="Texture" id=6]
 [ext_resource path="res://sprites/beam_source.png" type="Texture" id=7]
 [ext_resource path="res://sprites/beam.png" type="Texture" id=8]
-[ext_resource path="res://sprites/life_border.png" type="Texture" id=9]
-[ext_resource path="res://sprites/life_bar.png" type="Texture" id=10]
+[ext_resource path="res://sprites/life_bar_bg2.png" type="Texture" id=9]
+[ext_resource path="res://sprites/life_border2.png" type="Texture" id=10]
+[ext_resource path="res://sprites/life_bar2.png" type="Texture" id=11]
 
 [sub_resource type="SpriteFrames" id=1]
 
@@ -24,6 +25,7 @@ animations = [ {
 "channelers",
 ]]
 
+position = Vector2( 2, 0 )
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
@@ -67,15 +69,14 @@ _sections_unfolded = [ "Offset", "Pause", "Playback Options", "Region", "Transfo
 
 [node name="hp_bar" type="TextureProgress" parent="." index="2"]
 
-visible = false
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = -199.0
-margin_top = 2.0
-margin_right = -99.0
-margin_bottom = 33.0
+margin_left = -116.0
+margin_top = -2.0
+margin_right = -16.0
+margin_bottom = 29.0
 rect_scale = Vector2( 4, 4 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -90,9 +91,9 @@ page = 0.0
 value = 100.0
 exp_edit = false
 rounded = false
-texture_under = null
-texture_over = ExtResource( 9 )
-texture_progress = ExtResource( 10 )
+texture_under = ExtResource( 9 )
+texture_over = ExtResource( 10 )
+texture_progress = ExtResource( 11 )
 radial_fill_degrees = 360.0
 radial_center_offset = Vector2( 0, 0 )
 nine_patch_stretch = false

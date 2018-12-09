@@ -30,6 +30,12 @@ func find_target():
 		return
 		
 	find_channeler()
+	var target_name = "?"
+	if self.current_target and self.current_target.is_in_group("players"):
+		target_name = "PLAYER"
+	if self.current_target and self.current_target.is_in_group("channelers"):
+		target_name = "CHANNELER"
+	$target.text = target_name
 
 func find_player():
 	# Check if player is near, if it is - attack him
@@ -69,6 +75,12 @@ func channeler_destroyed():
 	self.find_target()
 
 func _physics_process(delta):
+	self.ai_timer -= delta
+
+	# Refresh AI
+	if self.ai_timer <= 0.0:
+		self.find_target()
+
 	# Move enemy
 	self.facing = Vector2(1.0, 0.0)
 	if self.current_target:
@@ -79,30 +91,13 @@ func _physics_process(delta):
 	# Update frame
 	var orientation = fmod(Vector2(1.0, 0.0).angle_to(facing) + 2*PI, 2*PI)
 	$body.frame = int(round(abs(orientation)/(2*PI*(0.125))) + 6)%8
+	$body.frame = 1
 	
 	self.jump_timer += 20.0 * delta
 	$body.position.y = abs(sin(self.jump_timer)) * 10.0
-	
+
 	update()
 
-func _process(delta):
-	# Called every frame. Delta is time since last frame.
-	# Update game logic here.
-	self.ai_timer -= delta
-
-	# Refresh AI
-	if self.ai_timer <= 0.0:
-		self.find_target()
-		
 func _draw():
 	draw_line(Vector2(0.0, 0.0), 100 * self.facing, Color(1.0, 0.0, 1.0), 3.0)	
-	
-	var target_name = "?"
-	if self.current_target and self.current_target.is_in_group("players"):
-		target_name = "PLAYER"
-	if self.current_target and self.current_target.is_in_group("channelers"):
-		target_name = "CHANNELER"
-		
-	var label = Label.new()
-	label.text = target_name
-	add_child(label)
+
