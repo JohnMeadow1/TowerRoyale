@@ -8,12 +8,14 @@ extends Node2D
 var SPEED = 100
 var FRAMES = 8
 
-var PLAYER_ATTACK_DISTANCE = 50
+var PLAYER_ATTACK_DISTANCE = 50.0
 
 var current_target = null
 var facing = Vector2()
-var ai_timer = 0.0
 var jump_timer = 1.0
+
+var REFRESH_AI = 2.0
+var ai_timer = 0.0
 
 func _ready():
 	# Called when the node is added to the scene for the first time.
@@ -22,13 +24,12 @@ func _ready():
 
 func find_target():
 	# Try to attack player, if can't - attack channeler
-	ai_timer = 1.5
+	ai_timer = REFRESH_AI
 	
 	if find_player():
-		return 
+		return
 		
 	find_channeler()
-	
 
 func find_player():
 	# Check if player is near, if it is - attack him
@@ -65,7 +66,7 @@ func find_channeler():
 
 func channeler_destroyed():
 	# Channeler destroyed, find new target if current invalid
-	self.find_channeler()
+	self.find_target()
 
 func _physics_process(delta):
 	# Move enemy
