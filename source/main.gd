@@ -49,8 +49,6 @@ func spawn_enemy():
 		new_enemy.position = new_pos + Vector2(rand_range(-50.0, 50.0), rand_range(-50.0, 50.0))
 		$YSort.add_child(new_enemy)
 		number -= 1
-		
-	print("Enemy spawned: ", new_pos)
 
 func _draw():
 	pass

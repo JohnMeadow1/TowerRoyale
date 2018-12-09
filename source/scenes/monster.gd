@@ -33,7 +33,6 @@ func set_monster_emerge(value):
 	#$Sprite.set_region_rect(Rect2(min(floor(4 * 120 * (value/153.0)), 360), 0, 120, height))
 	$Sprite.set_region_rect(Rect2((int(floor((value / 153.0) * 4))%4) * 120, 0, 120, height))
 	$Sprite.set_offset(Vector2(-50, -height))
-	print(Rect2(floor((value/153.0)*4)*120, 0, 120, height))
 	
 func calm_monster(value):
 	if self.rage > 0:
