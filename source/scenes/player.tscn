@@ -86,7 +86,9 @@ custom_solver_bias = 0.0
 radius = 32.0
 height = 78.0
 
-[node name="player" type="RigidBody2D"]
+[node name="player" type="RigidBody2D" groups=[
+"players",
+]]
 
 input_pickable = false
 collision_layer = 1

@@ -1,34 +1,27 @@
 extends Node2D
 
-const TRACK_LENGTH = 300
-var track_front  = PoolIntArray()
-var track_back   = PoolIntArray()
-var track1 = PoolVector2Array()
-var track2 = PoolVector2Array()
-var track3 = PoolVector2Array()
-var track4 = PoolVector2Array()
+var SPAWN_TIME_RUNNER = 5.0
+var R = 2048.0
+	
+var spawner_timer = 0.0
 
-#func _process(delta):
-#	if( track_front.size() >= TRACK_LENGTH ):
-#		track_back.remove(0)
-#		track_front.remove(0)
-#		track1.remove(0)
-#		track2.remove(0)
-#		track3.remove(0)
-#		track4.remove(0)
-#	track1.append($car/turning_pivot/body/rubber_right.global_position)
-#	track2.append($car/turning_pivot/body/rubber_left.global_position)
-#	track3.append($car/turning_pivot/body/pivot_right/rubber.global_position)
-#	track4.append($car/turning_pivot/body/pivot_left/rubber.global_position)
-#	track_back.append($car.skid_size_back)
-#	track_front.append($car.skid_size_front)
-#	update()
+var enemy_object = load("res://scenes/enemy_1.tscn")
 
-#func _draw():
-#	for i in range(track_front.size() -1 ):
-#		if track_front[i] > 0:
-#			draw_line(track3[i], track3[i+1], Color(0, 0, 0, 0.5), track_front[i])
-#			draw_line(track4[i], track4[i+1], Color(0, 0, 0, 0.5), track_front[i])
-#		if track_back[i] > 0:
-#			draw_line(track1[i], track1[i+1], Color(0, 0, 0, 0.5), track_back[i])
-#			draw_line(track2[i], track2[i+1], Color(0, 0, 0, 0.5), track_back[i])
+func _process(delta):
+	self.spawner_timer -= delta
+	
+	if self.spawner_timer <= 0.0:
+		self.spawn_enemy()
+
+func spawn_enemy():
+	self.spawner_timer = SPAWN_TIME_RUNNER
+	
+	var random = rand_range(0, PI*2)
+	var new_pos = Vector2(cos(random) * R, sin(random) * R)
+	
+	var new_enemy = self.enemy_object.instance()
+	new_enemy.position = new_pos
+	$YSort.add_child(new_enemy)
+
+func _draw():
+	pass

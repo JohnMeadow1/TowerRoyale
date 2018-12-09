@@ -16,10 +16,14 @@ func take_damage(dmg):
 		return
 	
 	self.hp -= dmg
+	$hp_bar.value = self.hp
 	
 	if self.hp <= 0:
 		self.alive = false
 		$ray.visible = false
+
+func is_alive():
+	return self.alive
 	
 func setup_ray():
 	# Hook bottom

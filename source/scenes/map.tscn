@@ -11,7 +11,7 @@ custom_solver_bias = 0.0
 radius = 74.3474
 height = 112.653
 
-[node name="map" type="Node2D"]
+[node name="map" type="Node2D" index="0"]
 
 z_index = -1000
 z_as_relative = false

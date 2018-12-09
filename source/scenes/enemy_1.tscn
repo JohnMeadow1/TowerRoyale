@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/enemy_1.gd" type="Script" id=1]
+[ext_resource path="res://sprites/enemy_1.png" type="Texture" id=2]
+
+[node name="enemy" type="Node2D" index="0" groups=[
+"enemies",
+]]
+
+script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="body" type="Sprite" parent="." index="0"]
+
+scale = Vector2( 4, 4 )
+texture = ExtResource( 2 )
+hframes = 8
+_sections_unfolded = [ "Animation", "Material", "Offset", "Pause", "Region", "Transform", "Visibility", "Z Index" ]
+
+

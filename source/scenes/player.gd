@@ -5,7 +5,7 @@ var speed    = 0.0
 
 
 const TURNING_SPEED = PI
-const MAX_SPEED = 200
+const MAX_SPEED = 500
 const MAX_REVERSE_SPEED = -100
 var orientation      = 0.0
 var acceleration     = 0.0
