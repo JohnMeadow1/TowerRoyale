@@ -21,6 +21,7 @@ var ai_timer = 0.0
 var is_alive = true
 var death_timer = 5.0
 var attack_timer = 0.0
+
 func _ready():
 	self.SPEED += rand_range(-10.0, 10.0)
 	
@@ -77,17 +78,19 @@ func _physics_process(delta):
 	if is_alive:
 		# Refresh AI
 		self.ai_timer -= delta
-	
 		if self.ai_timer <= 0.0:
 			self.find_target()
-		if attack_timer>0:
+			
+		# Attack
+		if attack_timer > 0:
 			attack_timer -= delta
 		else:
 			var bodies = get_colliding_bodies()
 			if bodies:
 				if bodies[0].has_method("get_hit") && bodies[0].is_in_group("friendly"):
-					ai_timer = 1.0
-					bodies[0].get_hit(0.5)
+					attack_timer = 1.0
+					bodies[0].get_hit(1)
+					
 		# Move enemy
 		self.facing = Vector2(1.0, 0.0)
 		if self.current_target:
@@ -101,7 +104,8 @@ func _physics_process(delta):
 		
 		# Jump
 		self.jump_timer += 20.0 * delta
-		$body.position.y = abs(sin(self.jump_timer)) * 10.0 -28
+		$body.position.y = abs(sin(self.jump_timer)) * 10.0 - 28
+		
 	else:
 		death_timer -= delta
 		$dead.modulate.a = death_timer/5.0

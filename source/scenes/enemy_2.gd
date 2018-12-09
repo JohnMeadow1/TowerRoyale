@@ -118,4 +118,5 @@ func detonate():
 	linear_velocity = Vector2()
 
 func _on_body_entered(body):
-	body.get_hit( rand_range(1,3) )
+	if body.has_method("get_hit"):
+		body.get_hit( rand_range(1,3) )
