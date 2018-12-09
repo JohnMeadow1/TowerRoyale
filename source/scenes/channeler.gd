@@ -1,12 +1,13 @@
 extends Node2D
 
 
-var hp = 100
+var hp = 500
 var alive = true
 var animation_offset = 0.0
 var frame_offset = 0
 var acumulator = 0
 var agony_timer = 0.0
+var ray_timer = 0
 
 func _ready():
 	animation_offset = rand_range(0, $source/ray.texture.get_width() )
@@ -19,11 +20,12 @@ func get_hit(dmg):
 	
 	self.hp -= dmg
 	$hp_bar.value = self.hp
-	
+	ray_timer = min (0.5, ray_timer + dmg * 0.05)
 	if self.hp <= 0:
 		self.alive = false
 		self.agony_timer = 3.0
 		globals.channelers_num -= 1
+		$shutdown.play()
 		
 func is_alive():
 	return self.alive
@@ -49,6 +51,13 @@ func _process(delta):
 		var vector_to = Vector2(get_node("../target").global_position - $source.global_position)
 		$source/ray.region_rect = Rect2(Vector2(animation_offset,33*frame_offset),Vector2(vector_to.length()*0.1, 33))
 		$source.frame = frame_offset
+		if ray_timer>0:
+			ray_timer -= delta
+			if ray_timer>0:
+				$source.visible = false
+			else:
+				$source.visible = true
+			
 	else:
 		self.agony_timer -= delta
 		

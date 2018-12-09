@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scenes/channeler.gd" type="Script" id=1]
 [ext_resource path="res://sprites/tower bott.png" type="Texture" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://sprites/life_bar_bg2.png" type="Texture" id=9]
 [ext_resource path="res://sprites/life_border2.png" type="Texture" id=10]
 [ext_resource path="res://sprites/life_bar2.png" type="Texture" id=11]
+[ext_resource path="res://audio/power_off.wav" type="AudioStream" id=12]
 
 [sub_resource type="SpriteFrames" id=1]
 
@@ -26,9 +27,9 @@ animations = [ {
 custom_solver_bias = 0.0
 radius = 70.0
 
-[node name="channeler1" type="StaticBody2D" groups=[
-"channelers",
+[node name="channeler1" type="StaticBody2D" index="0" groups=[
 "friendly",
+"channelers",
 ]]
 
 position = Vector2( 2, 0 )
@@ -92,10 +93,10 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 min_value = 0.0
-max_value = 100.0
+max_value = 500.0
 step = 1.0
 page = 0.0
-value = 100.0
+value = 500.0
 exp_edit = false
 rounded = false
 texture_under = ExtResource( 9 )
@@ -124,6 +125,17 @@ _sections_unfolded = [ "Collision" ]
 
 position = Vector2( 0, 30 )
 shape = SubResource( 2 )
+
+[node name="shutdown" type="AudioStreamPlayer2D" parent="." index="4"]
+
+stream = ExtResource( 12 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]
 
