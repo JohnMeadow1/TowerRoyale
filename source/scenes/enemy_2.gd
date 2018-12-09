@@ -108,6 +108,7 @@ func _physics_process(delta):
 		var orientation = fmod(Vector2(1.0, 0.0).angle_to(facing) + 2*PI, 2*PI)
 		$body.frame = int(round(abs(orientation)/(2*PI*(0.125))) + 6)%8
 		$CollisionShape2D.rotation = orientation + PI * 0.5
+		
 		# Jump
 		self.jump_timer += 5.0 * delta
 		$body.position.y = abs(sin(self.jump_timer)) * 5.0
@@ -124,14 +125,14 @@ func get_hit(value):
 	
 func detonate():
 	is_alive = false
-	$explosion.rotation = rand_range(0, PI*2)
+	$explosion.rotation = rand_range(0, PI * 2)
 	$AnimationPlayer.play("explode")
 	$CollisionShape2D.disabled = true
 	$agony.play()
 	$explode.play()
-	$dead.flip_h = randi()%2
+	$dead.flip_h = randi() % 2
 	linear_velocity = Vector2()
 
 func _on_body_entered(body):
 	if body.has_method("get_hit"):
-		body.get_hit( rand_range(1,3) )
+		body.get_hit( rand_range(5,12) )

@@ -88,3 +88,7 @@ func spawn_bullet():
 func get_hit(value):
 	hp -= value
 	$hp_bar.value = hp
+
+func _on_body_entered(body):
+	if body.has_method("detonate"):
+		body.detonate()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scenes/player.gd" type="Script" id=1]
 [ext_resource path="res://sprites/tank1.png" type="Texture" id=2]
@@ -89,9 +89,14 @@ height = 78.0
 audio_stream = ExtResource( 7 )
 random_pitch = 1.0
 
+[sub_resource type="CircleShape2D" id=7]
+
+custom_solver_bias = 0.0
+radius = 13.0
+
 [node name="player" type="RigidBody2D" groups=[
-"players",
 "friendly",
+"players",
 ]]
 
 input_pickable = false
@@ -280,5 +285,24 @@ pitch_scale = 0.3
 autoplay = false
 mix_target = 0
 bus = "Master"
+
+[node name="Area2D" type="Area2D" parent="." index="10"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+
+position = Vector2( -3.11618, -47.5548 )
+scale = Vector2( 6.44681, 6.53056 )
+shape = SubResource( 7 )
+_sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]
 
 

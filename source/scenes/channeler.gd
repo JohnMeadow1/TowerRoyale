@@ -21,6 +21,7 @@ func get_hit(dmg):
 	self.hp -= dmg
 	$hp_bar.value = self.hp
 	ray_timer = min (0.5, ray_timer + dmg * 0.05)
+	
 	if self.hp <= 0:
 		self.alive = false
 		self.agony_timer = 3.0

@@ -27,9 +27,9 @@ animations = [ {
 custom_solver_bias = 0.0
 radius = 70.0
 
-[node name="channeler1" type="StaticBody2D" index="0" groups=[
-"friendly",
+[node name="channeler1" type="StaticBody2D" groups=[
 "channelers",
+"friendly",
 ]]
 
 position = Vector2( 2, 0 )
