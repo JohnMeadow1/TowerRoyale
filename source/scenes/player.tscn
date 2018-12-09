@@ -28,8 +28,8 @@ emission_shape = 0
 flag_align_y = false
 flag_rotate_y = false
 flag_disable_z = true
-spread = 30.0
-flatness = 0.0
+spread = 15.0
+flatness = 1.0
 gravity = Vector3( 0, 0, 0 )
 initial_velocity = 300.0
 initial_velocity_random = 0.5
@@ -88,7 +88,7 @@ custom_solver_bias = 0.0
 radius = 32.0
 height = 78.0
 
-[node name="player" type="RigidBody2D" groups=[
+[node name="player" type="RigidBody2D" index="0" groups=[
 "players",
 ]]
 
@@ -113,7 +113,18 @@ angular_damp = -1.0
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="body" type="Sprite" parent="." index="0"]
+[node name="body2" type="Sprite" parent="." index="0"]
+
+modulate = Color( 0, 0, 0, 0.27451 )
+position = Vector2( 16, -4 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 2 )
+vframes = 4
+hframes = 4
+frame = 8
+_sections_unfolded = [ "Animation", "Material", "Offset", "Region", "Transform", "Visibility" ]
+
+[node name="body" type="Sprite" parent="." index="1"]
 
 scale = Vector2( 4, 4 )
 texture = ExtResource( 2 )
@@ -125,14 +136,16 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="barrel" type="Node2D" parent="." index="1"]
+[node name="barrel" type="Node2D" parent="." index="2"]
 
+editor/display_folded = true
 position = Vector2( 0, -27 )
 scale = Vector2( 4, 4 )
 _sections_unfolded = [ "Animation", "Offset", "Region", "Transform" ]
 
 [node name="fire" type="Sprite" parent="barrel" index="0"]
 
+editor/display_folded = true
 position = Vector2( 14, 0 )
 texture = ExtResource( 3 )
 centered = false
@@ -144,12 +157,12 @@ _sections_unfolded = [ "Animation", "Offset", "Region", "Transform" ]
 [node name="Particles2D" type="Particles2D" parent="barrel/fire" index="0"]
 
 emitting = false
-amount = 8
-lifetime = 0.5
+amount = 16
+lifetime = 0.3
 one_shot = true
 preprocess = 0.0
 speed_scale = 1.0
-explosiveness = 1.0
+explosiveness = 0.0
 randomness = 0.0
 fixed_fps = 0
 fract_delta = true
@@ -163,7 +176,7 @@ h_frames = 1
 v_frames = 1
 _sections_unfolded = [ "Drawing", "Material", "Process Material", "Textures", "Time", "Transform" ]
 
-[node name="Camera2D" type="Camera2D" parent="." index="2"]
+[node name="Camera2D" type="Camera2D" parent="." index="3"]
 
 anchor_mode = 1
 rotating = false
@@ -192,7 +205,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="shoot" type="AudioStreamPlayer" parent="." index="3"]
+[node name="shoot" type="AudioStreamPlayer" parent="." index="4"]
 
 stream = SubResource( 4 )
 volume_db = 0.0
@@ -201,7 +214,7 @@ autoplay = false
 mix_target = 0
 bus = "Master"
 
-[node name="TextureProgress" type="TextureProgress" parent="." index="4"]
+[node name="TextureProgress" type="TextureProgress" parent="." index="5"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -232,7 +245,7 @@ radial_center_offset = Vector2( 0, 0 )
 nine_patch_stretch = false
 _sections_unfolded = [ "Rect", "Textures" ]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6"]
 
 root_node = NodePath("..")
 autoplay = ""
@@ -242,14 +255,14 @@ playback_speed = 1.0
 anims/fire = SubResource( 5 )
 blend_times = [  ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="6"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="7"]
 
 position = Vector2( 7, 8 )
 rotation = 1.5708
 shape = SubResource( 6 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="tracks_0" type="AudioStreamPlayer" parent="." index="7"]
+[node name="tracks_0" type="AudioStreamPlayer" parent="." index="8"]
 
 stream = ExtResource( 7 )
 volume_db = -15.0
@@ -258,7 +271,7 @@ autoplay = false
 mix_target = 0
 bus = "Master"
 
-[node name="tracks_1" type="AudioStreamPlayer" parent="." index="8"]
+[node name="tracks_1" type="AudioStreamPlayer" parent="." index="9"]
 
 stream = ExtResource( 8 )
 volume_db = -15.0

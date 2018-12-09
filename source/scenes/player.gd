@@ -28,6 +28,7 @@ func _physics_process(delta):
 	
 	orientation = fmod(orientation + PI2, PI2)
 	$body.frame = int(round( abs(orientation)/(PI*0.125) ))%16
+	$body2.frame = int(round( abs(orientation)/(PI*0.125) ))%16
 #	$turret.frame = int(round( abs(orientation)/(PI*0.125) ))%16
 
 	position += facing * acceleration * delta

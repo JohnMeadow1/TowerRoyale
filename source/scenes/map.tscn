@@ -8,10 +8,10 @@
 [sub_resource type="CapsuleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 60.0
+radius = 50.0
 height = 110.0
 
-[node name="map" type="Node2D" index="0"]
+[node name="map" type="Node2D"]
 
 z_index = -1000
 z_as_relative = false

@@ -20,10 +20,17 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="channeler1" type="Node2D" groups=[
+[node name="channeler1" type="StaticBody2D" groups=[
 "channelers",
 ]]
 
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
 script = ExtResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
@@ -60,6 +67,7 @@ _sections_unfolded = [ "Offset", "Pause", "Playback Options", "Region", "Transfo
 
 [node name="hp_bar" type="TextureProgress" parent="." index="2"]
 
+visible = false
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
