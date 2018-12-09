@@ -5,13 +5,18 @@ var R = 1000.0
 	
 var spawner_timer = 0.0
 
-var enemy_object = load("res://scenes/enemy_1.tscn")
+var enemy_array = [
+	load("res://scenes/enemy_1.tscn"),
+	load("res://scenes/enemy_2.tscn"),
+	load("res://scenes/enemy_3.tscn")
+]
+
+var enemy_prob = [65, 20, 15]
 
 func _ready():
 	globals.debug = $CanvasLayer/GUI/debug/RichText
 
 func _process(delta):
-
 	self.spawner_timer -= delta
 	
 	if self.spawner_timer <= 0.0:
@@ -20,13 +25,29 @@ func _process(delta):
 func spawn_enemy():
 	self.spawner_timer = SPAWN_TIME_RUNNER
 	
+	# Randomize position
 	var random = rand_range(0, PI*2)
 	var new_pos = Vector2(cos(random) * R, sin(random) * R)
 	
-	var new_enemy = self.enemy_object.instance()
-	new_enemy.position = new_pos
-	$YSort.add_child(new_enemy)
+	# Randomize enemies by probability
+	var tmp_rand = randi() % 100
+	var enemy_num = 0
+	while (tmp_rand - enemy_prob[enemy_num]) > 0:
+		tmp_rand -= enemy_prob[enemy_num]
+		enemy_num += 1
 	
+	# Spawn group of EvilDogs
+	var number = 1
+	if enemy_num == 2:
+		number = rand_range(5, 10)
+	
+	# Spawn enemy
+	while(number > 0):
+		var new_enemy = self.enemy_array[enemy_num].instance()
+		new_enemy.position = new_pos + Vector2(rand_range(-50.0, 50.0), rand_range(-50.0, 50.0))
+		$YSort.add_child(new_enemy)
+		number -= 1
+		
 	print("Enemy spawned: ", new_pos)
 
 func _draw():
