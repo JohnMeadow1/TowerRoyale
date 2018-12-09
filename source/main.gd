@@ -7,6 +7,9 @@ var spawner_timer = 0.0
 
 var enemy_object = load("res://scenes/enemy_1.tscn")
 
+func _ready():
+	globals.debug = $CanvasLayer/GUI/debug/RichText
+
 func _process(delta):
 	self.spawner_timer -= delta
 	

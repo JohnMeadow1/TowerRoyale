@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://main.gd" type="Script" id=1]
 [ext_resource path="res://scenes/map.tscn" type="PackedScene" id=2]
@@ -8,10 +8,14 @@
 [ext_resource path="res://audio/summoning_3.wav" type="AudioStream" id=6]
 [ext_resource path="res://audio/summoning_1.wav" type="AudioStream" id=7]
 [ext_resource path="res://audio/summoning_2.wav" type="AudioStream" id=8]
+[ext_resource path="res://scenes/GUI.tscn" type="PackedScene" id=9]
 
-[node name="main" type="Node2D"]
+[node name="main" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="map" parent="." index="0" instance=ExtResource( 2 )]
 
@@ -29,15 +33,25 @@ position = Vector2( 1.57922, 0.542786 )
 
 [node name="channeler1" parent="YSort" index="2" instance=ExtResource( 4 )]
 
-position = Vector2( 2374.11, 1422.69 )
+editor/display_folded = true
+position = Vector2( 562.401, -190.382 )
 
 [node name="channeler2" parent="YSort" index="3" instance=ExtResource( 4 )]
 
-position = Vector2( 2303.22, 849.546 )
+editor/display_folded = true
+position = Vector2( 546.307, 215.962 )
+
+[node name="AnimatedSprite" parent="YSort/channeler2" index="0"]
+
+frame = 2
 
 [node name="channeler3" parent="YSort" index="4" instance=ExtResource( 4 )]
 
-position = Vector2( 1358.78, 851.248 )
+position = Vector2( -531.699, -210.434 )
+
+[node name="AnimatedSprite" parent="YSort/channeler3" index="0"]
+
+frame = 3
 
 [node name="channeler4" parent="YSort" index="5" instance=ExtResource( 4 )]
 
@@ -54,7 +68,9 @@ z_index = -1
 
 [node name="channeler5" parent="YSort" index="6" instance=ExtResource( 4 )]
 
-position = Vector2( 1309.06, 1368.61 )
+position = Vector2( -679.312, 329.349 )
+
+[node name="AnimatedSprite" parent="YSort/channeler5" index="0"]
 
 frame = 1
 
@@ -95,6 +111,16 @@ max_distance = 2000.0
 attenuation = 1.0
 bus = "Master"
 area_mask = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="3"]
+
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+
+[node name="GUI" parent="CanvasLayer" index="0" instance=ExtResource( 9 )]
 
 
 [editable path="YSort/channeler1"]
