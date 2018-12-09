@@ -1,9 +1,15 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/monster.gd" type="Script" id=1]
 [ext_resource path="res://sprites/boss.png" type="Texture" id=2]
+[ext_resource path="res://sprites/life_bar_bg2.png" type="Texture" id=3]
+[ext_resource path="res://sprites/life_border2.png" type="Texture" id=4]
+[ext_resource path="res://sprites/rage_bar2.png" type="Texture" id=5]
+[ext_resource path="res://sprites/life_bar2.png" type="Texture" id=6]
 
-[node name="monster" type="Node2D" index="0"]
+[node name="monster" type="Node2D" index="0" groups=[
+"monster",
+]]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
@@ -18,5 +24,70 @@ offset = Vector2( -50, -145 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 120, 153 )
 _sections_unfolded = [ "Animation", "Material", "Offset", "Pause", "Region", "Transform", "Visibility" ]
+
+[node name="rage_bar" type="TextureProgress" parent="." index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 217.0
+margin_top = -120.0
+margin_right = 279.0
+margin_bottom = -98.0
+rect_rotation = 270.0
+rect_scale = Vector2( 4, 4 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+min_value = 0.0
+max_value = 200.0
+step = 1.0
+page = 0.0
+value = 0.0
+exp_edit = false
+rounded = false
+texture_under = ExtResource( 3 )
+texture_over = ExtResource( 4 )
+texture_progress = ExtResource( 5 )
+radial_fill_degrees = 360.0
+radial_center_offset = Vector2( 0, 0 )
+nine_patch_stretch = false
+_sections_unfolded = [ "Anchor", "Focus", "Grow Direction", "Hint", "Margin", "Material", "Mouse", "Rect", "Size Flags", "Textures", "Theme", "Visibility" ]
+
+[node name="life_bar" type="TextureProgress" parent="." index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -82.0
+margin_top = -613.0
+margin_right = -20.0
+margin_bottom = -573.0
+rect_scale = Vector2( 4, 4 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+min_value = 0.0
+max_value = 100.0
+step = 1.0
+page = 0.0
+value = 0.0
+exp_edit = false
+rounded = false
+texture_under = ExtResource( 3 )
+texture_over = ExtResource( 4 )
+texture_progress = ExtResource( 6 )
+radial_fill_degrees = 360.0
+radial_center_offset = Vector2( 0, 0 )
+nine_patch_stretch = false
+_sections_unfolded = [ "Hint", "Rect", "Textures", "Visibility" ]
 
 

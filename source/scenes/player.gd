@@ -2,7 +2,7 @@ extends Node2D
 
 var bullet_object = load("res://scenes/bullet.tscn")
 
-var hp = 50
+var hp = 200
 
 const TURNING_SPEED     = PI
 const MAX_SPEED         = 500

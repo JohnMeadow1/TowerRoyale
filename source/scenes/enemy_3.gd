@@ -23,6 +23,7 @@ var attack_timer = 0.0
 func _ready():
 	ai_timer = rand_range(0,REFRESH_AI)
 	self.SPEED += rand_range(-10.0, 10.0)
+	self.jump_timer += rand_range(0.0, 25.0)
 	
 	self.find_target()
 
