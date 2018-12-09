@@ -1,7 +1,7 @@
 extends Node2D
 
-var SPAWN_TIME = 0.1
-var R = 1000.0
+var SPAWN_TIME = 1.0
+var R = 2000.0
 	
 var spawner_timer = 0.0
 
@@ -15,7 +15,8 @@ var enemy_prob = [65, 20, 15]
 
 func _ready():
 	randomize()
-	globals.debug = $CanvasLayer/GUI/debug/RichText
+	$GridContainer/ViewportContainer2/Viewport2.world_2d = $GridContainer/ViewportContainer/Viewport.world_2d
+#	globals.debug = $CanvasLayer/GUI/debug/RichText
 
 func _process(delta):
 	if globals.spawn_enemies:
@@ -47,10 +48,8 @@ func spawn_enemy():
 	while(number > 0):
 		var new_enemy = self.enemy_array[enemy_num].instance()
 		new_enemy.position = new_pos + Vector2(rand_range(-50.0, 50.0), rand_range(-50.0, 50.0))
-		$YSort.add_child(new_enemy)
+		$GridContainer/ViewportContainer/Viewport/YSort.add_child(new_enemy)
 		number -= 1
-		
-	print("Enemy spawned: ", new_pos)
 
 func _draw():
 	pass

@@ -2,6 +2,8 @@ extends Node2D
 
 var bullet_object = load("res://scenes/bullet.tscn")
 
+export var player_id =0
+
 var hp = 200
 
 const TURNING_SPEED     = PI
@@ -17,7 +19,7 @@ var PI2      = PI*2
 
 var is_playing = null
 var shoot_timer = 0.0
-
+var SHOOT_INTERVAL = 1.0
 func _ready():
 	is_playing = $tracks_1
 
@@ -51,28 +53,31 @@ func _physics_process(delta):
 	
 func process_input(dt):
 	thrust = 0
-	if Input.is_action_pressed("ui_left"):
+#	if Input.is_action_pressed("ui_left"):
+	if Input.is_action_pressed("left_player_"+str(player_id)):
 #		$body.frame = 2
 		orientation -= TURNING_SPEED*dt
 
-	if Input.is_action_pressed("ui_right"):
+#	if Input.is_action_pressed("ui_right"):
+	if Input.is_action_pressed("right_player_"+str(player_id)):
 #		$body.frame = 1
 		orientation += TURNING_SPEED*dt
 		
-	if Input.is_action_pressed("ui_up"):
+#	if Input.is_action_pressed("ui_up"):
+	if Input.is_action_pressed("up_player_"+str(player_id)):
 		thrust = MAX_SPEED
 			
-	if Input.is_action_just_released("ui_up"):
+	if Input.is_action_just_released("up_player_"+str(player_id)):
 		is_playing.stop()
 #		$body.frame = 0
 		
-	if Input.is_action_pressed("ui_down"):
+	if Input.is_action_pressed("down_player_"+str(player_id)):
 		thrust = MAX_REVERSE_SPEED
 #		$body.frame = 3
 		
-	if Input.is_action_pressed("ui_select"):
+	if Input.is_action_pressed("shoot_player_"+str(player_id)):
 		if shoot_timer<=0:
-			shoot_timer=0.1
+			shoot_timer=SHOOT_INTERVAL
 			spawn_bullet()
 			$shoot.play()
 			$barrel/fire/Particles2D.emitting = true

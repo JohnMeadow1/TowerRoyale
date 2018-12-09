@@ -1,14 +1,14 @@
 [gd_resource type="ParticlesMaterial" load_steps=3 format=2]
 
-[sub_resource type="Gradient" id=6]
+[sub_resource type="Gradient" id=1]
 
 offsets = PoolRealArray( 0, 0.704142, 1 )
 colors = PoolColorArray( 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0 )
 
-[sub_resource type="GradientTexture" id=7]
+[sub_resource type="GradientTexture" id=2]
 
 flags = 4
-gradient = SubResource( 6 )
+gradient = SubResource( 1 )
 width = 100
 
 [resource]
@@ -40,7 +40,7 @@ angle = 0.0
 angle_random = 0.0
 scale = 4.0
 scale_random = 0.0
-color_ramp = SubResource( 7 )
+color_ramp = SubResource( 2 )
 hue_variation = 0.0
 hue_variation_random = 0.0
 anim_speed = 0.0

@@ -119,6 +119,7 @@ angular_velocity = 0.0
 angular_damp = -1.0
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "Transform" ]
+player_id = 0
 
 [node name="body2" type="Sprite" parent="." index="0"]
 

@@ -26,14 +26,14 @@ func _ready():
 #
 func set_monster_emerge(value):
 	# Set emerge of the monster (0 - 153)
-	if not ( 0 <= value and value <= 153 ):
-		print("Wrong value in set_monster_emerge(0-100)")
+#	if not ( 0 <= value and value <= 153 ):
+#		print("Wrong value in set_monster_emerge(0-100)")
 		
 	var height = int((value/153.0) * 153.0)
 	#$Sprite.set_region_rect(Rect2(min(floor(4 * 120 * (value/153.0)), 360), 0, 120, height))
 	$Sprite.set_region_rect(Rect2((int(floor((value / 153.0) * 4))%4) * 120, 0, 120, height))
 	$Sprite.set_offset(Vector2(-50, -height))
-	print(Rect2(floor((value/153.0)*4)*120, 0, 120, height))
+#	print(Rect2(floor((value/153.0)*4)*120, 0, 120, height))
 	
 func calm_monster(value):
 	if self.rage > 0:
@@ -45,11 +45,13 @@ func handle_monster_rage(delta):
 	
 	# Calm monster from channelers
 	for ch in get_tree().get_nodes_in_group("channelers"):
-		if ch.is_alive():
-			self.calm_monster(delta * 2.5)
+		if ch.is_alive() && ch.ray_timer<=0:
+			self.calm_monster(delta * 5.5)
 	
 	# Monster full rage activated
 	if self.rage > self.RAGE_MAX:
+		for ch in get_tree().get_nodes_in_group("channelers"):
+			ch.hp = -1
 		self.activate_monster()
 	
 	self.rage = min(self.rage, self.RAGE_MAX)

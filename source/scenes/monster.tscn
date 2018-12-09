@@ -7,7 +7,7 @@
 [ext_resource path="res://sprites/rage_bar2.png" type="Texture" id=5]
 [ext_resource path="res://sprites/life_bar2.png" type="Texture" id=6]
 
-[node name="monster" type="Node2D" index="0" groups=[
+[node name="monster" type="Node2D" groups=[
 "monster",
 ]]
 

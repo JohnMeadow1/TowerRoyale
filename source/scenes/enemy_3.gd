@@ -102,7 +102,10 @@ func _physics_process(delta):
 			if bodies:
 				if bodies[0].has_method("get_hit") && bodies[0].is_in_group("friendly"):
 					ai_timer = 0.5
-					bodies[0].get_hit(0.1)
+					bodies[0].get_hit(0.05)
+					if randi()%100 < 2:
+						get_node("attack_"+str(randi()%2)).play()
+
 		# Move enemy
 		self.facing = Vector2(1.0, 0.0)
 		if self.current_target:

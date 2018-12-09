@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scenes/boss.gd" type="Script" id=1]
 [ext_resource path="res://sprites/boss_live.png" type="Texture" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://audio/boss/the_boss_tentacles.wav" type="AudioStream" id=4]
 [ext_resource path="res://audio/boss/boss_3.wav" type="AudioStream" id=5]
 [ext_resource path="res://audio/boss/boss_1.wav" type="AudioStream" id=6]
+[ext_resource path="res://audio/boss/boss_attack.wav" type="AudioStream" id=7]
+[ext_resource path="res://sprites/mob_ray.png" type="Texture" id=8]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -84,6 +86,11 @@ random_pitch = 1.3
 audio_stream = ExtResource( 6 )
 random_pitch = 1.3
 
+[sub_resource type="RectangleShape2D" id=6]
+
+custom_solver_bias = 0.0
+extents = Vector2( 800, 30 )
+
 [node name="boss" type="RigidBody2D"]
 
 input_pickable = false
@@ -105,7 +112,7 @@ linear_damp = -1.0
 angular_velocity = 0.0
 angular_damp = -1.0
 script = ExtResource( 1 )
-_sections_unfolded = [ "Collision", "Transform" ]
+_sections_unfolded = [ "Collision", "Transform", "Z Index" ]
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
@@ -113,7 +120,7 @@ position = Vector2( 0, -124 )
 scale = Vector2( 4, 4 )
 texture = ExtResource( 2 )
 hframes = 4
-_sections_unfolded = [ "Animation", "Transform" ]
+_sections_unfolded = [ "Animation", "Transform", "Z Index" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
@@ -177,5 +184,67 @@ max_distance = 2000.0
 attenuation = 1.0
 bus = "Master"
 area_mask = 1
+
+[node name="bullet_point1" type="Node2D" parent="." index="7"]
+
+position = Vector2( -298, -339 )
+
+[node name="bullet_point2" type="Node2D" parent="." index="8"]
+
+position = Vector2( 282, -340 )
+
+[node name="bullet" type="AudioStreamPlayer2D" parent="." index="9"]
+
+position = Vector2( 1, -362 )
+stream = ExtResource( 7 )
+volume_db = 0.0
+pitch_scale = 5.6
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+_sections_unfolded = [ "Transform" ]
+
+[node name="ray" type="AudioStreamPlayer2D" parent="." index="10"]
+
+position = Vector2( 3, -253 )
+stream = null
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+_sections_unfolded = [ "Transform" ]
+
+[node name="ray_sprite" type="Sprite" parent="." index="11"]
+
+visible = false
+position = Vector2( 2, -256 )
+scale = Vector2( 8, 4 )
+texture = ExtResource( 8 )
+centered = false
+offset = Vector2( 0, -11 )
+_sections_unfolded = [ "Offset", "Transform", "Visibility" ]
+
+[node name="Area2D" type="Area2D" parent="ray_sprite" index="0"]
+
+scale = Vector2( 0.125, 0.25 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 0
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Shape2D" type="CollisionShape2D" parent="ray_sprite/Area2D" index="0"]
+
+position = Vector2( 816, 0 )
+shape = SubResource( 6 )
 
 
