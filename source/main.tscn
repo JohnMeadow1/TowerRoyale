@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://main.gd" type="Script" id=1]
 [ext_resource path="res://scenes/map.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/channeler.tscn" type="PackedScene" id=4]
+[ext_resource path="res://audio/audio.gd" type="Script" id=5]
+[ext_resource path="res://audio/summoning_3.wav" type="AudioStream" id=6]
+[ext_resource path="res://audio/summoning_1.wav" type="AudioStream" id=7]
+[ext_resource path="res://audio/summoning_2.wav" type="AudioStream" id=8]
 
 [node name="main" type="Node2D"]
 
@@ -21,7 +25,7 @@ position = Vector2( -556.219, 548.592 )
 
 [node name="target" type="Node2D" parent="YSort" index="1"]
 
-position = Vector2( 1732, 1268 )
+position = Vector2( 1.57922, 0.542786 )
 
 [node name="channeler1" parent="YSort" index="2" instance=ExtResource( 4 )]
 
@@ -67,6 +71,44 @@ position = Vector2( -752.157, 265.662 )
 [node name="AnimatedSprite" parent="YSort/channeler5" index="0"]
 
 frame = 1
+
+[node name="audio" type="Node" parent="." index="2"]
+
+script = ExtResource( 5 )
+
+[node name="summon_0" type="AudioStreamPlayer2D" parent="audio" index="0"]
+
+position = Vector2( -1, -1 )
+stream = ExtResource( 6 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = true
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[node name="summon_1" type="AudioStreamPlayer2D" parent="audio" index="1"]
+
+stream = ExtResource( 7 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[node name="summon_2" type="AudioStreamPlayer2D" parent="audio" index="2"]
+
+stream = ExtResource( 8 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
 
 
 [editable path="YSort/channeler1"]
