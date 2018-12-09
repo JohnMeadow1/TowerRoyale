@@ -16,6 +16,12 @@ func explode():
 	$CollisionShape2D.disabled = true
 	linear_velocity = Vector2()
 	$AnimationPlayer.play("explode")
+	$boom.play()
 
 func _on_animation_finished(anim_name):
 	queue_free()
+
+
+func _on_splash(body):
+	if body.has_method("get_hit") :
+		body.get_hit(randi()%3+1)
