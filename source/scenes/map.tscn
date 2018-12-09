@@ -8,10 +8,10 @@
 [sub_resource type="CapsuleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 74.3474
-height = 112.653
+radius = 60.0
+height = 110.0
 
-[node name="map" type="Node2D"]
+[node name="map" type="Node2D" index="0"]
 
 z_index = -1000
 z_as_relative = false
@@ -23,12 +23,12 @@ scale = Vector2( 4, 4 )
 z_index = -1000
 z_as_relative = false
 texture = ExtResource( 1 )
-centered = false
-_sections_unfolded = [ "Material", "Offset", "Transform", "Visibility", "Z Index" ]
+region_enabled = true
+region_rect = Rect2( 0, 0, 4096, 4096 )
+_sections_unfolded = [ "Material", "Offset", "Region", "Transform", "Visibility", "Z Index" ]
 
 [node name="void" type="Sprite" parent="." index="1"]
 
-position = Vector2( 1755, 1288 )
 scale = Vector2( 4, 4 )
 texture = ExtResource( 2 )
 _sections_unfolded = [ "Transform" ]
@@ -74,13 +74,12 @@ bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="void/Static" index="0"]
 
-position = Vector2( -2.92419, -4.1268 )
 rotation = 1.5708
 shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="monster" parent="." index="2" instance=ExtResource( 4 )]
 
-position = Vector2( 1726, 1582 )
+position = Vector2( 0, 280 )
 
 

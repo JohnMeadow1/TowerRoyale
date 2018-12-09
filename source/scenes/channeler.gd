@@ -1,14 +1,15 @@
 extends Node2D
 
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
+
 var hp = 100
 var alive = true
+var animation_offset = 0.0
+var frame_offset = 0
+var acumulator = 0
 
 func _ready():
-	# Called when the node is added to the scene for the first time.
-	# Initialization here	
+	animation_offset = rand_range(0, $source/ray.texture.get_width() )
+	frame_offset = randi() % 3
 	self.setup_ray()
 	
 func take_damage(dmg):
@@ -23,22 +24,26 @@ func take_damage(dmg):
 	
 func setup_ray():
 	# Hook bottom
-	var ray_size = $ray.texture.get_size()
+#	var ray_size = $ray.texture.get_size()
 #	$ray.set_offset(Vector2(0, ray_size.y / 2))
 	
 	# Set position
-	$ray.set_position(Vector2(0.0, 0.0))
+#	$ray.set_position(Vector2(0.0, 0.0))
 	
 	# Set size to monster
-	var vector_to = Vector2(get_node("../target").global_position - $ray.global_position)
+	var vector_to = Vector2(get_node("../target").global_position - $source.global_position)
 #	$ray.set_scale(Vector2(vector_to.length()*0.7 / ray_size.x, 1.0))
 #	$ray.region_rect= Rect2(Vector2(0,0),Vector2(vector_to.length()*0.7*4, 33))
 	
 	# Set rotation
-	$ray.rotate(Vector2(1, 0).angle_to(vector_to))
+	$source.rotate(Vector2(1, 0).angle_to(vector_to))
 
 func _process(delta):
-	# Called every frame. Delta is time since last frame.
-	# Update game logic here.
-#	$hp_bar.value = self.hp
-	pass
+	acumulator+= delta
+	if acumulator>0.1:
+		animation_offset +=8
+		acumulator -= 0.1
+		frame_offset = (frame_offset+1)%3
+	var vector_to = Vector2(get_node("../target").global_position - $source.global_position)
+	$source/ray.region_rect = Rect2(Vector2(animation_offset,33*frame_offset),Vector2(vector_to.length()*0.1, 33))
+	$source.frame = frame_offset

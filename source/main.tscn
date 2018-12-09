@@ -17,7 +17,7 @@ sort_enabled = true
 
 [node name="player" parent="YSort" index="0" instance=ExtResource( 3 )]
 
-position = Vector2( 1611.37, 1245.77 )
+position = Vector2( -556.219, 548.592 )
 
 [node name="target" type="Node2D" parent="YSort" index="1"]
 
@@ -25,26 +25,52 @@ position = Vector2( 1732, 1268 )
 
 [node name="channeler1" parent="YSort" index="2" instance=ExtResource( 4 )]
 
-position = Vector2( 2374.11, 1422.69 )
+editor/display_folded = true
+position = Vector2( 692.136, 250.283 )
+
+[node name="AnimatedSprite" parent="YSort/channeler1" index="0"]
+
 frame = 2
 
 [node name="channeler2" parent="YSort" index="3" instance=ExtResource( 4 )]
 
-position = Vector2( 2303.22, 849.546 )
-frame = 2
+editor/display_folded = true
+position = Vector2( 551.056, -405.153 )
 
 [node name="channeler3" parent="YSort" index="4" instance=ExtResource( 4 )]
 
-position = Vector2( 1358.78, 851.248 )
+editor/display_folded = true
+position = Vector2( -654.154, -444.15 )
+
+[node name="AnimatedSprite" parent="YSort/channeler3" index="0"]
+
 frame = 3
 
 [node name="channeler4" parent="YSort" index="5" instance=ExtResource( 4 )]
 
-position = Vector2( 1803.15, 1483.85 )
+editor/display_folded = true
+position = Vector2( -52.6486, 578.918 )
+
+[node name="AnimatedSprite" parent="YSort/channeler4" index="0"]
+
+frame = 0
+
+[node name="source" parent="YSort/channeler4" index="1"]
+
+z_index = -1
 
 [node name="channeler5" parent="YSort" index="6" instance=ExtResource( 4 )]
 
-position = Vector2( 1309.06, 1368.61 )
+editor/display_folded = true
+position = Vector2( -752.157, 265.662 )
+
+[node name="AnimatedSprite" parent="YSort/channeler5" index="0"]
+
 frame = 1
 
 
+[editable path="YSort/channeler1"]
+[editable path="YSort/channeler2"]
+[editable path="YSort/channeler3"]
+[editable path="YSort/channeler4"]
+[editable path="YSort/channeler5"]

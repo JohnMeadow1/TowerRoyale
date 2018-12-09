@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/map.png-659e88586eefd66127a1dc6c44095341.stex"
+path="res://.import/beam_.png-54911c856d4db80118492c58229ecc97.stex"
 
 [deps]
 
-source_file="res://sprites/map.png"
-dest_files=[ "res://.import/map.png-659e88586eefd66127a1dc6c44095341.stex" ]
+source_file="res://sprites/beam_.png"
+dest_files=[ "res://.import/beam_.png-54911c856d4db80118492c58229ecc97.stex" ]
 
 [params]
 
@@ -15,8 +15,8 @@ compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/normal_map=0
-flags/repeat=1
-flags/filter=false
+flags/repeat=0
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
