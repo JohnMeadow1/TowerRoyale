@@ -3,9 +3,9 @@
 [ext_resource path="res://scenes/player.gd" type="Script" id=1]
 [ext_resource path="res://sprites/tank1.png" type="Texture" id=2]
 [ext_resource path="res://sprites/fire.png" type="Texture" id=3]
-[ext_resource path="res://audio/shot.wav" type="AudioStream" id=4]
-[ext_resource path="res://sprites/life_border.png" type="Texture" id=5]
-[ext_resource path="res://sprites/life_bar.png" type="Texture" id=6]
+[ext_resource path="res://sprites/life_border.png" type="Texture" id=4]
+[ext_resource path="res://sprites/life_bar.png" type="Texture" id=5]
+[ext_resource path="res://audio/shot.wav" type="AudioStream" id=6]
 [ext_resource path="res://audio/tanktracks_1.wav" type="AudioStream" id=7]
 [ext_resource path="res://audio/tanktracks_2.wav" type="AudioStream" id=8]
 
@@ -59,11 +59,6 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Angle", "Color", "Damping", "Initial Velocity", "Scale", "Spread" ]
 
-[sub_resource type="AudioStreamRandomPitch" id=4]
-
-audio_stream = ExtResource( 4 )
-random_pitch = 1.5
-
 [sub_resource type="Animation" id=5]
 
 length = 0.2
@@ -88,7 +83,12 @@ custom_solver_bias = 0.0
 radius = 32.0
 height = 78.0
 
-[node name="player" type="RigidBody2D" groups=[
+[sub_resource type="AudioStreamRandomPitch" id=4]
+
+audio_stream = ExtResource( 6 )
+random_pitch = 1.0
+
+[node name="player" type="RigidBody2D" index="0" groups=[
 "players",
 ]]
 
@@ -111,7 +111,7 @@ linear_damp = -1.0
 angular_velocity = 0.0
 angular_damp = -1.0
 script = ExtResource( 1 )
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Collision", "Transform" ]
 
 [node name="body2" type="Sprite" parent="." index="0"]
 
@@ -138,7 +138,6 @@ __meta__ = {
 
 [node name="barrel" type="Node2D" parent="." index="2"]
 
-editor/display_folded = true
 position = Vector2( 0, -27 )
 scale = Vector2( 4, 4 )
 _sections_unfolded = [ "Animation", "Offset", "Region", "Transform" ]
@@ -205,16 +204,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="shoot" type="AudioStreamPlayer" parent="." index="4"]
-
-stream = SubResource( 4 )
-volume_db = 0.0
-pitch_scale = 1.0
-autoplay = false
-mix_target = 0
-bus = "Master"
-
-[node name="TextureProgress" type="TextureProgress" parent="." index="5"]
+[node name="TextureProgress" type="TextureProgress" parent="." index="4"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -238,14 +228,14 @@ value = 50.0
 exp_edit = false
 rounded = false
 texture_under = null
-texture_over = ExtResource( 5 )
-texture_progress = ExtResource( 6 )
+texture_over = ExtResource( 4 )
+texture_progress = ExtResource( 5 )
 radial_fill_degrees = 360.0
 radial_center_offset = Vector2( 0, 0 )
 nine_patch_stretch = false
 _sections_unfolded = [ "Rect", "Textures" ]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5"]
 
 root_node = NodePath("..")
 autoplay = ""
@@ -255,12 +245,20 @@ playback_speed = 1.0
 anims/fire = SubResource( 5 )
 blend_times = [  ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="7"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="6"]
 
-position = Vector2( 7, 8 )
 rotation = 1.5708
 shape = SubResource( 6 )
 _sections_unfolded = [ "Transform" ]
+
+[node name="shoot" type="AudioStreamPlayer" parent="." index="7"]
+
+stream = SubResource( 4 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
 
 [node name="tracks_0" type="AudioStreamPlayer" parent="." index="8"]
 

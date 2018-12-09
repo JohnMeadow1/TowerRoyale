@@ -98,7 +98,7 @@ func _physics_process(delta):
 	
 	# Jump
 	self.jump_timer += 20.0 * delta
-	$body.position.y = abs(sin(self.jump_timer)) * 10.0
+	$body.position.y = abs(sin(self.jump_timer)) * 10.0 -28
 
 	update()
 
