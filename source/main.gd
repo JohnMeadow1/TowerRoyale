@@ -1,6 +1,6 @@
 extends Node2D
 
-var SPAWN_TIME_RUNNER = 5.0
+var SPAWN_TIME_RUNNER = 0.1
 var R = 1000.0
 	
 var spawner_timer = 0.0
@@ -14,6 +14,7 @@ var enemy_array = [
 var enemy_prob = [65, 20, 15]
 
 func _ready():
+	randomize()
 	globals.debug = $CanvasLayer/GUI/debug/RichText
 
 func _process(delta):

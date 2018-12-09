@@ -33,13 +33,13 @@ func find_target():
 	else:
 		find_channeler()
 	
-	var target_name = "?"
-	if self.current_target and self.current_target.is_in_group("players"):
-		target_name = "PLAYER"
-	if self.current_target and self.current_target.is_in_group("channelers"):
-		target_name = "CHANNELER"
-	
-	$target.text = target_name
+#	var target_name = "?"
+#	if self.current_target and self.current_target.is_in_group("players"):
+#		target_name = "PLAYER"
+#	if self.current_target and self.current_target.is_in_group("channelers"):
+#		target_name = "CHANNELER"
+#
+#	$target.text = target_name
 
 func find_player():
 	# Check if player is near, if it is - attack him
