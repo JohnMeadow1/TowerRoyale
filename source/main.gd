@@ -1,6 +1,6 @@
 extends Node2D
 
-var SPAWN_TIME_RUNNER = 0.1
+var SPAWN_TIME = 0.1
 var R = 1000.0
 	
 var spawner_timer = 0.0
@@ -18,13 +18,14 @@ func _ready():
 	globals.debug = $CanvasLayer/GUI/debug/RichText
 
 func _process(delta):
-	self.spawner_timer -= delta
+	if globals.spawn_enemies:
+		self.spawner_timer -= delta
 	
 	if self.spawner_timer <= 0.0:
 		self.spawn_enemy()
 
 func spawn_enemy():
-	self.spawner_timer = SPAWN_TIME_RUNNER
+	self.spawner_timer = SPAWN_TIME
 	
 	# Randomize position
 	var random = rand_range(0, PI*2)
