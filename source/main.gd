@@ -1,7 +1,7 @@
 extends Node2D
 
 var SPAWN_TIME_RUNNER = 5.0
-var R = 300.0
+var R = 1000.0
 	
 var spawner_timer = 0.0
 

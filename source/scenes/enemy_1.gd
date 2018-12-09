@@ -8,18 +8,20 @@ extends Node2D
 var SPEED = 100
 var FRAMES = 8
 
-var PLAYER_ATTACK_DISTANCE = 50.0
+var PLAYER_ATTACK_DISTANCE = 100.0
 
 var current_target = null
 var facing = Vector2()
 var jump_timer = 1.0
 
-var REFRESH_AI = 4.0
+var REFRESH_AI = 1.0
 var ai_timer = 0.0
 
 func _ready():
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
+	self.SPEED += rand_range(-10.0, 10.0)
+	
 	self.find_target()
 
 func find_target():
@@ -27,14 +29,16 @@ func find_target():
 	ai_timer = REFRESH_AI
 	
 	if find_player():
-		return
-		
-	find_channeler()
+		pass
+	else:
+		find_channeler()
+	
 	var target_name = "?"
 	if self.current_target and self.current_target.is_in_group("players"):
 		target_name = "PLAYER"
 	if self.current_target and self.current_target.is_in_group("channelers"):
 		target_name = "CHANNELER"
+	
 	$target.text = target_name
 
 func find_player():
@@ -75,9 +79,9 @@ func channeler_destroyed():
 	self.find_target()
 
 func _physics_process(delta):
+	# Refresh AI
 	self.ai_timer -= delta
 
-	# Refresh AI
 	if self.ai_timer <= 0.0:
 		self.find_target()
 
@@ -91,8 +95,8 @@ func _physics_process(delta):
 	# Update frame
 	var orientation = fmod(Vector2(1.0, 0.0).angle_to(facing) + 2*PI, 2*PI)
 	$body.frame = int(round(abs(orientation)/(2*PI*(0.125))) + 6)%8
-	$body.frame = 1
 	
+	# Jump
 	self.jump_timer += 20.0 * delta
 	$body.position.y = abs(sin(self.jump_timer)) * 10.0
 
