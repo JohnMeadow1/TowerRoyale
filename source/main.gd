@@ -1,7 +1,7 @@
 extends Node2D
 
 var SPAWN_TIME_RUNNER = 5.0
-var R = 2048.0
+var R = 300.0
 	
 var spawner_timer = 0.0
 
@@ -25,6 +25,8 @@ func spawn_enemy():
 	var new_enemy = self.enemy_object.instance()
 	new_enemy.position = new_pos
 	$YSort.add_child(new_enemy)
+	
+	print("Enemy spawned: ", new_pos)
 
 func _draw():
 	pass

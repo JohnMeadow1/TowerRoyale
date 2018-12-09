@@ -14,7 +14,7 @@ var current_target = null
 var facing = Vector2()
 var jump_timer = 1.0
 
-var REFRESH_AI = 2.0
+var REFRESH_AI = 4.0
 var ai_timer = 0.0
 
 func _ready():
@@ -46,13 +46,13 @@ func find_channeler():
 	# Find target to destroy
 	
 	# Lowest distance
-	var lowest_distance = 0
+	var lowest_distance = null
 	var nearest_channeler = null
 	
 	for channeler in get_tree().get_nodes_in_group("channelers"):
 		var curr_distance = Vector2(channeler.global_position - self.global_position).length()
 		
-		if ( curr_distance < lowest_distance and channeler.is_alive() ):
+		if ( lowest_distance == null or (curr_distance < lowest_distance and channeler.is_alive())):
 			lowest_distance = curr_distance
 			nearest_channeler = channeler
 			
