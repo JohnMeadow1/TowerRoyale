@@ -17,7 +17,8 @@ var jump_timer = 0.0
 var REFRESH_AI = 1.0
 var ai_timer = 0.0
 var is_alive  = true
-var death_timer = 1.0
+var death_timer = 3.0
+var attack_timer = 0.0
 
 func _ready():
 	ai_timer = rand_range(0,REFRESH_AI)
@@ -33,14 +34,6 @@ func find_target():
 		pass
 	else:
 		find_channeler()
-	
-#	var target_name = "?"
-#	if self.current_target and self.current_target.is_in_group("players"):
-#		target_name = "PLAYER"
-#	if self.current_target and self.current_target.is_in_group("channelers"):
-#		target_name = "CHANNELER"
-#
-#	$target.text = target_name
 
 func find_player():
 	# Check if player is near, if it is - attack him
@@ -86,7 +79,14 @@ func _physics_process(delta):
 	
 		if self.ai_timer <= 0.0:
 			self.find_target()
-	
+		if attack_timer>0:
+			attack_timer -= delta
+		else:
+			var bodies = get_colliding_bodies()
+			if bodies:
+				if bodies[0].has_method("get_hit") && bodies[0].is_in_group("friendly"):
+					ai_timer = 0.5
+					bodies[0].get_hit(0.1)
 		# Move enemy
 		self.facing = Vector2(1.0, 0.0)
 		if self.current_target:
@@ -103,19 +103,25 @@ func _physics_process(delta):
 		$body.position.y = abs(sin(self.jump_timer)) * 8.0
 	else:
 		death_timer -= delta
-		if death_timer<0:
+		$dead.modulate.a = death_timer/5.0
+		if death_timer < 0:
 			queue_free()
 
-#	update()
 
-func get_hit():
+func get_hit(value):
 	$CollisionShape2D.disabled = true
 	$agony.play()
 	$Particles2D.emitting = true
 	is_alive = false
 	linear_velocity = Vector2()
-	$body.rotation = rand_range(0,PI*2)
-	
+	$body.visible = false
+	$dead.visible = true
+	$dead.flip_h = randi()%2
+#	$body.rotation = rand_range(0,PI*2)
 
-#func _draw():
-#	draw_line(Vector2(0.0, 0.0), 100 * self.facing, Color(1.0, 0.0, 1.0), 3.0)	
+
+
+func _on_body_entered(body):
+	if attack_timer<=0 :
+		body.get_hit(0.5)
+		attack_timer = 0.5

@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scenes/monster.gd" type="Script" id=1]
-[ext_resource path="res://sprites/monster.png" type="Texture" id=2]
+[ext_resource path="res://sprites/boss.png" type="Texture" id=2]
 
-[node name="monster" type="Node2D"]
+[node name="monster" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
@@ -14,9 +14,9 @@ light_mask = 2
 scale = Vector2( 4, 4 )
 texture = ExtResource( 2 )
 centered = false
-offset = Vector2( -50, -100 )
+offset = Vector2( -50, -145 )
 region_enabled = true
-region_rect = Rect2( 0, 0, 100, 100 )
+region_rect = Rect2( 0, 0, 120, 153 )
 _sections_unfolded = [ "Animation", "Material", "Offset", "Pause", "Region", "Transform", "Visibility" ]
 
 

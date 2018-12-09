@@ -1,9 +1,10 @@
-extends Node2D
+extends RigidBody2D
 
 # "Speeder Enemy"
 # - Run fast
 # - Find nearest channeler if available
 # - Attack player if near or player attack him
+var hp = 5
 
 var SPEED = 100
 var FRAMES = 8
@@ -17,9 +18,10 @@ var jump_timer = 1.0
 var REFRESH_AI = 1.0
 var ai_timer = 0.0
 
+var is_alive = true
+var death_timer = 5.0
+var attack_timer = 0.0
 func _ready():
-	# Called when the node is added to the scene for the first time.
-	# Initialization here
 	self.SPEED += rand_range(-10.0, 10.0)
 	
 	self.find_target()
@@ -33,13 +35,6 @@ func find_target():
 	else:
 		find_channeler()
 	
-#	var target_name = "?"
-#	if self.current_target and self.current_target.is_in_group("players"):
-#		target_name = "PLAYER"
-#	if self.current_target and self.current_target.is_in_group("channelers"):
-#		target_name = "CHANNELER"
-#
-#	$target.text = target_name
 
 func find_player():
 	# Check if player is near, if it is - attack him
@@ -79,29 +74,51 @@ func channeler_destroyed():
 	self.find_target()
 
 func _physics_process(delta):
-	# Refresh AI
-	self.ai_timer -= delta
-
-	if self.ai_timer <= 0.0:
-		self.find_target()
-
-	# Move enemy
-	self.facing = Vector2(1.0, 0.0)
-	if self.current_target:
-		facing = Vector2 (self.current_target.global_position - self.global_position).normalized()
+	if is_alive:
+		# Refresh AI
+		self.ai_timer -= delta
 	
-	position += facing * SPEED * delta
+		if self.ai_timer <= 0.0:
+			self.find_target()
+		if attack_timer>0:
+			attack_timer -= delta
+		else:
+			var bodies = get_colliding_bodies()
+			if bodies:
+				if bodies[0].has_method("get_hit") && bodies[0].is_in_group("friendly"):
+					ai_timer = 1.0
+					bodies[0].get_hit(0.5)
+		# Move enemy
+		self.facing = Vector2(1.0, 0.0)
+		if self.current_target:
+			facing = Vector2 (self.current_target.global_position - self.global_position).normalized()
+		
+		position += facing * SPEED * delta
+		
+		# Update frame
+		var orientation = fmod(Vector2(1.0, 0.0).angle_to(facing) + 2*PI, 2*PI)
+		$body.frame = int(round(abs(orientation)/(2*PI*(0.125))) + 6)%8
+		
+		# Jump
+		self.jump_timer += 20.0 * delta
+		$body.position.y = abs(sin(self.jump_timer)) * 10.0 -28
+	else:
+		death_timer -= delta
+		$dead.modulate.a = death_timer/5.0
+		if death_timer < 0:
+			queue_free()
+		
 	
-	# Update frame
-	var orientation = fmod(Vector2(1.0, 0.0).angle_to(facing) + 2*PI, 2*PI)
-	$body.frame = int(round(abs(orientation)/(2*PI*(0.125))) + 6)%8
-	
-	# Jump
-	self.jump_timer += 20.0 * delta
-	$body.position.y = abs(sin(self.jump_timer)) * 10.0 -28
+func get_hit(value):
+	hp -= value
+	if hp<=0:
+		is_alive = false
+		get_node("agony_"+str(randi()%2)).play()
+		$Particles2D.emitting = true
+		$CollisionShape2D.disabled = true
+		$AnimationPlayer.play("die")
+		linear_velocity = Vector2(0,0)
+		$dead.flip_h = randi()%2
+		
 
-	update()
-
-func _draw():
-	draw_line(Vector2(0.0, 0.0), 100 * self.facing, Color(1.0, 0.0, 1.0), 3.0)	
 

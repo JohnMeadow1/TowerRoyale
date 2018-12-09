@@ -1,7 +1,11 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/enemy_2.gd" type="Script" id=1]
 [ext_resource path="res://sprites/enemy_2.png" type="Texture" id=2]
+[ext_resource path="res://sprites/enemy_2_dead.png" type="Texture" id=3]
+[ext_resource path="res://sprites/explosion8.png" type="Texture" id=4]
+[ext_resource path="res://audio/monster_agony/agony_A.wav" type="AudioStream" id=5]
+[ext_resource path="res://audio/shot.wav" type="AudioStream" id=6]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -9,13 +13,90 @@ custom_solver_bias = 0.0
 radius = 26.4759
 height = 57.0205
 
+[sub_resource type="Animation" id=2]
+
+resource_name = "explode"
+length = 0.8
+loop = false
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("body:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("explosion:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("explosion:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Area2D/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.3, 0.35 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("dead:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="AudioStreamRandomPitch" id=3]
+
+audio_stream = ExtResource( 5 )
+random_pitch = 1.3
+
+[sub_resource type="CircleShape2D" id=4]
+
+custom_solver_bias = 0.0
+radius = 150.0
+
 [node name="enemy" type="RigidBody2D" groups=[
 "enemies",
 ]]
 
 input_pickable = false
-collision_layer = 3
-collision_mask = 1
+collision_layer = 2
+collision_mask = 3
 mode = 2
 mass = 100.0
 friction = 1.0
@@ -47,5 +128,73 @@ _sections_unfolded = [ "Animation", "Material", "Offset", "Pause", "Region", "Tr
 rotation = 1.5708
 shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
+
+[node name="dead" type="Sprite" parent="." index="2"]
+
+visible = false
+scale = Vector2( 4, 4 )
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="explosion" type="Sprite" parent="." index="3"]
+
+visible = false
+scale = Vector2( 4, 4 )
+texture = ExtResource( 4 )
+vframes = 4
+hframes = 4
+_sections_unfolded = [ "Animation", "Transform", "Visibility", "Z Index" ]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
+
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/explode = SubResource( 2 )
+blend_times = [  ]
+
+[node name="agony" type="AudioStreamPlayer2D" parent="." index="5"]
+
+stream = SubResource( 3 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[node name="explode" type="AudioStreamPlayer2D" parent="." index="6"]
+
+stream = ExtResource( 6 )
+volume_db = 10.0
+pitch_scale = 0.5
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[node name="Area2D" type="Area2D" parent="." index="7"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 0
+collision_mask = 3
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+
+shape = SubResource( 4 )
+disabled = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]
 
 

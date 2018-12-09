@@ -10,7 +10,7 @@ func _physics_process(delta):
 	if bodies:
 		explode()
 		if bodies[0].has_method("get_hit") :
-			bodies[0].get_hit()
+			bodies[0].get_hit(randi()%3+1)
 
 func explode():
 	$CollisionShape2D.disabled = true

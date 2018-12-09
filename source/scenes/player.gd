@@ -2,6 +2,7 @@ extends Node2D
 
 var bullet_object = load("res://scenes/bullet.tscn")
 
+var hp = 50
 
 const TURNING_SPEED     = PI
 const MAX_SPEED         = 500
@@ -39,6 +40,12 @@ func _physics_process(delta):
 		if !is_playing.playing or is_playing.get_playback_position() >= is_playing.stream.get_length() - delta:
 #			is_playing = get_node("tracks_" + str(randi()%2) )
 			is_playing.play()
+		var bodies = get_colliding_bodies()
+		if bodies:
+			if bodies[0].has_method("get_hit") :
+				bodies[0].get_hit(0.1)
+				hp -= 0.1
+				$hp_bar.value = hp
 	else:
 		is_playing.stop()
 	
@@ -77,18 +84,7 @@ func spawn_bullet():
 	new_bullet.linear_velocity = Vector2(cos(orientation), sin(orientation)) * 1000
 	new_bullet.rotation = orientation
 	get_parent().add_child(new_bullet)
-#func _draw():
-#	draw_vector(Vector2(), facing  * 100, Color(1,0,1), 3)
 	
-func draw_vector( origin, vector, color, arrow_size ):
-	if vector.length_squared() > 1:
-		var points    = []
-		var direction = vector.normalized()
-		vector += origin
-		vector -= direction * arrow_size*2
-		points.push_back( vector + direction * arrow_size*2  )
-		points.push_back( vector + direction.rotated(  PI / 1.5 ) * arrow_size * 2 )
-		points.push_back( vector + direction.rotated( -PI / 1.5 ) * arrow_size * 2 )
-		draw_polygon( PoolVector2Array( points ), PoolColorArray( [color] ) )
-		vector -= direction * arrow_size * 1
-		draw_line( origin, vector, color, arrow_size )
+func get_hit(value):
+	hp -= value
+	$hp_bar.value = hp

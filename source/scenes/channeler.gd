@@ -43,3 +43,11 @@ func _process(delta):
 	var vector_to = Vector2(get_node("../target").global_position - $source.global_position)
 	$source/ray.region_rect = Rect2(Vector2(animation_offset,33*frame_offset),Vector2(vector_to.length()*0.1, 33))
 	$source.frame = frame_offset
+
+func _on_body_entered(body):
+	if body.has_method("detonate"):
+		body.detonate()
+		
+func get_hit(value):
+	hp -= value
+	$hp_bar.value = hp
