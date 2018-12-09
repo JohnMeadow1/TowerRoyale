@@ -27,7 +27,7 @@ func get_hit(dmg):
 		self.agony_timer = 3.0
 		globals.channelers_num -= 1
 		$shutdown.play()
-		$Sprite/AnimationPlayer.play("die")
+		$AnimationPlayer.play("die")
 		
 func is_alive():
 	return self.alive

@@ -95,8 +95,8 @@ custom_solver_bias = 0.0
 radius = 13.0
 
 [node name="player" type="RigidBody2D" groups=[
-"friendly",
 "players",
+"friendly",
 ]]
 
 input_pickable = false
@@ -144,7 +144,6 @@ _sections_unfolded = [ "Animation", "Offset", "Region", "Transform" ]
 
 [node name="barrel" type="Node2D" parent="." index="2"]
 
-editor/display_folded = true
 position = Vector2( -5, -79 )
 scale = Vector2( 4, 4 )
 _sections_unfolded = [ "Animation", "Offset", "Region", "Transform" ]

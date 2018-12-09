@@ -28,7 +28,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=3]
+[sub_resource type="SpriteFrames" id=2]
 
 animations = [ {
 "frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
@@ -37,7 +37,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=3]
 
 custom_solver_bias = 0.0
 radius = 70.0
@@ -49,7 +49,7 @@ length = 0.8
 loop = false
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("../../../channeler4/Sprite:frame")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -61,7 +61,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("../../../channeler4/AnimatedSprite2:visible")
+tracks/1/path = NodePath("AnimatedSprite2:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -73,7 +73,7 @@ tracks/1/keys = {
 "values": [ true ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("../../../channeler4/AnimatedSprite:visible")
+tracks/2/path = NodePath("AnimatedSprite:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -85,7 +85,7 @@ tracks/2/keys = {
 "values": [ false ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("../../../channeler4/source:visible")
+tracks/3/path = NodePath("source:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -97,7 +97,7 @@ tracks/3/keys = {
 "values": [ false ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("../../../channeler4/Sprite:visible")
+tracks/4/path = NodePath("Sprite:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -110,8 +110,8 @@ tracks/4/keys = {
 }
 
 [node name="channeler1" type="StaticBody2D" groups=[
-"channelers",
 "friendly",
+"channelers",
 ]]
 
 position = Vector2( 2, -30 )
@@ -142,7 +142,7 @@ __meta__ = {
 visible = false
 position = Vector2( 135, -16 )
 scale = Vector2( 4, 4 )
-frames = SubResource( 3 )
+frames = SubResource( 2 )
 animation = "default"
 frame = 4
 _sections_unfolded = [ "Animation", "Material", "Offset", "Region", "Transform", "Visibility", "Z Index" ]
@@ -216,7 +216,7 @@ _sections_unfolded = [ "Collision" ]
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
 
 position = Vector2( 0, 30 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="shutdown" type="AudioStreamPlayer2D" parent="." index="5"]
 
@@ -239,7 +239,7 @@ vframes = 4
 hframes = 4
 _sections_unfolded = [ "Animation", "Transform", "Visibility" ]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite" index="0"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="7"]
 
 root_node = NodePath("..")
 autoplay = ""

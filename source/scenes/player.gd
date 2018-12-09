@@ -50,6 +50,7 @@ func _physics_process(delta):
 				$hp_bar.value = hp
 	else:
 		is_playing.stop()
+	update()
 	
 func process_input(dt):
 	thrust = 0
@@ -97,3 +98,8 @@ func get_hit(value):
 func _on_body_entered(body):
 	if body.has_method("detonate"):
 		body.detonate()
+		
+func _draw():
+	draw_circle(facing*200+$barrel.position, 10, Color(1,0,0))
+	
+	
