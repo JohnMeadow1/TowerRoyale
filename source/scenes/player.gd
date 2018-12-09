@@ -1,28 +1,29 @@
 extends Node2D
-var velocity = Vector2( 0.0, 0.0 )
-var thrust   = 0.0
-var speed    = 0.0
+
+var bullet_object = load("res://scenes/bullet.tscn")
 
 
-const TURNING_SPEED = PI
-const MAX_SPEED = 500
-const MAX_REVERSE_SPEED = -100
+const TURNING_SPEED     = PI
+const MAX_SPEED         = 500
+const MAX_REVERSE_SPEED = -300
+
 var orientation      = 0.0
 var acceleration     = 0.0
 var facing           = Vector2 ( 0.0, 0.0 )
-var drag             = 0.0
-var skid_size_front  = 0.0
-var skid_size_back   = 0.0
-var PI2              = PI*2
+var thrust   = 0.0
+
+var PI2      = PI*2
 
 var is_playing = null
+var shoot_timer = 0.0
 
 func _ready():
 	is_playing = $tracks_1
 
 func _physics_process(delta):
 	process_input(delta)
-	
+	if shoot_timer >0:
+		shoot_timer -= delta
 	acceleration = lerp(acceleration, thrust, 0.1)
 	facing       = Vector2 ( cos( orientation), sin( orientation ) ) 
 	
@@ -33,6 +34,7 @@ func _physics_process(delta):
 
 	position += facing * acceleration * delta
 	$barrel.rotation = orientation
+	$CollisionShape2D.rotation = orientation - PI*0.5
 	if abs(thrust):
 		if !is_playing.playing or is_playing.get_playback_position() >= is_playing.stream.get_length() - delta:
 #			is_playing = get_node("tracks_" + str(randi()%2) )
@@ -62,12 +64,19 @@ func process_input(dt):
 #		$body.frame = 3
 		
 	if Input.is_action_pressed("ui_select"):
-		if !$shoot.playing:
+		if shoot_timer<=0:
+			shoot_timer=0.1
+			spawn_bullet()
 			$shoot.play()
 			$barrel/fire/Particles2D.emitting = true
 			$AnimationPlayer.play("fire")
 		
-
+func spawn_bullet():
+	var new_bullet = bullet_object.instance()
+	new_bullet.position = $barrel/fire.global_position
+	new_bullet.linear_velocity = Vector2(cos(orientation), sin(orientation)) * 1000
+	new_bullet.rotation = orientation
+	get_parent().add_child(new_bullet)
 #func _draw():
 #	draw_vector(Vector2(), facing  * 100, Color(1,0,1), 3)
 	

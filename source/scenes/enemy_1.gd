@@ -33,13 +33,13 @@ func find_target():
 	else:
 		find_channeler()
 	
-	var target_name = "?"
-	if self.current_target and self.current_target.is_in_group("players"):
-		target_name = "PLAYER"
-	if self.current_target and self.current_target.is_in_group("channelers"):
-		target_name = "CHANNELER"
-	
-	$target.text = target_name
+#	var target_name = "?"
+#	if self.current_target and self.current_target.is_in_group("players"):
+#		target_name = "PLAYER"
+#	if self.current_target and self.current_target.is_in_group("channelers"):
+#		target_name = "CHANNELER"
+#
+#	$target.text = target_name
 
 func find_player():
 	# Check if player is near, if it is - attack him
@@ -98,7 +98,7 @@ func _physics_process(delta):
 	
 	# Jump
 	self.jump_timer += 20.0 * delta
-	$body.position.y = abs(sin(self.jump_timer)) * 10.0
+	$body.position.y = abs(sin(self.jump_timer)) * 10.0 -28
 
 	update()
 

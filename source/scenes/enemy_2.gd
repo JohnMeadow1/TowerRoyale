@@ -33,13 +33,13 @@ func find_target():
 	else:
 		find_channeler()
 	
-	var target_name = "?"
-	if self.current_target and self.current_target.is_in_group("players"):
-		target_name = "PLAYER"
-	if self.current_target and self.current_target.is_in_group("channelers"):
-		target_name = "CHANNELER"
-	
-	$target.text = target_name
+#	var target_name = "?"
+#	if self.current_target and self.current_target.is_in_group("players"):
+#		target_name = "PLAYER"
+#	if self.current_target and self.current_target.is_in_group("channelers"):
+#		target_name = "CHANNELER"
+#
+#	$target.text = target_name
 
 func find_player():
 	# Check if player is near, if it is - attack him
@@ -95,7 +95,7 @@ func _physics_process(delta):
 	# Update frame
 	var orientation = fmod(Vector2(1.0, 0.0).angle_to(facing) + 2*PI, 2*PI)
 	$body.frame = int(round(abs(orientation)/(2*PI*(0.125))) + 6)%8
-	
+	$CollisionShape2D.rotation = orientation + PI * 0.5
 	# Jump
 	self.jump_timer += 5.0 * delta
 	$body.position.y = abs(sin(self.jump_timer)) * 5.0
