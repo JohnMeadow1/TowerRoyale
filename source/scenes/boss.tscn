@@ -12,7 +12,7 @@
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 200.0
+radius = 50.0
 
 [sub_resource type="Animation" id=2]
 
@@ -89,13 +89,13 @@ random_pitch = 1.3
 [sub_resource type="RectangleShape2D" id=6]
 
 custom_solver_bias = 0.0
-extents = Vector2( 800, 30 )
+extents = Vector2( 100, 5 )
 
 [node name="boss" type="RigidBody2D"]
 
 input_pickable = false
-collision_layer = 2
-collision_mask = 1
+collision_layer = 4
+collision_mask = 3
 mode = 2
 mass = 10000.0
 friction = 1.0
@@ -116,17 +116,16 @@ _sections_unfolded = [ "Collision", "Transform", "Z Index" ]
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
-position = Vector2( 0, -124 )
-scale = Vector2( 4, 4 )
+position = Vector2( 1, -35 )
 texture = ExtResource( 2 )
 hframes = 4
+frame = 2
 _sections_unfolded = [ "Animation", "Transform", "Z Index" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
-position = Vector2( 0, -173 )
+position = Vector2( 0, -43 )
 shape = SubResource( 1 )
-disabled = true
 _sections_unfolded = [ "Transform" ]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
@@ -187,11 +186,13 @@ area_mask = 1
 
 [node name="bullet_point1" type="Node2D" parent="." index="7"]
 
-position = Vector2( -298, -339 )
+position = Vector2( -70, -100 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="bullet_point2" type="Node2D" parent="." index="8"]
 
-position = Vector2( 282, -340 )
+position = Vector2( 70, -104 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="bullet" type="AudioStreamPlayer2D" parent="." index="9"]
 
@@ -222,29 +223,32 @@ _sections_unfolded = [ "Transform" ]
 [node name="ray_sprite" type="Sprite" parent="." index="11"]
 
 visible = false
-position = Vector2( 2, -256 )
-scale = Vector2( 8, 4 )
+position = Vector2( 2, -86 )
+scale = Vector2( 2, 1 )
+z_index = 1
+z_as_relative = false
 texture = ExtResource( 8 )
 centered = false
 offset = Vector2( 0, -11 )
-_sections_unfolded = [ "Offset", "Transform", "Visibility" ]
+_sections_unfolded = [ "Offset", "Transform", "Visibility", "Z Index" ]
 
 [node name="Area2D" type="Area2D" parent="ray_sprite" index="0"]
 
-scale = Vector2( 0.125, 0.25 )
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 collision_layer = 0
+collision_mask = 3
 audio_bus_override = false
 audio_bus_name = "Master"
-_sections_unfolded = [ "Collision", "Transform" ]
+_sections_unfolded = [ "Collision", "Transform", "Visibility" ]
 
 [node name="Shape2D" type="CollisionShape2D" parent="ray_sprite/Area2D" index="0"]
 
-position = Vector2( 816, 0 )
+position = Vector2( 100, 0 )
 shape = SubResource( 6 )
+_sections_unfolded = [ "Material", "Transform", "Visibility" ]
 
 

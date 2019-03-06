@@ -6,7 +6,7 @@ extends RigidBody2D
 # - Attack player if near or player attack him
 var hp = 10
 
-var SPEED = 50
+var SPEED = 20
 var FRAMES = 8
 
 var PLAYER_ATTACK_DISTANCE = 100.0
@@ -106,15 +106,15 @@ func _physics_process(delta):
 		
 		# Update frame
 		var orientation = fmod(Vector2(1.0, 0.0).angle_to(facing) + 2*PI, 2*PI)
-		$body.frame = int(round(abs(orientation)/(2*PI*(0.125))) + 6)%8
-		$CollisionShape2D.rotation = orientation + PI * 0.5
+		$shape/body.frame = int(round(abs(orientation)/(2*PI*(0.125))) + 6)%8
+#		$CollisionShape2D.rotation = orientation + PI * 0.5
 		
 		# Jump
 		self.jump_timer += 5.0 * delta
-		$body.position.y = abs(sin(self.jump_timer)) * 5.0
+		$shape.position.y = abs(sin(self.jump_timer)) * 1.2 - 11
 	else:
 		death_timer -= delta
-		$dead.modulate.a = death_timer/5.0
+		$shape/dead.modulate.a = death_timer/5.0
 		if death_timer < 0:
 			queue_free()
 	
@@ -125,12 +125,13 @@ func get_hit(value):
 	
 func detonate():
 	is_alive = false
+	$shadow.visible = false
 	$explosion.rotation = rand_range(0, PI * 2)
 	$AnimationPlayer.play("explode")
-	$CollisionShape2D.disabled = true
+	$shape.disabled = true
 	$agony.play()
 	$explode.play()
-	$dead.flip_h = randi() % 2
+	$shape/dead.flip_h = randi() % 2
 	linear_velocity = Vector2()
 
 func _on_body_entered(body):

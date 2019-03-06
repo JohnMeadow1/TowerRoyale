@@ -7,8 +7,8 @@ enum {
 	MONSTER_EVIL
 }
 
-var life = 500.0
-var rage = 0.0
+export var life = 500.0
+export var rage = 0.0
 var state = MONSTER_GOOD
 var ai_timer = 0.0
 
@@ -41,12 +41,14 @@ func calm_monster(value):
 
 func handle_monster_rage(delta):
 	# Increase monster rage
-	self.rage += 14.0 * delta
+	self.rage += 10.0 * delta
 	
 	# Calm monster from channelers
 	for ch in get_tree().get_nodes_in_group("channelers"):
 		if ch.is_alive() && ch.ray_timer<=0:
-			self.calm_monster(delta * 5.5)
+			self.calm_monster(delta * 2.5)
+		elif ch.is_alive():
+			self.calm_monster(delta * 1.5)
 	
 	# Monster full rage activated
 	if self.rage > self.RAGE_MAX:
@@ -78,7 +80,7 @@ func activate_monster():
 	# Detroy void
 	get_node("../void").void_vanish()
 	var boss = boss_object.instance()
-	boss.position = global_position+Vector2(50,-100)
+	boss.position = global_position+Vector2(9,-12)
 	# Stop spawning monster
 	globals.spawn_enemies = false
 	get_node("../../YSort").add_child(boss)

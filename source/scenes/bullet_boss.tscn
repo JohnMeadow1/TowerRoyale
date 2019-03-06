@@ -1,14 +1,14 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/bullet_boss.gd" type="Script" id=1]
-[ext_resource path="res://sprites/fireball2.png" type="Texture" id=2]
+[ext_resource path="res://sprites/fireball_small.png" type="Texture" id=2]
 [ext_resource path="res://sprites/explosion8.png" type="Texture" id=3]
 [ext_resource path="res://audio/strike_2.wav" type="AudioStream" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 30.0
+radius = 8.0
 
 [sub_resource type="Animation" id=2]
 
@@ -58,7 +58,7 @@ tracks/2/keys = {
 z_index = 1
 input_pickable = false
 collision_layer = 0
-collision_mask = 1
+collision_mask = 3
 mode = 0
 mass = 1.0
 friction = 0.0
@@ -75,11 +75,10 @@ linear_damp = -1.0
 angular_velocity = 0.0
 angular_damp = -1.0
 script = ExtResource( 1 )
-_sections_unfolded = [ "Collision", "Linear", "Z Index" ]
+_sections_unfolded = [ "Collision", "Linear", "Transform", "Z Index" ]
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
-scale = Vector2( 4, 4 )
 texture = ExtResource( 2 )
 _sections_unfolded = [ "Animation", "Offset", "Transform", "Visibility" ]
 
@@ -90,7 +89,6 @@ shape = SubResource( 1 )
 [node name="explode" type="Sprite" parent="." index="2"]
 
 visible = false
-scale = Vector2( 4, 4 )
 texture = ExtResource( 3 )
 vframes = 4
 hframes = 4

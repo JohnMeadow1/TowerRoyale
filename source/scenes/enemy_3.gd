@@ -5,10 +5,10 @@ extends RigidBody2D
 # - Find nearest channeler if available
 # - Attack player if near or player attack him
 
-var SPEED = 250
+var SPEED = 75
 var FRAMES = 8
 
-var PLAYER_ATTACK_DISTANCE = 400.0
+var PLAYER_ATTACK_DISTANCE = 300.0
 
 var current_target = null
 var facing = Vector2()
@@ -105,6 +105,8 @@ func _physics_process(delta):
 					bodies[0].get_hit(0.05)
 					if randi()%100 < 2:
 						get_node("attack_"+str(randi()%2)).play()
+				elif current_target.is_in_group("chnnelers"):
+					find_target()
 
 		# Move enemy
 		self.facing = Vector2(1.0, 0.0)
@@ -115,27 +117,28 @@ func _physics_process(delta):
 		
 		# Update frame
 		var orientation = fmod(Vector2(1.0, 0.0).angle_to(facing) + 2*PI, 2*PI)
-		$body.frame = int(round(abs(orientation)/(2*PI*(0.125))) + 6)%8
-		$CollisionShape2D.rotation = orientation + PI * 0.5
+		$shape/body.frame = int(round(abs(orientation)/(2*PI*(0.125))) + 6)%8
+#		$CollisionShape2D.rotation = orientation + PI * 0.5
 		# Jump
 		self.jump_timer += 25.0 * delta
-		$body.position.y = abs(sin(self.jump_timer)) * 8.0
+		$shape.position.y = abs(sin(self.jump_timer)) * 2.5 -7
 	else:
 		death_timer -= delta
-		$dead.modulate.a = death_timer/5.0
+		$shape/dead.modulate.a = death_timer/5.0
 		if death_timer < 0:
 			queue_free()
 
 
 func get_hit(value):
-	$CollisionShape2D.disabled = true
+	$shape.disabled = true
+	$shadow.visible = false
 	$agony.play()
 	$Particles2D.emitting = true
 	is_alive = false
 	linear_velocity = Vector2()
-	$body.visible = false
-	$dead.visible = true
-	$dead.flip_h = randi()%2
+	$shape/body.visible = false
+	$shape/dead.visible = true
+	$shape/dead.flip_h = randi()%2
 #	$body.rotation = rand_range(0,PI*2)
 
 

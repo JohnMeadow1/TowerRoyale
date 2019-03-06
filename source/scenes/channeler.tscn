@@ -1,55 +1,78 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scenes/channeler.gd" type="Script" id=1]
-[ext_resource path="res://sprites/tower bott.png" type="Texture" id=2]
-[ext_resource path="res://sprites/tower midL.png" type="Texture" id=3]
-[ext_resource path="res://sprites/tower midR.png" type="Texture" id=4]
-[ext_resource path="res://sprites/tower upL.png" type="Texture" id=5]
-[ext_resource path="res://sprites/tower upR.png" type="Texture" id=6]
-[ext_resource path="res://sprites/tower bott dead.png" type="Texture" id=7]
-[ext_resource path="res://sprites/tower midL dead.png" type="Texture" id=8]
-[ext_resource path="res://sprites/tower midR dead.png" type="Texture" id=9]
-[ext_resource path="res://sprites/tower upL dead.png" type="Texture" id=10]
-[ext_resource path="res://sprites/tower upR dead.png" type="Texture" id=11]
-[ext_resource path="res://sprites/beam_source.png" type="Texture" id=12]
-[ext_resource path="res://sprites/beam.png" type="Texture" id=13]
-[ext_resource path="res://sprites/life_bar_bg2.png" type="Texture" id=14]
-[ext_resource path="res://sprites/life_border2.png" type="Texture" id=15]
-[ext_resource path="res://sprites/life_bar2.png" type="Texture" id=16]
-[ext_resource path="res://audio/power_off.wav" type="AudioStream" id=17]
-[ext_resource path="res://sprites/explosion8.png" type="Texture" id=18]
+[ext_resource path="res://sprites/towers/tower_bott.png" type="Texture" id=2]
+[ext_resource path="res://sprites/towers/tower_bott_dead.png" type="Texture" id=3]
+[ext_resource path="res://sprites/beam_source.png" type="Texture" id=4]
+[ext_resource path="res://sprites/beam.png" type="Texture" id=5]
+[ext_resource path="res://sprites/ui/v_life_bar_bg.png" type="Texture" id=6]
+[ext_resource path="res://sprites/ui/v_life_border.png" type="Texture" id=7]
+[ext_resource path="res://sprites/ui/v_life_bar_noshade.png" type="Texture" id=8]
+[ext_resource path="res://audio/power_off.wav" type="AudioStream" id=9]
+[ext_resource path="res://sprites/explosion8.png" type="Texture" id=10]
 
-[sub_resource type="SpriteFrames" id=1]
+[sub_resource type="Gradient" id=1]
 
-animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
-"loop": false,
-"name": "default",
-"speed": 5.0
-} ]
+offsets = PoolRealArray( 0.157729, 0.305994, 0.533123, 0.728707, 0.936909, 0.9653 )
+colors = PoolColorArray( 1, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1 )
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="GradientTexture" id=2]
 
-animations = [ {
-"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
-"loop": true,
-"name": "default",
-"speed": 5.0
-} ]
+flags = 4
+gradient = SubResource( 1 )
+width = 128
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="ParticlesMaterial" id=3]
+
+render_priority = 0
+trail_divisor = 1
+emission_shape = 0
+flag_align_y = false
+flag_rotate_y = false
+flag_disable_z = true
+spread = 10.0
+flatness = 1.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 100.0
+initial_velocity_random = 0.5
+angular_velocity = 0.0
+angular_velocity_random = 0.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 0.0
+linear_accel_random = 0.0
+radial_accel = 0.0
+radial_accel_random = 0.0
+tangential_accel = 0.0
+tangential_accel_random = 0.0
+damping = 1.0
+damping_random = 0.0
+angle = 0.0
+angle_random = 0.0
+scale = 1.0
+scale_random = 0.0
+color_ramp = SubResource( 2 )
+hue_variation = 0.0
+hue_variation_random = 0.0
+anim_speed = 0.0
+anim_speed_random = 0.0
+anim_offset = 0.0
+anim_offset_random = 0.0
+anim_loop = false
+_sections_unfolded = [ "Color", "Emission Shape", "Flags", "Gravity", "Initial Velocity", "Spread", "Trail" ]
+
+[sub_resource type="CircleShape2D" id=4]
 
 custom_solver_bias = 0.0
-radius = 70.0
+radius = 40.0
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 
-resource_name = "die"
 length = 0.8
 loop = false
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("explosion:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -61,7 +84,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("AnimatedSprite2:visible")
+tracks/1/path = NodePath("destroyed:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -73,7 +96,7 @@ tracks/1/keys = {
 "values": [ true ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("AnimatedSprite:visible")
+tracks/2/path = NodePath("tower:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -97,7 +120,7 @@ tracks/3/keys = {
 "values": [ false ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Sprite:visible")
+tracks/4/path = NodePath("explosion:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -110,11 +133,10 @@ tracks/4/keys = {
 }
 
 [node name="channeler1" type="StaticBody2D" groups=[
-"friendly",
 "channelers",
+"friendly",
 ]]
 
-position = Vector2( 2, -30 )
 input_pickable = false
 collision_layer = 1
 collision_mask = 0
@@ -123,35 +145,53 @@ constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
 script = ExtResource( 1 )
-_sections_unfolded = [ "Collision" ]
+_sections_unfolded = [ "Collision", "Transform" ]
+hp = 500.0
+alive = true
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
+[node name="tower" type="Sprite" parent="." index="0"]
 
-position = Vector2( 23, -120 )
-scale = Vector2( 4, 4 )
-frames = SubResource( 1 )
-animation = "default"
-frame = 4
+position = Vector2( 2, 3 )
+texture = ExtResource( 2 )
+offset = Vector2( 23, -37 )
 _sections_unfolded = [ "Animation", "Material", "Offset", "Region", "Transform", "Visibility", "Z Index" ]
-__meta__ = {
-"_edit_lock_": true
-}
 
-[node name="AnimatedSprite2" type="AnimatedSprite" parent="." index="1"]
+[node name="destroyed" type="Sprite" parent="." index="1"]
 
 visible = false
-position = Vector2( 135, -16 )
-scale = Vector2( 4, 4 )
-frames = SubResource( 2 )
-animation = "default"
-frame = 4
+position = Vector2( 25, -12 )
+texture = ExtResource( 3 )
 _sections_unfolded = [ "Animation", "Material", "Offset", "Region", "Transform", "Visibility", "Z Index" ]
 
-[node name="source" type="Sprite" parent="." index="2"]
+[node name="Particles2D" type="Particles2D" parent="." index="2"]
 
-position = Vector2( 6, -145 )
-scale = Vector2( 4, 4 )
-texture = ExtResource( 12 )
+position = Vector2( 138.416, -60.884 )
+rotation = -1.5708
+emitting = true
+amount = 64
+lifetime = 1.0
+one_shot = false
+preprocess = 0.0
+speed_scale = 1.0
+explosiveness = 0.0
+randomness = 0.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = true
+draw_order = 0
+process_material = SubResource( 3 )
+texture = null
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Process Material", "Time", "Transform" ]
+
+[node name="source" type="Sprite" parent="." index="3"]
+
+position = Vector2( 2, -62 )
+z_as_relative = false
+texture = ExtResource( 4 )
 centered = false
 offset = Vector2( -9, -18 )
 vframes = 3
@@ -160,24 +200,27 @@ _sections_unfolded = [ "Animation", "Material", "Offset", "Transform", "Visibili
 
 [node name="ray" type="Sprite" parent="source" index="0"]
 
-position = Vector2( 36, -16 )
-texture = ExtResource( 13 )
+position = Vector2( 36, 0 )
+z_index = 1
+z_as_relative = false
+texture = ExtResource( 5 )
 centered = false
+offset = Vector2( 0, -16 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 100, 33 )
-_sections_unfolded = [ "Offset", "Pause", "Playback Options", "Region", "Transform" ]
+_sections_unfolded = [ "Offset", "Pause", "Playback Options", "Region", "Transform", "Z Index" ]
 
-[node name="hp_bar" type="TextureProgress" parent="." index="3"]
+[node name="hp_bar" type="TextureProgress" parent="." index="4"]
 
+modulate = Color( 1, 1, 0, 1 )
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = -116.0
-margin_top = -2.0
-margin_right = -16.0
-margin_bottom = 29.0
-rect_scale = Vector2( 4, 4 )
+margin_left = -27.0
+margin_top = -57.0
+margin_right = -22.0
+margin_bottom = 3.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -191,16 +234,18 @@ page = 0.0
 value = 500.0
 exp_edit = false
 rounded = false
-texture_under = ExtResource( 14 )
-texture_over = ExtResource( 15 )
-texture_progress = ExtResource( 16 )
+texture_under = ExtResource( 6 )
+texture_over = ExtResource( 7 )
+texture_progress = ExtResource( 8 )
+fill_mode = 3
 radial_fill_degrees = 360.0
 radial_center_offset = Vector2( 0, 0 )
 nine_patch_stretch = false
-_sections_unfolded = [ "Radial Fill", "Rect", "Textures" ]
+_sections_unfolded = [ "Radial Fill", "Rect", "Textures", "Visibility" ]
 
-[node name="Area2D" type="Area2D" parent="." index="4"]
+[node name="Area2D" type="Area2D" parent="." index="5"]
 
+position = Vector2( 2, -27 )
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -215,12 +260,13 @@ _sections_unfolded = [ "Collision" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
 
-position = Vector2( 0, 30 )
-shape = SubResource( 3 )
+position = Vector2( 0, 27 )
+shape = SubResource( 4 )
+_sections_unfolded = [ "Transform" ]
 
-[node name="shutdown" type="AudioStreamPlayer2D" parent="." index="5"]
+[node name="shutdown" type="AudioStreamPlayer2D" parent="." index="6"]
 
-stream = ExtResource( 17 )
+stream = ExtResource( 9 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
@@ -229,25 +275,30 @@ attenuation = 1.0
 bus = "Master"
 area_mask = 1
 
-[node name="Sprite" type="Sprite" parent="." index="6"]
+[node name="explosion" type="Sprite" parent="." index="7"]
 
-visible = false
-position = Vector2( 5, -6 )
-scale = Vector2( 4, 4 )
-texture = ExtResource( 18 )
+position = Vector2( 7, -33 )
+texture = ExtResource( 10 )
 vframes = 4
 hframes = 4
+frame = 15
 _sections_unfolded = [ "Animation", "Transform", "Visibility" ]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="7"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="8"]
 
 root_node = NodePath("..")
 autoplay = ""
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.0
-anims/die = SubResource( 4 )
+anims/die = SubResource( 5 )
 blend_times = [  ]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="9"]
+
+position = Vector2( 2, -27 )
+build_mode = 0
+polygon = PoolVector2Array( -22, 27, -8, 33, -1, 49, 8, 33, 22, 28, 7, 13, -11, 13 )
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]
 

@@ -2,13 +2,13 @@ extends Node2D
 
 var bullet_object = load("res://scenes/bullet.tscn")
 
-export var player_id =0
+export var player_id = 0
 
 var hp = 200
 
-const TURNING_SPEED     = PI
-const MAX_SPEED         = 500
-const MAX_REVERSE_SPEED = -300
+const TURNING_SPEED     = PI*0.75
+const MAX_SPEED         = 100
+const MAX_REVERSE_SPEED = -80
 
 var orientation      = 0.0
 var acceleration     = 0.0
@@ -31,13 +31,16 @@ func _physics_process(delta):
 	facing       = Vector2 ( cos( orientation), sin( orientation ) ) 
 	
 	orientation = fmod(orientation + PI2, PI2)
-	$body.frame = int(round( abs(orientation)/(PI*0.125) ))%16
-	$body2.frame = int(round( abs(orientation)/(PI*0.125) ))%16
-#	$turret.frame = int(round( abs(orientation)/(PI*0.125) ))%16
+	var sprite_frame   = int(round( abs(orientation) / (PI*0.125) )) % 16
+	$body/shadow.frame = sprite_frame
+	$body.frame        = sprite_frame
+	var sprite_frame_rotation = sprite_frame * PI * 0.125 - PI * 0.5	
+	$collider.rotation = sprite_frame_rotation #orientation - PI*0.5
+	$barrel.rotation   = sprite_frame_rotation + PI * 0.5 
+	$barrel/fire.position.x = cos( sprite_frame *0.25*PI )*5+15
 
+#	$turret.frame = int(round( abs(orientation)/(PI*0.125) ))%16
 	position += facing * acceleration * delta
-	$barrel.rotation = orientation
-	$CollisionShape2D.rotation = orientation - PI*0.5
 	if abs(thrust):
 		if !is_playing.playing or is_playing.get_playback_position() >= is_playing.stream.get_length() - delta:
 #			is_playing = get_node("tracks_" + str(randi()%2) )
@@ -50,6 +53,7 @@ func _physics_process(delta):
 				$hp_bar.value = hp
 	else:
 		is_playing.stop()
+	$hp_bar.modulate.a = max(0,$hp_bar.modulate.a - delta)
 	update()
 	
 func process_input(dt):
@@ -94,12 +98,13 @@ func spawn_bullet():
 func get_hit(value):
 	hp -= value
 	$hp_bar.value = hp
+	$hp_bar.modulate.a = 1.0
 
 func _on_body_entered(body):
 	if body.has_method("detonate"):
 		body.detonate()
 		
 func _draw():
-	draw_circle(facing*200+$barrel.position, 10, Color(1,0,0))
+	draw_circle(facing*100+$barrel.position, 2, Color(1,0,0))
 	
 	

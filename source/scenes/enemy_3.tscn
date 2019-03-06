@@ -1,24 +1,25 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/enemy_3.gd" type="Script" id=1]
-[ext_resource path="res://sprites/enemy_3.png" type="Texture" id=2]
-[ext_resource path="res://sprites/enemy_3_dead.png" type="Texture" id=3]
-[ext_resource path="res://audio/monster_agony/agony_C.wav" type="AudioStream" id=4]
-[ext_resource path="res://scenes/particle_material.tres" type="Material" id=5]
-[ext_resource path="res://audio/P1_hit_1.wav" type="AudioStream" id=6]
-[ext_resource path="res://audio/P1_hit_2.wav" type="AudioStream" id=7]
+[ext_resource path="res://sprites/shadow_small.png" type="Texture" id=2]
+[ext_resource path="res://sprites/enemy/enemy_3.png" type="Texture" id=3]
+[ext_resource path="res://sprites/enemy/enemy_3_dead.png" type="Texture" id=4]
+[ext_resource path="res://audio/monster_agony/agony_C.wav" type="AudioStream" id=5]
+[ext_resource path="res://scenes/particle_material.tres" type="Material" id=6]
+[ext_resource path="res://audio/P1_hit_1.wav" type="AudioStream" id=7]
+[ext_resource path="res://audio/P1_hit_2.wav" type="AudioStream" id=8]
 
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 15.0
+radius = 5.0
 
 [sub_resource type="AudioStreamRandomPitch" id=2]
 
-audio_stream = ExtResource( 4 )
+audio_stream = ExtResource( 5 )
 random_pitch = 1.5
 
-[node name="enemy" type="RigidBody2D" groups=[
+[node name="enemy" type="RigidBody2D" index="0" groups=[
 "enemies",
 ]]
 
@@ -43,31 +44,36 @@ angular_damp = -1.0
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "Linear", "Transform" ]
 
-[node name="body" type="Sprite" parent="." index="0"]
+[node name="shadow" type="Sprite" parent="." index="0"]
 
-position = Vector2( 0, 4 )
-scale = Vector2( 4, 4 )
+modulate = Color( 1, 1, 1, 0.392157 )
+position = Vector2( 0, -1 )
 texture = ExtResource( 2 )
+_sections_unfolded = [ "Visibility" ]
+
+[node name="shape" type="CollisionShape2D" parent="." index="1"]
+
+position = Vector2( 0, -5 )
+shape = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="body" type="Sprite" parent="shape" index="0"]
+
+position = Vector2( 0, 5 )
+texture = ExtResource( 3 )
 offset = Vector2( 0, -5 )
 hframes = 8
-frame = 1
 _sections_unfolded = [ "Animation", "Material", "Offset", "Pause", "Region", "Transform", "Visibility", "Z Index" ]
 
-[node name="dead" type="Sprite" parent="." index="1"]
+[node name="dead" type="Sprite" parent="shape" index="1"]
 
 visible = false
-position = Vector2( 0, 1 )
-scale = Vector2( 4, 4 )
-texture = ExtResource( 3 )
+position = Vector2( 0, 4 )
+texture = ExtResource( 4 )
 offset = Vector2( 0, -5 )
 _sections_unfolded = [ "Material", "Offset", "Transform" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
-
-position = Vector2( 0, -11 )
-shape = SubResource( 1 )
-
-[node name="agony" type="AudioStreamPlayer2D" parent="." index="3"]
+[node name="agony" type="AudioStreamPlayer2D" parent="." index="2"]
 
 stream = SubResource( 2 )
 volume_db = -5.0
@@ -78,7 +84,7 @@ attenuation = 1.0
 bus = "Master"
 area_mask = 1
 
-[node name="Particles2D" type="Particles2D" parent="." index="4"]
+[node name="Particles2D" type="Particles2D" parent="." index="3"]
 
 emitting = false
 amount = 32
@@ -93,16 +99,16 @@ fract_delta = true
 visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = false
 draw_order = 0
-process_material = ExtResource( 5 )
+process_material = ExtResource( 6 )
 texture = null
 normal_map = null
 h_frames = 1
 v_frames = 1
 _sections_unfolded = [ "Drawing", "Process Material", "Textures", "Time" ]
 
-[node name="attack_0" type="AudioStreamPlayer2D" parent="." index="5"]
+[node name="attack_0" type="AudioStreamPlayer2D" parent="." index="4"]
 
-stream = ExtResource( 6 )
+stream = ExtResource( 7 )
 volume_db = 0.0
 pitch_scale = 2.0
 autoplay = false
@@ -111,9 +117,9 @@ attenuation = 1.0
 bus = "Master"
 area_mask = 1
 
-[node name="attack_1" type="AudioStreamPlayer2D" parent="." index="6"]
+[node name="attack_1" type="AudioStreamPlayer2D" parent="." index="5"]
 
-stream = ExtResource( 7 )
+stream = ExtResource( 8 )
 volume_db = 0.0
 pitch_scale = 2.0
 autoplay = false

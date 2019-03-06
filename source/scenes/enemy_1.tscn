@@ -1,27 +1,28 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scenes/enemy_1.gd" type="Script" id=1]
-[ext_resource path="res://sprites/enemy_1.png" type="Texture" id=2]
-[ext_resource path="res://sprites/enemy_1_dead.png" type="Texture" id=3]
-[ext_resource path="res://audio/monster_agony/agony_B.wav" type="AudioStream" id=4]
-[ext_resource path="res://audio/monster_agony/agony_D.wav" type="AudioStream" id=5]
-[ext_resource path="res://scenes/particle_material.tres" type="Material" id=6]
-[ext_resource path="res://audio/P1_hit_1.wav" type="AudioStream" id=7]
-[ext_resource path="res://audio/P1_hit_2.wav" type="AudioStream" id=8]
+[ext_resource path="res://sprites/shadow.png" type="Texture" id=2]
+[ext_resource path="res://sprites/enemy/enemy_1.png" type="Texture" id=3]
+[ext_resource path="res://sprites/enemy/enemy_1_dead.png" type="Texture" id=4]
+[ext_resource path="res://audio/monster_agony/agony_B.wav" type="AudioStream" id=5]
+[ext_resource path="res://audio/monster_agony/agony_D.wav" type="AudioStream" id=6]
+[ext_resource path="res://scenes/particle_material.tres" type="Material" id=7]
+[ext_resource path="res://audio/P1_hit_1.wav" type="AudioStream" id=8]
+[ext_resource path="res://audio/P1_hit_2.wav" type="AudioStream" id=9]
 
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 15.0
+radius = 7.0
 
 [sub_resource type="AudioStreamRandomPitch" id=2]
 
-audio_stream = ExtResource( 4 )
+audio_stream = ExtResource( 5 )
 random_pitch = 1.3
 
 [sub_resource type="AudioStreamRandomPitch" id=3]
 
-audio_stream = ExtResource( 5 )
+audio_stream = ExtResource( 6 )
 random_pitch = 1.3
 
 [sub_resource type="Animation" id=4]
@@ -31,7 +32,7 @@ length = 1.0
 loop = false
 step = 0.1
 tracks/0/type = "value"
-tracks/0/path = NodePath("dead:visible")
+tracks/0/path = NodePath("shape/dead:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -43,7 +44,7 @@ tracks/0/keys = {
 "values": [ true ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("body:visible")
+tracks/1/path = NodePath("shape/body:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -81,31 +82,34 @@ angular_damp = -1.0
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "Linear", "Transform" ]
 
-[node name="body" type="Sprite" parent="." index="0"]
+[node name="shadow" type="Sprite" parent="." index="0"]
 
-position = Vector2( 0, -28 )
-scale = Vector2( 4, 4 )
+modulate = Color( 1, 1, 1, 0.392157 )
+position = Vector2( 0, -4 )
 texture = ExtResource( 2 )
-hframes = 8
-frame = 7
-_sections_unfolded = [ "Animation", "Material", "Offset", "Pause", "Region", "Transform", "Visibility", "Z Index" ]
+_sections_unfolded = [ "Visibility" ]
 
-[node name="dead" type="Sprite" parent="." index="1"]
+[node name="shape" type="CollisionShape2D" parent="." index="1"]
 
-visible = false
-position = Vector2( 0, -24 )
-scale = Vector2( 4, 4 )
-texture = ExtResource( 3 )
-_sections_unfolded = [ "Transform", "Visibility" ]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
-
-position = Vector2( 3.49691e-007, -8 )
-rotation = 1.5708
+position = Vector2( 0, -9 )
 shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="agony_0" type="AudioStreamPlayer2D" parent="." index="3"]
+[node name="body" type="Sprite" parent="shape" index="0"]
+
+position = Vector2( 0, -4 )
+texture = ExtResource( 3 )
+hframes = 8
+_sections_unfolded = [ "Animation", "Material", "Offset", "Pause", "Region", "Transform", "Visibility", "Z Index" ]
+
+[node name="dead" type="Sprite" parent="shape" index="1"]
+
+visible = false
+position = Vector2( 0, -3 )
+texture = ExtResource( 4 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="agony_0" type="AudioStreamPlayer2D" parent="." index="2"]
 
 stream = SubResource( 2 )
 volume_db = 0.0
@@ -116,7 +120,7 @@ attenuation = 1.0
 bus = "Master"
 area_mask = 1
 
-[node name="agony_1" type="AudioStreamPlayer2D" parent="." index="4"]
+[node name="agony_1" type="AudioStreamPlayer2D" parent="." index="3"]
 
 stream = SubResource( 3 )
 volume_db = 0.0
@@ -127,7 +131,7 @@ attenuation = 1.0
 bus = "Master"
 area_mask = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
 
 root_node = NodePath("..")
 autoplay = ""
@@ -137,7 +141,7 @@ playback_speed = 1.0
 anims/die = SubResource( 4 )
 blend_times = [  ]
 
-[node name="Particles2D" type="Particles2D" parent="." index="6"]
+[node name="Particles2D" type="Particles2D" parent="." index="5"]
 
 emitting = false
 amount = 64
@@ -152,16 +156,16 @@ fract_delta = true
 visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = false
 draw_order = 0
-process_material = ExtResource( 6 )
+process_material = ExtResource( 7 )
 texture = null
 normal_map = null
 h_frames = 1
 v_frames = 1
 _sections_unfolded = [ "Drawing", "Material", "Pause", "Process Material", "Textures", "Time", "Transform", "Visibility" ]
 
-[node name="attack_0" type="AudioStreamPlayer2D" parent="." index="7"]
+[node name="attack_0" type="AudioStreamPlayer2D" parent="." index="6"]
 
-stream = ExtResource( 7 )
+stream = ExtResource( 8 )
 volume_db = 0.0
 pitch_scale = 2.0
 autoplay = false
@@ -170,9 +174,9 @@ attenuation = 1.0
 bus = "Master"
 area_mask = 1
 
-[node name="attack_1" type="AudioStreamPlayer2D" parent="." index="8"]
+[node name="attack_1" type="AudioStreamPlayer2D" parent="." index="7"]
 
-stream = ExtResource( 8 )
+stream = ExtResource( 9 )
 volume_db = 0.0
 pitch_scale = 2.0
 autoplay = false

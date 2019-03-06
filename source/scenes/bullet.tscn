@@ -8,7 +8,7 @@
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 10.0
+radius = 4.0
 
 [sub_resource type="Animation" id=2]
 
@@ -86,13 +86,13 @@ tracks/0/keys = {
 [sub_resource type="CircleShape2D" id=4]
 
 custom_solver_bias = 0.0
-radius = 100.0
+radius = 25.0
 
-[node name="bullet" type="RigidBody2D" index="0"]
+[node name="bullet" type="RigidBody2D"]
 
 input_pickable = false
 collision_layer = 0
-collision_mask = 2
+collision_mask = 6
 mode = 0
 mass = 1.0
 friction = 0.0
@@ -113,12 +113,9 @@ _sections_unfolded = [ "Collision", "Linear" ]
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
-position = Vector2( -30, -10 )
-scale = Vector2( 4, 4 )
 texture = ExtResource( 2 )
-centered = false
 vframes = 4
-frame = 3
+frame = 1
 _sections_unfolded = [ "Animation", "Offset", "Transform", "Visibility" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
@@ -128,10 +125,10 @@ shape = SubResource( 1 )
 [node name="Sprite2" type="Sprite" parent="." index="2"]
 
 visible = false
-scale = Vector2( 4, 4 )
 texture = ExtResource( 3 )
 vframes = 4
 hframes = 4
+frame = 14
 _sections_unfolded = [ "Animation", "Transform", "Visibility" ]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
@@ -153,7 +150,7 @@ gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 collision_layer = 0
-collision_mask = 2
+collision_mask = 6
 audio_bus_override = false
 audio_bus_name = "Master"
 _sections_unfolded = [ "Collision" ]
@@ -166,7 +163,7 @@ disabled = true
 [node name="boom" type="AudioStreamPlayer2D" parent="." index="5"]
 
 stream = ExtResource( 4 )
-volume_db = 0.0
+volume_db = -10.0
 pitch_scale = 1.0
 autoplay = false
 max_distance = 2000.0

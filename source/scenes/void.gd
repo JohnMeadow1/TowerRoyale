@@ -29,7 +29,7 @@ func _process(delta):
 #		var proc = ( max(self.vanish_timer + abs(sin(self.vanish_timer)), 0) / self.VANISH_TIME )
 		var proc = ( vanish_timer / self.VANISH_TIME )
 #		print(proc)
-		self.set_scale(Vector2(proc * 4.0, proc * 4.0))
+		self.set_scale(Vector2(proc, proc))
 		
 		if vanish_timer <= 0.0:
 			queue_free()

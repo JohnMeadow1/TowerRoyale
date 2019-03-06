@@ -23,7 +23,8 @@ func _process(delta):
 			$ray_sprite.rotation = Vector2(1,0).angle_to(target.position-$ray_sprite.global_position) + rand_range(-0.02,0.02)
 			ray_iterator += delta
 			for body in $ray_sprite/Area2D.get_overlapping_bodies():
-				if body.is_in_group("players"):
+#				if body.is_in_group("players"):
+				if body.has_method("get_hit"):
 					body.get_hit(rand_range(0.1,0.5))
 			if ray_iterator >=2:
 				$ray_sprite.visible = false
