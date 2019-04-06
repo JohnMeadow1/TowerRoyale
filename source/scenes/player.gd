@@ -1,4 +1,4 @@
-extends Node2D
+extends RigidBody2D
 
 var bullet_object = load("res://scenes/bullet.tscn")
 

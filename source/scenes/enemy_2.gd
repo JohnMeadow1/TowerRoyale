@@ -46,7 +46,7 @@ func find_player(ignore_range):
 	var tmp_distance = null
 	
 	for player in get_tree().get_nodes_in_group("players"):
-		var curr_distance = Vector2(player.global_position - self.global_position).length()
+		var curr_distance = (player.global_position - self.global_position).length()
 		
 		if ignore_range:
 			if !tmp_target or tmp_distance < curr_distance:
@@ -71,7 +71,7 @@ func find_channeler():
 	var nearest_channeler = null
 	
 	for channeler in get_tree().get_nodes_in_group("channelers"):
-		var curr_distance = Vector2(channeler.global_position - self.global_position).length()
+		var curr_distance = (channeler.global_position - self.global_position).length()
 		
 		if ( lowest_distance == null or (curr_distance < lowest_distance and channeler.is_alive())):
 			lowest_distance = curr_distance
@@ -100,7 +100,7 @@ func _physics_process(delta):
 		# Move enemy
 		self.facing = Vector2(1.0, 0.0)
 		if self.current_target:
-			facing = Vector2 (self.current_target.global_position - self.global_position).normalized()
+			facing =  (self.current_target.global_position - self.global_position).normalized()
 		
 		position += facing * SPEED * delta
 		

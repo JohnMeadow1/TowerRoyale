@@ -45,7 +45,7 @@ func is_alive():
 	return self.alive
 	
 func setup_ray():
-	var vector_to = Vector2(get_node("../target").global_position - $source.global_position)
+	var vector_to = get_node("../target").global_position - $source.global_position
 	$Particles2D.position = vector_to.normalized() * (vector_to.length()-66) + Vector2(1,-30)
 	$source.rotate(Vector2(1, 0).angle_to(vector_to))
 	
@@ -59,7 +59,7 @@ func _process(delta):
 			acumulator -= 0.1
 			frame_offset = (frame_offset+1)%3
 		
-		var vector_to = Vector2(get_node("../target").global_position - $source.global_position)
+		var vector_to = get_node("../target").global_position - $source.global_position
 		$source/ray.region_rect = Rect2(Vector2(animation_offset,33*frame_offset),Vector2(vector_to.length()-100, 33))
 		$source.frame = frame_offset
 		if ray_timer>0:
